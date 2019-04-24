@@ -3,6 +3,7 @@ class CreateWorkoutLifts < ActiveRecord::Migration[5.2]
     create_table :workout_lifts do |t|
       t.belongs_to :workout 
       t.belongs_to :lift 
+      t.belongs_to :user
       t.timestamps
     end
   end

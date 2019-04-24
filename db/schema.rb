@@ -30,9 +30,11 @@ ActiveRecord::Schema.define(version: 2019_04_23_201942) do
   create_table "workout_lifts", force: :cascade do |t|
     t.integer "workout_id"
     t.integer "lift_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lift_id"], name: "index_workout_lifts_on_lift_id"
+    t.index ["user_id"], name: "index_workout_lifts_on_user_id"
     t.index ["workout_id"], name: "index_workout_lifts_on_workout_id"
   end
 
