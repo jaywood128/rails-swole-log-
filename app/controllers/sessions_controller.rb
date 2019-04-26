@@ -4,11 +4,15 @@ class SessionsController < ApplicationController
     end
  
     def create
-        binding.pry
+         
         if @user = User.find_by(username: params[:sessions][:username]) && @user.authenticate(params[:sessions][:password_digest])
             session[:username] = params[:username]
+            redirect_to user_path(@user)
+
+        else 
+            render :new 
         end
-        redirect_to '/'
+        
     end
 end
 
