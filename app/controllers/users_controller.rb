@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     end 
 
     def show 
-        binding.pry
         @user = User.find(params[:id])
     end 
 
@@ -23,6 +22,7 @@ class UsersController < ApplicationController
     end 
 
     def destroy 
+        self.delete session[:user_id]
     end 
     private 
     def user_params

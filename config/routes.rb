@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :lifts
 
 
-
+  
   get    '/signup',  to: 'users#new'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
