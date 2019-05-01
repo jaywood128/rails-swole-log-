@@ -1,0 +1,8 @@
+<% if !@workout_lifts.empty? %> 
+<% @workout_lifts.each do |workout_lift| %> 
+   <h1> <%= workout_lift.set_1_weight %> <h1> 
+   <end> 
+<%else%> 
+<% binding.pry %> 
+    <%= link_to "Start Workout", new_user_workout(current_user.workout)
+<%end %> 

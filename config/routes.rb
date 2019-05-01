@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :workout_lifts
   resources :users do
-    resources :lifts, only:[:show,:index,:new]
+    resources :workouts, only:[:show,:index,:new]
   end
   resources :workouts
   resources :lifts

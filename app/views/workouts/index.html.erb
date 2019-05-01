@@ -1,5 +1,10 @@
-<%= @workouts.each do |workout| %> 
+<% if !@workouts.empty? %> 
+<% @workouts.each do |workout| %> 
     
+   <h1> Set 1 Reps: <%= workout_lift.set_1_reps %> </h1> 
 
     <%end%> 
+<% else %> 
+    <%= link_to "Add Workout", new_user_workout(@user.workout) %> 
+<%end %> 
     

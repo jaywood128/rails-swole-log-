@@ -1,4 +1,25 @@
 class WorkoutsController < ApplicationController
-    belongs_to :user 
-    has_many :lifts
+   def new 
+    @workout = Workout.new 
+   end 
+   
+   def create 
+    
+   end 
+
+   def show 
+   end 
+
+   def index 
+    @workouts = Workout.all 
+   end 
+
+   def edit 
+   end 
+
+   def update 
+   end 
+
+   def destroy
+   end 
 end

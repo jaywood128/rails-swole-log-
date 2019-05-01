@@ -4,8 +4,14 @@ class UsersController < ApplicationController
     end 
 
     def create 
-        @user = User.create(user_params)
-        redirect_to user_path(@user)
+        
+        @user = User.new(user_params)
+       
+        if @user.valid?
+            redirect_to user_workouts
+        else 
+            redirect_to signup_path
+        end
     end 
 
     def show 
@@ -13,6 +19,7 @@ class UsersController < ApplicationController
     end 
 
     def index 
+        binding.pry
     end 
 
     def edit 

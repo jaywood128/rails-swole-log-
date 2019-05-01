@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_23_201942) do
+ActiveRecord::Schema.define(version: 2019_05_01_153305) do
 
   create_table "lifts", force: :cascade do |t|
     t.string "name"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 2019_04_23_201942) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "set_1_reps"
+    t.integer "set_1_weight"
+    t.integer "set_2_reps"
+    t.integer "set_2_weight"
+    t.integer "set_3_reps"
+    t.integer "set_3_weight"
+    t.integer "set_4_reps"
+    t.integer "set_4_weight"
     t.index ["lift_id"], name: "index_workout_lifts_on_lift_id"
     t.index ["user_id"], name: "index_workout_lifts_on_user_id"
     t.index ["workout_id"], name: "index_workout_lifts_on_workout_id"
@@ -41,16 +49,9 @@ ActiveRecord::Schema.define(version: 2019_04_23_201942) do
   create_table "workouts", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer "set_1_weight"
-    t.integer "set_1_reps"
-    t.integer "set_2_weight"
-    t.integer "set_2_reps"
-    t.integer "set_3_weight"
-    t.integer "set_3_reps"
-    t.integer "set_4_weight"
-    t.integer "set_4_reps"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
 end
