@@ -3,3 +3,5 @@ class Workout < ApplicationRecord
     has_many :lifts, through: :workout_lifts 
     belongs_to :user
 end
+
+
