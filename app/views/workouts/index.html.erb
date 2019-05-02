@@ -1,10 +1,15 @@
 <% if !@workouts.empty? %> 
 <% @workouts.each do |workout| %> 
     
-   <h1> Set 1 Reps: <%= workout_lift.set_1_reps %> </h1> 
+   <h1> Start Time: <%= workout.start_time %> </h1> 
 
+   <h1> End Time : <%= workout.end_time %> </h1> 
+    <%= link_to "View Details", workout_workout_lifts_path(workout) %> 
     <%end%> 
 <% else %> 
     <%= link_to "Start Workout", new_user_workout(@user.workout) %> 
 <%end %> 
     
+<%= form_for(Workout.new) do |f| %> 
+    <%= f.submit "Start Workout" %> 
+    <% end %> 

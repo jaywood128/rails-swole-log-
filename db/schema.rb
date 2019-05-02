@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_153305) do
+ActiveRecord::Schema.define(version: 2019_05_02_184523) do
+
+  create_table "exercise_sets", force: :cascade do |t|
+    t.integer "weight"
+    t.integer "reps"
+    t.integer "user_id"
+    t.integer "workout_lift_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_exercise_sets_on_user_id"
+    t.index ["workout_lift_id"], name: "index_exercise_sets_on_workout_lift_id"
+  end
 
   create_table "lifts", force: :cascade do |t|
     t.string "name"
@@ -33,14 +44,6 @@ ActiveRecord::Schema.define(version: 2019_05_01_153305) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "set_1_reps"
-    t.integer "set_1_weight"
-    t.integer "set_2_reps"
-    t.integer "set_2_weight"
-    t.integer "set_3_reps"
-    t.integer "set_3_weight"
-    t.integer "set_4_reps"
-    t.integer "set_4_weight"
     t.index ["lift_id"], name: "index_workout_lifts_on_lift_id"
     t.index ["user_id"], name: "index_workout_lifts_on_user_id"
     t.index ["workout_id"], name: "index_workout_lifts_on_workout_id"

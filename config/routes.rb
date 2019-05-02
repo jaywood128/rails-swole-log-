@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  resources :workout_lifts
-  resources :users do
-    resources :workouts, only:[:show,:index,:new]
+  resources :exercise_sets
+  resources :workout_lifts do 
+    resources :exercise_sets
   end
-  resources :workouts
+  resources :workouts do
+    resources :workout_lifts, only:[:show,:index,:new]
+  end
+  resources :users
   resources :lifts
 
 
@@ -15,3 +18,6 @@ Rails.application.routes.draw do
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
+
+

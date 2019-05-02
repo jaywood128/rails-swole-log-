@@ -9,7 +9,7 @@ class WorkoutLiftsController < ApplicationController
     end 
 
     def index 
-        binding.pry
-        @workouts = Workout.all 
+        @workout = Workout.find(params[:workout_id])
+        @workout_lifts = @workout.workout_lifts
     end 
 end

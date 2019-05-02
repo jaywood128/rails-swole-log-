@@ -1,8 +1,19 @@
-<% if !@workout_lifts.empty? %> 
+<h1> <%= @workout.start_time %> </h1> 
 <% @workout_lifts.each do |workout_lift| %> 
-   <h1> <%= workout_lift.set_1_weight %> <h1> 
-   <end> 
-<%else%> 
-<% binding.pry %> 
-    <%= link_to "Start Workout", new_user_workout(current_user.workout)
-<%end %> 
+  <h2> <%= workout_lift.name %> <h2> 
+  <% workout_lift.exercise_sets.each.with_index(1) do |exercise_set, i| %> 
+    <h3> Set <%= i %> </h3> 
+    <p> Weight: <%= exercise_set.weight %></p>
+    <p> Sets:  <%= exercise_set.reps %></p> 
+  <%end %> 
+  <%= form_for([workout_lift, ExerciseSet.new]) do |f| %> 
+    <%= f.hidden_field :workout_lift_id, value: workout_lift.id %> 
+    <%= f.label :weight %> 
+    <%= f.number_field :weight %> 
+    <%= f.label :reps %> 
+    <%= f.number_field :reps %> 
+    <%= f.submit "Add Set" %> 
+  <%end%> 
+<%end%> 
+
+

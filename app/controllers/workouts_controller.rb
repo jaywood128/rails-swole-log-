@@ -4,7 +4,8 @@ class WorkoutsController < ApplicationController
    end 
    
    def create 
-    
+       current_user.workouts.build:start_time) 
+       redirect_to new_workout_workout_lift(@workout)
    end 
 
    def show 
@@ -23,3 +24,4 @@ class WorkoutsController < ApplicationController
    def destroy
    end 
 end
+
