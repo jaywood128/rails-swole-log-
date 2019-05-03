@@ -12,7 +12,8 @@ class WorkoutLiftsController < ApplicationController
 
     def index 
         @workout_lift = WorkoutLift.new
-        @workout_lift.exercise_sets.build 
+        @workout_lift.exercise_sets.build
+        @workout_lift.exercise_sets.build
         @workout = Workout.find(params[:workout_id])
         @workout_lifts = @workout.workout_lifts
     end 
