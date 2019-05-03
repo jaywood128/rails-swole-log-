@@ -1,4 +1,4 @@
-<% if !@workouts.empty? %> 
+<% if !@workouts.empty? && logged_in? %> 
 <% @workouts.each do |workout| %> 
     
    <h1> Start Time: <%= workout.start_time %> </h1> 
@@ -12,4 +12,6 @@
     
 <%= form_for(Workout.new) do |f| %> 
     <%= f.submit "Start Workout" %> 
-    <% end %> 
+    <% end %><br> 
+
+<%= link_to "Log Out", logout_path %> 

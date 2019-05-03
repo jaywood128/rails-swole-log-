@@ -6,6 +6,7 @@
     <p> Weight: <%= exercise_set.weight %></p>
     <p> Sets:  <%= exercise_set.reps %></p> 
   <%end %> 
+  
   <%= form_for([workout_lift, ExerciseSet.new]) do |f| %> 
     <%= f.hidden_field :workout_lift_id, value: workout_lift.id %> 
     <%= f.label :weight %> 
@@ -15,5 +16,29 @@
     <%= f.submit "Add Set" %> 
   <%end%> 
 <%end%> 
+<h2> Add New Exercise to Workout </h2> 
+<%= form_for(@workout_lift) do |f| %> 
+  <%= f.hidden_field :user_id, value: current_user.id %> 
+  <%= f.collection_select :lift, Lift.all, :id, :name %> 
+  <%= f.hidden_field :workout_id, value: @workout.id %> 
+  <%= f.fields_for :exercise_sets, @workout_lift.exercise_sets.build do |exercise_set| %> 
+    <%= f.label "Weight" %> 
+    <%= f.number_field :weight %> 
+    <%= f.label "Reps" %> 
+    <%= f.number_field :reps %> 
+    <%= f.label "Weight" %> 
+    <%= f.number_field :weight %> 
+    <%= f.label "Reps" %> 
+    <%= f.number_field :reps %> 
+    <%= f.label "Weight" %> 
+    <%= f.number_field :weight %> 
+    <%= f.label "Reps" %> 
+    <%= f.number_field :reps %> 
+    <%end%> 
+    <%= f.submit "Submit Weight and Reps" %> 
+  <%end%>
+
+
+
 
 
