@@ -1,0 +1,11 @@
+
+    <%= f.collection_select :lift, Lift.all, :id, :name %> 
+    <%= f.hidden_field :workout_id, value: @workout.id %> 
+    <%= f.fields_for :exercise_sets, @workout_lift.exercise_sets.build do |exercise_set| %> 
+      <%= exercise_set.label "Weight" %> 
+      <%= exercise_set.number_field :weight %> 
+      <%= exercise_set.label "Reps" %> 
+      <%= exercise_set.number_field :reps %> 
+      <%= f.submit "Submit Weight and Reps" %> 
+   <% end %> 
+   

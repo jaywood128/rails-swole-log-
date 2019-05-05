@@ -1,10 +1,13 @@
-<h1> <%= @workout.start_time %> </h1> 
+<% if logged_in? %> 
+<h1> <%= @workout.start_time.strftime("Start Date & Time: %A, %d %b %Y %l:%M %p") %> </h1> 
 <% @workout_lifts.each do |workout_lift| %> 
-  <h2> <%= workout_lift.name %> <h2> 
+    <h2> <%= workout_lift.name %> <h2> 
+    <h3> Edit <%= link_to "Edit #{workout_lift.name}", edit_workout_workout_lift_path(@workout, workout_lift) %> </h3><br> 
   <% workout_lift.exercise_sets.each.with_index(1) do |exercise_set, i| %> 
     <h3> Set <%= i %> </h3> 
     <p> Weight: <%= exercise_set.weight %></p>
-    <p> Sets:  <%= exercise_set.reps %></p> 
+    <p> Sets:  <%= exercise_set.reps %></p><br> 
+    
   <%end %> 
   
   <%= form_for([workout_lift, ExerciseSet.new]) do |f| %> 
@@ -15,20 +18,24 @@
     <%= f.number_field :reps %> 
     <%= f.submit "Add Set" %> 
   <%end%> 
+  
 <%end%> 
-<h2> Add New Exercise to Workout </h2> 
+<h2> Add Exercise to Workout <h2> 
 <%= form_for(@workout_lift) do |f| %> 
   <%= f.hidden_field :user_id, value: current_user.id %> 
   <%= f.collection_select :lift, Lift.all, :id, :name %> 
-  <%= f.hidden_field :workout_id, value: @workout.id %> 
-  <%= f.fields_for :exercise_sets, @workout_lift.exercise_sets.build do |exercise_set| %> 
-    <%= exercise_set.label "Weight" %> 
-    <%= exercise_set.number_field :weight %> 
-    <%= exercise_set.label "Reps" %> 
-    <%= exercise_set.number_field :reps %> 
-    <%= f.submit "Submit Weight and Reps" %> 
-    <%end%>
-  <%end%>
+    <%= f.hidden_field :workout_id, value: @workout.id %> 
+    <%= f.fields_for :exercise_sets, @workout_lift.exercise_sets.build do |exercise_set| %> 
+      <%= exercise_set.label "Weight" %> 
+      <%= exercise_set.number_field :weight %> 
+      <%= exercise_set.label "Reps" %> 
+      <%= exercise_set.number_field :reps %> 
+      <%= f.submit "Submit Weight and Reps" %> 
+   <% end %> 
+  <%end %> 
+  <% else %> 
+  <% link_to "Login here", login_path %> 
+  <% end %> 
 
 
 
