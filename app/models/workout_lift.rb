@@ -5,4 +5,8 @@ class WorkoutLift < ApplicationRecord
     has_many :exercise_sets 
     delegate :name, to: :lift
     accepts_nested_attributes_for :exercise_sets
+
+    def exercise_sets_attributes(hash)
+        binding.pry
+    end 
 end
