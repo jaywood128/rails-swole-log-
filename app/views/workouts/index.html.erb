@@ -1,9 +1,11 @@
 <% if !@workouts.empty? && logged_in? %> 
 <% @workouts.each do |workout| %> 
     
-   <h1> Start Time: <%= workout.start_time %> </h1> 
+   <h1> Started: <%= workout.start_time.strftime("%d %b %Y %l:%M %p")  %> </h1> 
 
-   <h1> End Time : <%= workout.end_time %> </h1> 
+   <% if workout.workout_ended? %> 
+        <h1> End Time : <%= workout.end_time.strftime("%d %b %Y %l:%M %p")  %> </h1> 
+   <% end %> 
     <%= link_to "View Details", workout_workout_lifts_path(workout) %> 
     <%end%> 
 <% else %> 

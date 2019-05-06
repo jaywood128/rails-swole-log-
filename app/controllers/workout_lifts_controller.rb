@@ -20,7 +20,7 @@ class WorkoutLiftsController < ApplicationController
     end 
 
     def update 
-        
+    
         @workout = Workout.find(params[:workout_lift][:workout_id])
         @workout_lift = WorkoutLift.find(params[:id])
         
@@ -39,6 +39,6 @@ class WorkoutLiftsController < ApplicationController
     end 
 
     def params_workout_lifts 
-        params.require(:workout_lift).permit(:user_id, :lift_id, :workout_id, exercise_sets_attributes: [:weight, :reps], exercise_sets_id)
+        params.require(:workout_lift).permit(:user_id, :lift_id, :workout_id, exercise_sets_attributes: [:id, :weight, :reps], :exercise_sets_id => [:id])
     end 
 end

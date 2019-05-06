@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         if @user.valid?
             redirect_to user_workouts
         else 
-            redirect_to signup_path
+            render action: :new
         end
     end 
 
