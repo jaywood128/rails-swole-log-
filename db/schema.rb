@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_002235) do
+ActiveRecord::Schema.define(version: 2019_05_08_160936) do
 
   create_table "exercise_sets", force: :cascade do |t|
     t.integer "weight"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 2019_05_08_002235) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "username"
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", null: false

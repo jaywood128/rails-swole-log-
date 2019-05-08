@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create(name: "woody", email: "tree@wood", password: "tree", username: "woodpecker") 
 
-spig = User.create(name: "Piggy", email: "Bacon", password: "oink", username: "Spiderpig")
 
-workout = Workout.create(start_time: DateTime.now, end_time: DateTime.now, user_id: user.id)
+spig = User.create(name: "Piggy", email: "Bacon", password: "oink")
+
+workout = Workout.create(start_time: DateTime.now, end_time: DateTime.now, user_id: spig.id)
 
 bench_press = Lift.create(name: "Bench Press")
 

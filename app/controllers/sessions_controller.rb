@@ -1,3 +1,4 @@
+require 'securerandom'
 class SessionsController < ApplicationController
     def new
         
@@ -11,20 +12,21 @@ class SessionsController < ApplicationController
                 u.name = auth['info']['name']
                 u.email = auth['info']['email']
                 u.image = auth['info']['image']
-                u.password = auth['info']['credentials']
-
+                u.password = SecureRandom.base64(15)
+                
             end
-            binding.pry
-           
+            @user.password = SecureRandom.base64(15)
+          
             session[:user_id] = @user.id
-            redirect_to workouts_path
+            redirect_to new_workout_path
         else 
-            @user = User.find_by(username:params[:sessions][:email])
+          
+            @user = User.find_by(email:params[:sessions][:email])
         
             if  @user && @user.authenticate(params[:sessions][:password])
                 session[:user_id] = @user.id
            
-                redirect_to workouts_path
+                redirect_to workout_lifts_path
             else
                 flash[:errors] = @user.error.messages 
                 render 'new'
@@ -33,7 +35,8 @@ class SessionsController < ApplicationController
     end
 
     def destroy 
-        self.delte :user_id
+        log_out
+        redirect_to login_path
     end 
 
     private 

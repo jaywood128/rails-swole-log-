@@ -9,11 +9,11 @@
     <%= link_to "View Details", workout_workout_lifts_path(workout) %> 
     <%end%> 
 <% else %> 
-    <%= link_to "Start Workout", new_user_workout(@user.workout) %> 
+    <%= link_to "Start Workout", new_workout_path %> 
 <%end %> 
     
 <%= form_for(Workout.new) do |f| %> 
     <%= f.submit "Start Workout" %> 
     <% end %><br> 
 
-<%= link_to "Log Out", logout_path %> 
+<%= link_to "Log Out", logout_path, method: :delete %> 

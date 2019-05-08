@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     end 
 
     def create 
-        
+        binding.pry
         @user = User.new(user_params)
        
         if @user.valid?
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     end 
 
     def index 
-        binding.pry
+       
     end 
 
     def edit 

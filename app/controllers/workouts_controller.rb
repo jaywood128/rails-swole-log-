@@ -13,8 +13,9 @@ class WorkoutsController < ApplicationController
   end 
 
   def index 
+  
     if logged_in? 
-      current_user.workouts = Workout.all 
+      @workouts = current_user.workouts
     else 
       redirect_to login_path
     end 
