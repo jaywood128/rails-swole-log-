@@ -4,6 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.1'
 gem 'dotenv-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'thin', '~> 1.7'
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'rails', '~> 5.2.3'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 # Use sqlite3 as the database for Active Record

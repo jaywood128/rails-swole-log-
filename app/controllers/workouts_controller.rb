@@ -13,7 +13,11 @@ class WorkoutsController < ApplicationController
   end 
 
   def index 
-    @workouts = Workout.all 
+    if logged_in? 
+      current_user.workouts = Workout.all 
+    else 
+      redirect_to login_path
+    end 
   end 
 
   def edit 

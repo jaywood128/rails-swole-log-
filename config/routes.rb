@@ -4,11 +4,11 @@ Rails.application.routes.draw do
     resources :exercise_sets
   end
   resources :workouts do
-    resources :workout_lifts, only:[:show,:index,:new, :update, :edit]
+    resources :workout_lifts, only:[:show, :index, :new, :update, :edit, :destroy]
   end
   resources :users
   resources :lifts
-
+  get '/auth/facebook/callback' => 'sessions#create'
 
   
   get    '/signup',  to: 'users#new'

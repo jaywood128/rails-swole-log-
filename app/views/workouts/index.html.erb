@@ -1,5 +1,5 @@
-<% if !@workouts.empty? && logged_in? %> 
-<% @workouts.each do |workout| %> 
+<% if !current_user.workouts.empty? && logged_in? %> 
+<% current_user.workouts.each do |workout| %> 
     
    <h1> Started: <%= workout.start_time.strftime("%d %b %Y %l:%M %p")  %> </h1> 
 

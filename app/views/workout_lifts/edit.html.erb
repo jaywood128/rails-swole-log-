@@ -12,8 +12,8 @@
             <%= exercise_set.label "Reps" %> 
             <%= exercise_set.number_field :reps %> 
             <br><br>
-            
         <%end%>
     <% end %> 
      <%= f.submit "Submit Weight and Reps" %> 
 <%end %> 
+<%= link_to 'Delete Exercise', workout_workout_lift_path(@workout), method: :delete %> 
