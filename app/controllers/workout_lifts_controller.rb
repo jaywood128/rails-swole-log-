@@ -4,20 +4,20 @@ class WorkoutLiftsController < ApplicationController
     end 
 
     def create
+       
         @workout = Workout.find_or_create_by(params[:workout_id]) 
-
-        if @workout
-            @workout.save
+        
+        if @workout.valid? 
+            @workout_lift = current_user.workout_lifts.create(params_workout_lifts)
+        
+            redirect_to workout_workout_lifts_path(@workout)
         else 
-          @workout = Workout.find(params[:workout_lift][:workout_id]) 
-          workout_lift = WorkoutLift.create(workout_id: @workout.id, lift_id: params[:workout_lift][:lift], user_id: current_user.id)
+            render :edit
         end 
-
-        redirect_to workout_workout_lifts_path(@workout)
     end 
 
     def show 
-        binding.pry
+      
         @workout_lift = WorkoutLift.find(params[:id])
     end 
 
@@ -38,7 +38,6 @@ class WorkoutLiftsController < ApplicationController
     end 
 
     def index 
-     
         @workout_lift = WorkoutLift.new
         @workout_lift.exercise_sets.build
         @workout_lift.exercise_sets.build

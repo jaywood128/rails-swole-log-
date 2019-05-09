@@ -15,10 +15,8 @@ class SessionsController < ApplicationController
                 u.password = SecureRandom.base64(15)
                 
             end
-            @user.password = SecureRandom.base64(15)
-          
             session[:user_id] = @user.id
-            redirect_to new_workout_path
+            redirect_to workouts_path
         else 
           
             @user = User.find_by(email:params[:sessions][:email])
