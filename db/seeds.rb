@@ -8,7 +8,7 @@
 
 
 
-spig = User.create(name: "Piggy", email: "Bacon", password: "oink")
+spig = User.find(2)
 
 workout = Workout.create(start_time: DateTime.now, end_time: DateTime.now, user_id: spig.id)
 
@@ -21,6 +21,18 @@ strict_press = Lift.create(name: "Barebell Strict Press")
 dead_lift = Lift.create(name: "Deadlift")
 
 barebell_row = Lift.create(name: "Barebell Row")
+
+workout_lift = Workout_lift.new 
+
+exercise_sets = workout_lift.exercise_sets.build(weight: 200, reps: 15)
+
+spig.exercise_sets = exercise_sets #exercise sets needs a user before you can save it because it's the child. 
+
+workout_lift.lift.id = squat.id 
+
+workout_lift.user = 
+
+workout_lift.save 
 
 
 

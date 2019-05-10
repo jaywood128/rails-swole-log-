@@ -4,11 +4,11 @@ class UsersController < ApplicationController
     end 
 
     def create 
-        binding.pry
+       
         @user = User.new(user_params)
        
         if @user.valid?
-            redirect_to user_workouts
+            redirect_to workouts_path
         else 
             render action: :new
         end

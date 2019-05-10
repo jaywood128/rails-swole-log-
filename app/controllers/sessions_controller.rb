@@ -1,7 +1,7 @@
 require 'securerandom'
 class SessionsController < ApplicationController
     def new
-        
+        @user = User.new
     end
  
     def create 
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id
             redirect_to workouts_path
         else 
-          
+          binding.pry
             @user = User.find_by(email:params[:sessions][:email])
         
             if  @user && @user.authenticate(params[:sessions][:password])
