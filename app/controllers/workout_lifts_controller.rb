@@ -28,12 +28,12 @@ class WorkoutLiftsController < ApplicationController
 
     def update 
         
-        @workout = Workout.find(params[:workout_lift][:workout_id])
-        @workout_lift = WorkoutLift.find(params[:id])
+      @workout = Workout.find(params[:workout_lift][:workout_id])
+      @workout_lift = WorkoutLift.find(params[:id])
         
-        @workout_lift.update(params_workout_lifts) 
+      @workout_lift.update(params_workout_lifts) 
     
-        redirect_to workout_workout_lifts_path(@workout)
+      redirect_to workout_workout_lifts_path(@workout)
        
     end 
 

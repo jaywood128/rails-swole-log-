@@ -8,7 +8,7 @@ gem 'thin', '~> 1.7'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'rails', '~> 5.2.3'
-gem 'bcrypt', '~> 3.1', '>= 3.1.12'
+gem 'bcrypt'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

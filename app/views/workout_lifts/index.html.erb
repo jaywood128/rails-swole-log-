@@ -1,4 +1,4 @@
-<% if logged_in? %> 
+<% if logged_in? && @workout.start_time %> 
 <h1> <%= @workout.start_time.strftime("Start Date & Time: %A, %d %b %Y %l:%M %p") %> </h1> 
 <% current_user.workout_lifts.each do |workout_lift| %> 
     <h2> <%= workout_lift.name %> <h2> 

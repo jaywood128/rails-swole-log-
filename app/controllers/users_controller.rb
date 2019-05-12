@@ -4,10 +4,12 @@ class UsersController < ApplicationController
     end 
 
     def create 
-       
+      
         @user = User.new(user_params)
-       
+        binding.pry
         if @user.valid?
+           
+            @user.save 
             redirect_to workouts_path
         else 
             render action: :new
@@ -33,6 +35,6 @@ class UsersController < ApplicationController
     end 
     private 
     def user_params
-        params.require(:user).permit(:name, :username, :email, :password_digest)
+        params.require(:user).permit(:name, :username, :email, :password)
     end 
 end

@@ -15,18 +15,17 @@ class SessionsController < ApplicationController
                 u.password = SecureRandom.base64(15)
                 
             end
+           
             session[:user_id] = @user.id
             redirect_to workouts_path
         else 
-          binding.pry
+           
             @user = User.find_by(email:params[:sessions][:email])
-        
+           
             if  @user && @user.authenticate(params[:sessions][:password])
                 session[:user_id] = @user.id
-           
-                redirect_to workout_lifts_path
+                redirect_to workouts_path
             else
-                flash[:errors] = @user.error.messages 
                 render 'new'
             end
         end
