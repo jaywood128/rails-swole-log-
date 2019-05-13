@@ -8,11 +8,13 @@
    <% end %> 
     <%= link_to "View Details", workout_workout_lifts_path(workout) %> 
     <%end%> 
+    <%= form_for(Workout.new) do |f| %> 
+     <%= f.submit "Start New Workout" %> 
+     <% end %><br>
 <% else %> 
-    <%= link_to "Start Workout", new_workout_path %> 
+    <%= form_for(Workout.new) do |f| %> 
+     <%= f.submit "Start New Workout" %> 
+     <% end %><br>
 <%end %> 
     
-<%= form_for(Workout.new) do |f| %> 
-    <%= f.submit "Start Workout" %> 
-    <% end %><br> 
-
+    

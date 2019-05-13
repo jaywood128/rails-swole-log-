@@ -1,6 +1,8 @@
-<% if logged_in? && @workout.start_time %> 
+<% if logged_in?  %> 
+
 <h1> <%= @workout.start_time.strftime("Start Date & Time: %A, %d %b %Y %l:%M %p") %> </h1> 
-<% current_user.workout_lifts.each do |workout_lift| %> 
+
+<% @workout.workout_lifts.each do |workout_lift| %> 
     <h2> <%= workout_lift.name %> <h2> 
     <h3> Edit <%= link_to "Edit #{workout_lift.name}", edit_workout_workout_lift_path(@workout, workout_lift) %> </h3><br> 
   <% workout_lift.exercise_sets.each.with_index(1) do |exercise_set, i| %> 
@@ -30,7 +32,8 @@
       <%= exercise_set.label "Reps" %> 
       <%= exercise_set.number_field :reps %> 
       <%= f.submit "Submit Weight and Reps" %> 
-   <% end %> 
+   <% end %><br> 
+   <br><%= link_to "All Workout Sessions", workouts_path %> 
   <%end %> 
   <% else %> 
   <% link_to "Login here", login_path %> 
