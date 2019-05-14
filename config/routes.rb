@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'application#index'
   resources :exercise_sets
   resources :workout_lifts do 
     resources :exercise_sets

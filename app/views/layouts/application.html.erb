@@ -11,7 +11,11 @@
   </head>
 
   <body>
+  <% if logged_in? %> 
  <%= link_to "Log Out", logout_path, method: :delete %><br>  
+ <% else %> 
+  <%= link_to "Login", login_path %> 
+  <% end %><br> 
  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
     <%= yield %>
   </body>

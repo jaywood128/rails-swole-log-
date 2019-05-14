@@ -4,13 +4,12 @@
 
 <% @workout.workout_lifts.each do |workout_lift| %> 
     <h2> <%= workout_lift.name %> <h2> 
-    <h3> Edit <%= link_to "Edit #{workout_lift.name}", edit_workout_workout_lift_path(@workout, workout_lift) %> </h3><br> 
+    <h3> <%= link_to "Edit #{workout_lift.name}", edit_workout_workout_lift_path(@workout, workout_lift) %> </h3><br> 
   <% workout_lift.exercise_sets.each.with_index(1) do |exercise_set, i| %> 
     <h3> Set <%= i %> </h3> 
     <p> Weight: <%= exercise_set.weight %></p>
     <p> Reps:  <%= exercise_set.reps %></p><br> 
-  <%end %> 
-  
+  <%end %>  
   <%= form_for([workout_lift, ExerciseSet.new]) do |f| %> 
     <%= f.hidden_field :workout_lift_id, value: workout_lift.id %> 
     <%= f.label :weight %> 
@@ -32,12 +31,15 @@
       <%= exercise_set.label "Reps" %> 
       <%= exercise_set.number_field :reps %> 
       <%= f.submit "Submit Weight and Reps" %> 
-   <% end %><br> 
-   <br><%= link_to "All Workout Sessions", workouts_path %> 
-  <%end %> 
+    <% end %><br> 
+<%end %><br> 
+ <%= form_for (@workout) do |f| %> 
+  <%= f.submit "End Workout"%> 
+  <% end %><br> 
+  <br><%= link_to "All Workout Sessions", workouts_path %><br> 
   <% else %> 
-  <% link_to "Login here", login_path %> 
-  <% end %> 
+    <% link_to "Login here", login_path %> 
+<% end %> 
 
 
 

@@ -23,9 +23,13 @@ class WorkoutsController < ApplicationController
   end 
 
   def edit 
+    @workout = Workout.find(params[:id])
   end 
 
   def update 
+    @workout = Workout.find(params[:id])
+    @workout.update(end_time: DateTime.now)
+    redirect_to workouts_path
   end 
 
   def destroy
