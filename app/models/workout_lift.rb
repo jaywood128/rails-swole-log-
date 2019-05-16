@@ -11,4 +11,8 @@ class WorkoutLift < ApplicationRecord
         @exercise_set = self.exercise_sets.build(hash["0"]) 
         @exercise_set.user = self.user 
     end 
+
+    def self.search(lift)
+        binding.pry
+    end 
 end
