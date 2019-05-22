@@ -3,9 +3,9 @@
 <h1> <%= @workout.start_time.strftime("Start Date & Time: %A, %d %b %Y %l:%M %p") %> </h1> 
  
 <%= form_tag('/workout_lifts', :method => :get) do %> 
-<%= label_tag(:q, "Search for a lift in today's workout:") %>
+<%= label_tag(:q, "search") %>
 <%= hidden_field_tag 'workout_id', @workout.id %> 
-<%= text_field_tag "Search workout's lifts" %> 
+<%= text_field_tag "search" %> 
   <%= submit_tag %> 
   <% end %> 
  

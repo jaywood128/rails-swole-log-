@@ -5,7 +5,7 @@ class WorkoutLiftsController < ApplicationController
   end 
 
   def create
-    binding.pry
+   
     @workout = Workout.find_or_create_by(params[:workout_id]) 
         
     if @workout.valid? 
@@ -36,16 +36,19 @@ class WorkoutLiftsController < ApplicationController
   end 
 
   def index 
-    if params["Search workout's lifts"]
-      @workout = Workout.find(params[:workout_id])
-      @workout.lifts.find_by(name: params["Search workout's lifts"]) 
-    else 
     @workout_lift = WorkoutLift.new
     @workout_lift.exercise_sets.build
     @workout_lift.exercise_sets.build
     @workout = Workout.find(params[:workout_id])
-    @workout_lifts = @workout.workout_lifts
+    if params["search"]
+      # @lift = Lift.find_by(name: params["search"])
+      # @workout_lifts = @workout.workout_lifts.where(lift_id: @lift.id) 
+      @workout_lifts = @workout.workout_lifts.joins(:lift).where(lifts: { name: "Deadlift" })
+
+    else 
+      @workout_lifts = @workout.workout_lifts
     end 
+
   end 
 
   def destroy

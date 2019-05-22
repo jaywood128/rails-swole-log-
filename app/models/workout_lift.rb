@@ -15,4 +15,5 @@ class WorkoutLift < ApplicationRecord
     def self.search(lift)
         binding.pry
     end 
+
 end
