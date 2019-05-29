@@ -1,0 +1,4 @@
+<h1>Charts#downloads_by_day</h1>
+<p>Find me in app/views/charts/downloads_by_day.html.erb</p>
+
+<%= line_chart Download.group_by_day(:created_at).count %>

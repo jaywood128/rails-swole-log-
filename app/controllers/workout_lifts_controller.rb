@@ -43,7 +43,7 @@ class WorkoutLiftsController < ApplicationController
     if params["search"]
       # @lift = Lift.find_by(name: params["search"])
       # @workout_lifts = @workout.workout_lifts.where(lift_id: @lift.id) 
-      @workout_lifts = @workout.workout_lifts.joins(:lift).where(lifts: { name: "Deadlift" })
+      @workout_lifts = @workout.workout_lifts.joins(:lift).where(lifts: { name: params["search"].titleize })
 
     else 
       @workout_lifts = @workout.workout_lifts

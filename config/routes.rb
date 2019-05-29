@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'charts/downloads_by_day'
   root 'application#index'
   resources :exercise_sets
   resources :workout_lifts do 
@@ -8,8 +9,11 @@ Rails.application.routes.draw do
     resources :workout_lifts, only:[:show, :index, :new, :update, :edit, :destroy]
   end
   resources :users
-  resources :lifts
+  resources :lifts 
+
   get '/auth/facebook/callback' => 'sessions#create'
+  get 'charts/downloads_by_day'
+
 
   
   get    '/signup',  to: 'users#new'

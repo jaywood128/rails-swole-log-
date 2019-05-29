@@ -1,0 +1,1 @@
+<%= line_chart @lift.exercise_sets.by_user(current_user).group_by_day(:created_at).max_weight %>

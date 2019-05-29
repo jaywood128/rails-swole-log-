@@ -3,14 +3,13 @@
 <h1> <%= @workout.start_time.strftime("Start Date & Time: %A, %d %b %Y %l:%M %p") %> </h1> 
  
 <%= form_tag('/workout_lifts', :method => :get) do %> 
-<%= label_tag(:q, "search") %>
 <%= hidden_field_tag 'workout_id', @workout.id %> 
 <%= text_field_tag "search" %> 
-  <%= submit_tag %> 
+  <%= submit_tag "search" %> 
   <% end %> 
  
 <% @workout_lifts.each do |workout_lift| %> 
-    <h2> <%= workout_lift.name %> <h2> 
+    <h2> <%= link_to workout_lift.name, lift_path(workout_lift.lift) %> <h2> 
     <h3> <%= link_to "Edit #{workout_lift.name}", edit_workout_workout_lift_path(@workout, workout_lift) %> </h3><br> 
   <% workout_lift.exercise_sets.each.with_index(1) do |exercise_set, i| %> 
     <h3> Set <%= i %> </h3> 
