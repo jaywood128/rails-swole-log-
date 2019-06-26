@@ -1,5 +1,5 @@
 class WorkoutLiftsController < ApplicationController
-
+  
   def new
     @workout_lift = WorkoutLift.new
   end 
@@ -40,6 +40,8 @@ class WorkoutLiftsController < ApplicationController
     @workout_lift.exercise_sets.build
     @workout_lift.exercise_sets.build
     @workout = Workout.find(params[:workout_id])
+
+
     if params["search"]
       # @lift = Lift.find_by(name: params["search"])
       # @workout_lifts = @workout.workout_lifts.where(lift_id: @lift.id) 
@@ -47,6 +49,11 @@ class WorkoutLiftsController < ApplicationController
 
     else 
       @workout_lifts = @workout.workout_lifts
+
+      respond_to do |f| 
+        f.html { render :index}
+        f.json { render json: @workout.workout_lifts}
+      end
     end 
 
   end 

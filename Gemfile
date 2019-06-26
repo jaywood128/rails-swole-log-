@@ -30,9 +30,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'chartkick'
+gem "chartkick", ">= 3.2.0"
 gem 'groupdate'
 gem 'webpacker', '~> 4.x'
+gem 'active_model_serializers', '~> 0.10.2'
+gem 'rack-cors', '~> 0.4.0'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
