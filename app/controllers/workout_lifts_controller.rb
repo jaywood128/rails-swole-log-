@@ -52,7 +52,7 @@ class WorkoutLiftsController < ApplicationController
 
       respond_to do |f| 
         f.html { render :index}
-        f.json { render json: @workout.workout_lifts}
+        f.json { render json: @workout.workout_lifts, each_serializer: WorkoutLiftIndexSerializer}
       end
     end 
 

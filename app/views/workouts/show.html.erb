@@ -1,0 +1,27 @@
+
+<h1> <%= @workout.start_time.strftime("Start Date & Time: %A, %d %b %Y %l:%M %p") %> </h1> 
+
+<div id="workoutLifts"> 
+
+ <%# @workout.workout_lifts.each do |workout_lift| %> 
+    <h2 id="workoutLiftName"> <%#= link_to workout_lift.name, lift_path(workout_lift.lift) %> <h2> 
+     <h3> <%#= link_to "Edit #{workout_lift.name}", edit_workout_workout_lift_path(@workout, workout_lift) %> </h3><br> 
+   <%# workout_lift.exercise_sets.each.with_index(1) do |exercise_set, i| %> 
+     <h3> Set <%#= i %> </h3> 
+     <p> Weight: <%#= exercise_set.weight %></p>
+     <p> Reps:  <%#= exercise_set.reps %></p><br> 
+  
+   <%#end %>  
+ <%# end %> 
+ <h3> Add set(s) </h1><br> 
+    <%= form_for( ExerciseSet.new) do |f| %> 
+    <%= f.hidden_field :workout_lift_id, value: ""  %> 
+    <p> 
+    <%= f.label :weight %> 
+    <%= f.number_field :weight %> 
+    <%= f.label :reps %> 
+    <%= f.number_field :reps %> 
+    </p> 
+    <%= f.submit "Add Set" %> 
+  <%end%> 
+<div> 

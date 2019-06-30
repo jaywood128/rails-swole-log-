@@ -8,7 +8,7 @@
   
         <h1> End Time : <%= workout.end_time.strftime("%d %b %Y %l:%M %p")  %> </h1> 
    <% end %> 
-    <%= link_to "View Details", workout_workout_lifts_path(workout) %> 
+    <%= link_to "View Details", workout_path(workout), :id => "workout_show" %> 
     <%end%> 
     <%= form_for(Workout.new) do |f| %> 
      <%= f.submit "Start New Workout" %> 

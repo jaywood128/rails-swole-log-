@@ -14,4 +14,5 @@
 //= require activestorage
 //= require turbolinks
 //= require Chart.bundle
-//= require_tree 
+//= require_tree .
+console.log("Manifest")

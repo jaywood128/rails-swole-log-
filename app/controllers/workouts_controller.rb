@@ -11,6 +11,13 @@ class WorkoutsController < ApplicationController
   end 
 
   def show 
+    @workout = Workout.find(params[:id])
+    
+    respond_to do |f| 
+      f.html { }
+      f.json { render json: @workout, each_serializer: WorkoutLiftIndexSerializer }
+    end
+    
   end 
 
   def index 
