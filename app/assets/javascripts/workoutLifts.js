@@ -1,26 +1,37 @@
+import { resolve } from "dns";
+
 console.log("Loading??")
   document.addEventListener('turbolinks:load', (e) => {
 
     document.getElementById("new_exercise_set").addEventListener('submit', e => {
       e.preventDefault()
+      debugger
       var workout_lift_id = document.querySelector("button").dataset.workout_lift_id 
-      token = e.target.querySelector(['input[name=authenticity_token']).value 
+      var token = e.target.querySelector('input[name=authenticity_token').value 
       var data = {exercise_set: {}}; 
       
       data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
       data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
-      debugger 
-      fetch(`${e.target.action}.json`, {
+      var url = `http://localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets`
+      
+      fetch(`${url}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', 
-          'X-CSRF-token':token
+          'Accept' : 'application/json',
+          'X-CSRF-token': token
         }, 
         body: JSON.stringify(data)
-      }).then(resp=> resp.json()).then(exercise_set => console.log(exercise_set))
+      })
+      .then(resp=> resp.json())
+      .then(data => {
+        resolve(data ? JSON.parse(data) : {})
+      })
+      // .catch(e => {
+      //   console.log(e);
+      //   return e;
+      // });
 
-      // e.preventDefault();
-      // let prom = fetch(`${e.path[1].baseURI}/exercise_sets`)
     })
     // let workoutElement = document.getElementById("workoutLifts")
    const workoutShow = document.querySelector(".workouts.show")
