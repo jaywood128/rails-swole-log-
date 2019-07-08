@@ -19,6 +19,11 @@ class WorkoutLiftsController < ApplicationController
 
   def show  
     @workout_lift = WorkoutLift.find(params[:id])
+    respond_to do |f| 
+      f.html { render :show}
+      f.json { render json: @workout_lift}
+    end
+
   end 
 
   def edit

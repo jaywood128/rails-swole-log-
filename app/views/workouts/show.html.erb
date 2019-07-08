@@ -4,15 +4,16 @@
 <div id="workoutLifts"> 
 
  <%# @workout.workout_lifts.each do |workout_lift| %> 
-    <h2 id="workoutLiftName"> <%#= link_to workout_lift.name, lift_path(workout_lift.lift) %> <h2> 
-     <h3> <%#= link_to "Edit #{workout_lift.name}", edit_workout_workout_lift_path(@workout, workout_lift) %> </h3><br> 
+    <h2 id="workoutLiftName"> <%#= link_to workout_lift.name, lift_path(workout_lift.lift) %> <h2><br>
+     <div id ="details"> <%#= link_to "Edit #{workout_lift.name}", edit_workout_workout_lift_path(@workout, workout_lift) %> </div><br> 
    <%# workout_lift.exercise_sets.each.with_index(1) do |exercise_set, i| %> 
      <h3> Set <%#= i %> </h3> 
-     <p id="weight"> Weight:  </p>
-     <p id="reps"> Reps:  <%#= exercise_set.reps %></p><br> 
+     <p id="weight">  </p>
+     <p id="reps">  <%#= exercise_set.reps %></p><br> 
   
    <%#end %>  
  <%# end %> 
+ <div id="myModal" class="modal"> 
  <h3> Add set(s) </h1><br> 
     <%= form_for( ExerciseSet.new) do |f| %> 
     <%= f.hidden_field :workout_lift_id, value: ""  %> 
@@ -22,6 +23,42 @@
     <%= f.label :reps %> 
     <%= f.number_field :reps %> 
     </p> 
-    <%= f.submit "Add Set" %> 
+    <%= f.submit "Add Set"  %> 
   <%end%> 
+  </div>
 <div> 
+<script type="text/javascript" charset="utf-8"> 
+  function showExerciseSets(id) {
+    console.log(id)
+    
+    fetch(`http:localhost:3000/workout_lifts/${id}.json`)
+    .then( resp=> resp.json())
+    .then( get_exercise_set => showExerciseSetIndex(get_exercise_set))
+    .catch( err => console.log(err))
+  }
+  function showExerciseSetIndex(workout_lift) {
+    
+    r = workout_lift.exercise_sets.map(exercise_set => new ExerciseSet(exercise_set).set_weight_reps()) 
+    orderedList = "<ol>" + r + "</ol>" + `<button onclick="addSet(${workout_lift.id})"> Add set(s) </button>`
+    div = document.getElementById(`Workout_${workout_lift.id}`)
+    div.innerHTML += orderedList
+
+  
+  }
+  function addSet(id) {
+    document.querySelector("form #exercise_set_workout_lift_id").value = id 
+    document.querySelector("#myModal").style.display = "block"; 
+
+
+  }
+
+// document.addEventListener('turbolinks:load', funtion () {
+//   var showSetButtons = document.querySelectorAll("#exerciseSetIndex")
+//   const getSets = () => { 
+    
+//     debugger 
+     
+//   }
+//   addEventListenerSetList(showSetButtons, 'click', getSets)
+// })
+</script>

@@ -7,16 +7,10 @@ class ExerciseSet {
     this.workout_lift_id = attributes.workout_lift_id 
   }
 
- set_weight() {
+ set_weight_reps() {
    return `
-      <div> Weight: ${this.weight} </div>
-      <button type="button" data-user_id= "${this.user_id}" hidden="hidden"> </button> 
-      `
-  }
-  set_reps() {
-    return `
-      <div> Reps: ${this.reps} </div>
-      <button type="button" data-user_id= "${this.user_id}" hidden="hidden"> </button> 
+      <li> <div> Weight: ${this.weight} </div> 
+      <div> Reps: ${this.reps} </div> </li>
       `
   }
 }

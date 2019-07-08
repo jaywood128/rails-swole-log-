@@ -4,10 +4,12 @@ class WorkoutLift {
     this.name = attributes.name 
   }
 
- render() {
+ render() { 
    return `
-      <div> ${this.name} </div>
-      <button type="button" data-workout_lift_id= "${this.id}" hidden="hidden"> </button> 
+      <div id="Workout_${this.id}"> ${this.name} </div>
+      <button onclick="showExerciseSets(${this.id})" id ="exerciseSetIndex" data-workout_lift_id= "${this.id}"> Show sets </button> 
+      
       `
   }
+   
 }
