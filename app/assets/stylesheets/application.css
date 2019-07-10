@@ -17,7 +17,7 @@
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  left: -0px;
+  left: 150px;
   top: 10px;
   right: 0px;
   bottom: 0;

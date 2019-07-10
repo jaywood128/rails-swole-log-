@@ -2,37 +2,66 @@
 console.log("Loading??")
   document.addEventListener('turbolinks:load', (e) => {
     
-   
-  document.getElementById("new_exercise_set").addEventListener('submit', e => {
-      e.preventDefault()
-   
-      var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
-      var token = e.target.querySelector('input[name=authenticity_token').value 
-      var data = {exercise_set: {}}; 
-      
-      data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
-      data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
-      var exercise_set_url = `http://localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets`
-      
-      fetch(`${exercise_set_url}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', 
-          'Accept' : 'application/json',
-          'X-CSRF-token': token
-        }, 
-        body: JSON.stringify(data)
-      })
-      .then(resp=> resp.json())
-      .then(exercise_set => {
-        displayCreatedExerciseSets(exercise_set)
-      })
-      .catch(e => {
-        console.log(e);
-        return e;
-      });
+    
+    var el = document.getElementById('new_exercise_set');
 
-    })
+    if(el){
+      el.addEventListener('submit', e => {
+        e.preventDefault()
+    
+        var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
+        var token = e.target.querySelector('input[name=authenticity_token').value 
+        var data = {exercise_set: {}}; 
+        
+        data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
+        data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
+        var exercise_set_url = `http://localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets`
+        
+        fetch(`${exercise_set_url}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json', 
+            'Accept' : 'application/json',
+            'X-CSRF-token': token
+          }, 
+          body: JSON.stringify(data)
+        })
+        .then(resp=> resp.json())
+        .then(exercise_set => {
+          displayCreatedExerciseSets(exercise_set)
+        })
+        .catch(e => {
+          console.log(e);
+          return e;
+        });
+
+      })
+    }
+
+  const workoutShow = document.querySelector(".workouts.show")
+    
+  if (workoutShow) { 
+    getWorkoutLifts(e.data.url)
+  } 
+})
+function showExerciseSets(id) {
+  console.log(id)
+  
+  fetch(`http:localhost:3000/workout_lifts/${id}.json`)
+   .then( resp=> resp.json())
+  .then( get_exercise_set => showExerciseSetIndex(get_exercise_set))
+  .catch( err => console.log(err))
+}
+function showExerciseSetIndex(workout_lift) {
+  
+  r = workout_lift.exercise_sets.map(exercise_set => new ExerciseSet(exercise_set).set_weight_reps()) 
+  orderedList = "<ol>" + r + "</ol>" + `<button onclick="addSet(${workout_lift.id})"> Add set(s) </button>`
+  div = document.getElementById(`Workout_${workout_lift.id}`)
+  div.innerHTML += orderedList
+
+
+}
+  
     const displayCreatedExerciseSets = (exercise_set_data) => {
        
       let js_exercise_set = new ExerciseSet(exercise_set_data)
@@ -41,12 +70,9 @@ console.log("Loading??")
       document.getElementsByName("commit")[0].disabled = false 
     }
     // let workoutElement = document.getElementById("workoutLifts")
-   const workoutShow = document.querySelector(".workouts.show")
-   
-    if (workoutShow) {
-        
-           getWorkoutLifts(e.data.url)
-    } 
+
+  // document.addEventListener('DOMContentLoaded',function(){
+  
     
     function getWorkoutLifts(url) {
       
@@ -68,11 +94,20 @@ console.log("Loading??")
 
    
   }
-  const getSets = () => { 
+
+// })
+ 
+
+
+
+
+
+
+  // const getSets = () => { 
     
     
      
-  }
+  // }
   
   //  var showSetButtons = document.querySelectorAll("#exerciseSetsIndex")
 
@@ -98,7 +133,7 @@ console.log("Loading??")
 //   addEventListenerSetList(showSetButtons, 'click', getSets)
 // }
 //   }) 
-  })
+  
 
 
 
@@ -108,36 +143,9 @@ console.log("Loading??")
 
 
 
-//   {
-  //     e.preventDefault()
-  //     let w_l_id = document.querySelector("button").dataset.workout_lift_id 
-  //     fetch(`http:localhost:3000/workout_lifts/${w_l_id}/exercise_sets`)
-  //     .then( resp=> resp.json())
-  //     .then( get_exercise_set =w
-  // })
-  
-  // (butt => {
-  //   debugger
-  //   butt.addEventListener("click", function() {
-      
-  //     let w_l_id = document.querySelector("button").dataset.workout_lift_id 
-  //     fetch(`http://localhost:3000/workout_lift/${w_l_id}/exercise_sets`)
-  //     .then( resp=> resp.json )
-  //     .then(e_s => console.log(e_s))
-  //   })
-  // }) 
-
-
 
   
 
   
   
-  // const displayResults = (error) => {
-  //   document.getElementById("workoutliftName").innerText = error
-
-  // }
-   
-    // let prom = fetch('workouts/17/workout_lifts.json') 
-    // let answer = prom.then(resp => resp.json())
-    // let result = answer.then(workoutlifts => console.log(workoutlifts))
+  

@@ -14,40 +14,85 @@
    <%#end %>  
  <%# end %> 
  <div id="myModal" class="modal"> 
- <h3> Add set(s) </h1><br> 
+  <div class="modal-content">
     <%= form_for( ExerciseSet.new) do |f| %> 
-    <%= f.hidden_field :workout_lift_id, value: ""  %> 
-    <p> 
-    <%= f.label :weight %> 
-    <%= f.number_field :weight %> 
-    <%= f.label :reps %> 
-    <%= f.number_field :reps %> 
-    </p> 
-    <%= f.submit "Add Set"  %> 
-  <%end%> 
+      <%= f.hidden_field :workout_lift_id, value: ""  %> 
+      <p> 
+      <%= f.label :weight %> 
+      <%= f.number_field :weight %> 
+      <%= f.label :reps %> 
+      <%= f.number_field :reps %> 
+      </p> 
+      <%= f.submit "Add Set"  %> 
+
+      <span class="close">&times;</span>
+    <%end%> 
   </div>
+</div>
 <div> 
 <script type="text/javascript" charset="utf-8"> 
-  function showExerciseSets(id) {
-    console.log(id)
+ 
+  function showEditForm(exerciseSetId, workout_lift_id) {
+   
+    // document.querySelector("form #exercise_set_workout_lift_id").value = id 
+    document.querySelector("#myModal").style.display = "block"; 
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0]
     
-    fetch(`http:localhost:3000/workout_lifts/${id}.json`)
-    .then( resp=> resp.json())
-    .then( get_exercise_set => showExerciseSetIndex(get_exercise_set))
-    .catch( err => console.log(err))
-  }
-  function showExerciseSetIndex(workout_lift) {
+    span.onclick = function() {
+      modal.style.display = "none"
+    }
     
-    r = workout_lift.exercise_sets.map(exercise_set => new ExerciseSet(exercise_set).set_weight_reps()) 
-    orderedList = "<ol>" + r + "</ol>" + `<button onclick="addSet(${workout_lift.id})"> Add set(s) </button>`
-    div = document.getElementById(`Workout_${workout_lift.id}`)
-    div.innerHTML += orderedList
+     document.getElementById("new_exercise_set").addEventListener('submit', e => {
+      e.preventDefault()
+    debugger 
+      var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
+      var token = e.target.querySelector('input[name=authenticity_token').value 
+      var data = {exercise_set: {}}; 
+      
+      data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
+      data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
+      
+      var exercise_set_url = `http:localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets/${exerciseSetId}`
+      
+      fetch(`${exercise_set_url}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json', 
+          'Accept' : 'application/json',
+          'X-CSRF-token': token
+        }, 
+        body: JSON.stringify(data)
+      })
+      .then(resp=> resp.json())
+      .then(exercise_set => {
+        displayEditedExerciseSets(exercise_set)
+      })
+      .catch(e => {
+        console.log(e);
+        return e;
+      }); 
 
-  
+    })
+
   }
+
+  function displayEditedExerciseSets(exercise_set_data) {
+       
+      let js_exercise_set = new ExerciseSet(exercise_set_data)
+      document.querySelector(`div #Workout_${js_exercise_set.workout_lift_id} ol`).innerHTML += js_exercise_set.set_weight_reps()
+      
+      document.getElementsByName("commit")[0].disabled = false 
+    }
   function addSet(id) {
     document.querySelector("form #exercise_set_workout_lift_id").value = id 
     document.querySelector("#myModal").style.display = "block"; 
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0]
+    span.onclick = function() {
+      modal.style.display = "none"
+    }
+  
 
 
   }

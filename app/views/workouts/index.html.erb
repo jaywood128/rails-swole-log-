@@ -8,8 +8,11 @@
   
         <h1> End Time : <%= workout.end_time.strftime("%d %b %Y %l:%M %p")  %> </h1> 
    <% end %> 
-    <%= link_to "View Details", workout_path(workout), :id => "workout_show" %> 
+    <%#= link_to "View Details", workout_path(workout), :id => "workout_show", class: "button is-success", data-tooltip: "This is working!"  %> 
+    <%= link_to "View Details", workout_path(workout), :id => "workout_show", class: "button is-success",  title: "Show workoutlifts", 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
+    
     <%end%> 
+    
     <%= form_for(Workout.new) do |f| %> 
      <%= f.submit "Start New Workout" %> 
      <% end %><br>
@@ -18,5 +21,17 @@
      <%= f.submit "Start New Workout" %> 
      <% end %><br>
 <%end %> 
+<script> 
+document.addEventListener('DOMContentLoaded',function(){
+  var trigger = document.getElementsByClassName("is-success")[0];
+  var instance = new Tooltip(trigger,{
+    title: trigger.getAttribute('data-tooltip'),
+    trigger: "hover",
+  });
+});
+// $(document).ready(function(){
+//   $('[data-toggle="tooltip"]').tooltip(); 
+// });
+</script> 
     
     
