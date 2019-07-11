@@ -41,7 +41,7 @@ console.log("Loading??")
   const workoutShow = document.querySelector(".workouts.show")
     
   if (workoutShow) { 
-    getWorkoutLifts(e.data.url)
+    getWorkout(e.data.url)
   } 
 })
 function showExerciseSets(id) {
@@ -74,17 +74,28 @@ function showExerciseSetIndex(workout_lift) {
   // document.addEventListener('DOMContentLoaded',function(){
   
     
-    function getWorkoutLifts(url) {
+    function getWorkout(url) {
       
-      let prom = myFetch(`${url}/workout_lifts.json`)
-      prom.then(resp => resp.json()).then(workoutlifts => displayWorkoutLifts(workoutlifts))
+      let prom = myFetch(`${url}.json`)
+      prom.then(resp => resp.json()).then(workout => displayWorkout(workout))
       // .catch(err => displayResults("Workouts not found."))
   
     }
 
-  const displayWorkoutLifts = (workoutlifts) => {
+  const displayWorkout = (workout) => {
        
-  let html = workoutlifts.map(workoutliftData => new WorkoutLift(workoutliftData).render())
+  let html = workout.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render())
+ 
+  let workoutHtml = new Workout(workout) 
+
+  let workoutStart = document.getElementById("workoutStartEnd")
+
+  workoutStart.innerHTML = workoutHtml.start_time 
+  var today = new Date().toLocaleDateString('en-GB', {  
+    day : 'numeric',
+    month : 'short',
+    year : 'numeric'
+  })
    
   //  let buttonDetails = workoutlifts.map(workoutliftData => new WorkoutLift(workoutliftData).show_workout_lifts()).join('')
   
