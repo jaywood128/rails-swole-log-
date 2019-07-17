@@ -3,11 +3,11 @@ console.log("Loading??")
   document.addEventListener('turbolinks:load', (e) => {
     
     
-    var el = document.getElementById('new_exercise_set');
+    var form = document.getElementById('new_exercise_set');
 
-    if(el){
-      el.addEventListener('submit', e => {
-        e.preventDefault()
+    if(form){
+      form.addEventListener('submit', e => {
+        form.preventDefault()
     
         var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
         var token = e.target.querySelector('input[name=authenticity_token').value 
@@ -38,12 +38,39 @@ console.log("Loading??")
       })
     }
 
-  const workoutShow = document.querySelector(".workouts.show")
+  const workoutShowLoaded = document.querySelector(".workouts.show")
     
-  if (workoutShow) { 
+  if (workoutShowLoaded) { 
+    
     getWorkout(e.data.url)
   } 
 })
+
+function getWorkout(url) {
+      
+  let prom = myFetch(`${url}.json`)
+  prom.then(resp => resp.json()).then(workoutData => displayWorkout(workoutData))
+  // .catch(err => displayResults("Workouts not found."))
+
+}
+
+const displayWorkout = (workoutData) => {
+  
+  let html = workoutData.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render())
+  let workout = new Workout(workoutData) 
+  let workoutStart = document.getElementById("workoutStartEnd")
+  
+  workoutStart.innerHTML = workout.display_start_time
+  var today = new Date().toLocaleDateString('en-GB', {  
+    day : 'numeric',
+    month : 'short',
+    year : 'numeric'
+  })
+
+document.getElementById("workoutLiftName").innerHTML = html 
+
+
+}
 function showExerciseSets(id) {
   console.log(id)
   
@@ -54,65 +81,50 @@ function showExerciseSets(id) {
 }
 function showExerciseSetIndex(workout_lift) {
   
-  r = workout_lift.exercise_sets.map(exercise_set => new ExerciseSet(exercise_set).set_weight_reps()) 
-  orderedList = "<ol>" + r + "</ol>" + `<button onclick="addSet(${workout_lift.id})"> Add set(s) </button>`
-  div = document.getElementById(`Workout_${workout_lift.id}`)
+  let r = workout_lift.exercise_sets.map(exercise_set => new ExerciseSet(exercise_set).set_weight_reps()).join('')
+  
+  let orderedList = "<ol>" + r + "</ol>" + `<button onclick="addSet(${workout_lift.id})"> Add set(s) </button>`
+  let div = document.getElementById(`Workout_${workout_lift.id}`)
   div.innerHTML += orderedList
 
 
 }
-  
+
     const displayCreatedExerciseSets = (exercise_set_data) => {
-       
+    
       let js_exercise_set = new ExerciseSet(exercise_set_data)
       document.querySelector(`div #Workout_${js_exercise_set.workout_lift_id} ol`).innerHTML += js_exercise_set.set_weight_reps()
       
       document.getElementsByName("commit")[0].disabled = false 
     }
-    // let workoutElement = document.getElementById("workoutLifts")
 
-  // document.addEventListener('DOMContentLoaded',function(){
-  
-    
-    function getWorkout(url) {
+    function deleteSet(exerciseSetId) { 
       
-      let prom = myFetch(`${url}.json`)
-      prom.then(resp => resp.json()).then(workout => displayWorkout(workout))
-      // .catch(err => displayResults("Workouts not found."))
-  
-    }
-
-  const displayWorkout = (workout) => {
+      var token = document.querySelector('input[name=authenticity_token').value 
+      let url = `http://localhost:3000/exercise_sets/${exerciseSetId}.json`
+      
+      fetch(`${url}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json', 
+          'Accept' : 'application/json',
+          'X-CSRF-token': token
+        }, 
        
-  let html = workout.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render())
- 
-  let workoutHtml = new Workout(workout) 
+      })
+      .then(resp=> resp.json())
+      .then(delete_resp => {
+        console.log(delete_resp)
+        let listItem = document.getElementById(delete_resp.id) 
+        listItem.parentElement.removeChild(listItem)
+      })
+      .catch(e => {
+        console.log(e);
+        return e;
+      });
 
-  let workoutStart = document.getElementById("workoutStartEnd")
-
-  workoutStart.innerHTML = workoutHtml.start_time 
-  var today = new Date().toLocaleDateString('en-GB', {  
-    day : 'numeric',
-    month : 'short',
-    year : 'numeric'
-  })
+    }
    
-  //  let buttonDetails = workoutlifts.map(workoutliftData => new WorkoutLift(workoutliftData).show_workout_lifts()).join('')
-  
-  buttonDetails = document.getElementById("details").innerHTML
- 
-    document.getElementById("workoutLiftName").innerHTML = html 
-
-   
-  }
-
-// })
- 
-
-
-
-
-
 
   // const getSets = () => { 
     

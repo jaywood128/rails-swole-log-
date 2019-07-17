@@ -7,6 +7,10 @@ class Workout < ApplicationRecord
        if  self.end_time != nil 
        end 
     end 
+
+    def display_start_time
+        self.start_time.strftime("Start Date & Time: %A, %d %b %Y %l:%M %p")
+    end 
 end
 
 
