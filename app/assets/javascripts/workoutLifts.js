@@ -1,4 +1,5 @@
 
+
 console.log("Loading??")
   document.addEventListener('turbolinks:load', (e) => {
     
@@ -76,17 +77,20 @@ function showExerciseSets(id) {
   
   fetch(`http:localhost:3000/workout_lifts/${id}.json`)
    .then( resp=> resp.json())
-  .then( get_exercise_set => showExerciseSetIndex(get_exercise_set))
+  .then( getExerciseSet => showExerciseSetIndex(getExerciseSet))
   .catch( err => console.log(err))
 }
-function showExerciseSetIndex(workout_lift) {
-  
-  let r = workout_lift.exercise_sets.map(exercise_set => new ExerciseSet(exercise_set).set_weight_reps()).join('')
-  
-  let orderedList = "<ol>" + r + "</ol>" + `<button onclick="addSet(${workout_lift.id})"> Add set(s) </button>`
-  let div = document.getElementById(`Workout_${workout_lift.id}`)
-  div.innerHTML += orderedList
+function showExerciseSetIndex(workoutLift) {
 
+  let listElement = document.createElement("ul")
+  let r = workoutLift.exercise_sets.map(exerciseSet => new ExerciseSet(exerciseSet).set_weight_reps())
+  
+  let orderedList = r.map(liStr => listElement.innerHTML += liStr += `<button onclick="addSet(${workoutLift.id})"> Add set(s) </button>`).join()
+  
+  // let orderedList = listElement.appendChild(r)
+  // let orderedList = "<ol>" + r + "</ol>" + `<button onclick="addSet(${workout_lift.id})"> Add set(s) </button>`
+  let div = document.getElementById(`Workout_${workoutLift.id}`)
+  div.innerHTML += orderedList
 
 }
 
@@ -99,7 +103,7 @@ function showExerciseSetIndex(workout_lift) {
     }
 
     function deleteSet(exerciseSetId) { 
-      
+       
       var token = document.querySelector('input[name=authenticity_token').value 
       let url = `http://localhost:3000/exercise_sets/${exerciseSetId}.json`
       
