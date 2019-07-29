@@ -15,8 +15,6 @@
  */
 
  
-
-
  .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -55,5 +53,18 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+body{background:#F8F8FF}
+
+h1 {
+  // text-indent: 500px;
+}
+
+div {
+  display: block;
+  justify-content: center;
+  text-align: center;
+}
+
 
 /* https://www.w3schools.com/howto/howto_css_modals.asp */

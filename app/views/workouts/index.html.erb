@@ -1,4 +1,5 @@
 <% require 'pry' %> 
+<div> 
 <% if !current_user.workouts.empty? && logged_in? %> 
 <% current_user.workouts.each do |workout| %> 
     
@@ -9,7 +10,7 @@
         <h1> End Time : <%= workout.end_time.strftime("%d %b %Y %l:%M %p")  %> </h1> 
    <% end %> 
     <%#= link_to "View Details", workout_path(workout), :id => "workout_show", class: "button is-success", data-tooltip: "This is working!"  %> 
-    <div class="col-md-4 center-block"> <%= link_to "View Details", workout_path(workout), :id => "workout_show", class: 'btn btn-primary center-block' %> </div> 
+    <%= link_to "View Details", workout_path(workout), :id => "workout_show", class: 'btn btn-primary center-block' %> <br><br>
      
     
     <%end%> 
@@ -22,6 +23,7 @@
      <%= f.submit "Start New Workout" %> 
      <% end %><br>
 <%end %> 
+<div> 
 <script> 
 document.addEventListener('DOMContentLoaded',function(){
   var trigger = document.getElementsByClassName("is-success")[0];
