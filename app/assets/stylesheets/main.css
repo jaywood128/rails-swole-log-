@@ -1,0 +1,11 @@
+body{background:#F8F8FF}
+
+h1 {
+  text-indent: 500px;
+}
+
+.btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

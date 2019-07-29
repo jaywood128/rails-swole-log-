@@ -56,8 +56,8 @@ function getWorkout(url) {
 }
 
 const displayWorkout = (workoutData) => {
-  
-  let html = workoutData.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render())
+    
+  let html = workoutData.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render()).join('')
   let workout = new Workout(workoutData) 
   let workoutStart = document.getElementById("workoutStartEnd")
   
@@ -84,13 +84,13 @@ function showExerciseSetIndex(workoutLift) {
 
   let listElement = document.createElement("ul")
   let r = workoutLift.exercise_sets.map(exerciseSet => new ExerciseSet(exerciseSet).set_weight_reps())
-  
-  let orderedList = r.map(liStr => listElement.innerHTML += liStr += `<button onclick="addSet(${workoutLift.id})"> Add set(s) </button>`).join()
+
+  listElement.innerHTML = r.join('') + `<button onclick="addSet(${workoutLift.id})"> Add set(s) </button>`
   
   // let orderedList = listElement.appendChild(r)
   // let orderedList = "<ol>" + r + "</ol>" + `<button onclick="addSet(${workout_lift.id})"> Add set(s) </button>`
   let div = document.getElementById(`Workout_${workoutLift.id}`)
-  div.innerHTML += orderedList
+  div.appendChild(listElement)
 
 }
 
@@ -103,11 +103,12 @@ function showExerciseSetIndex(workoutLift) {
     }
 
     function deleteSet(exerciseSetId) { 
-       
+        
       var token = document.querySelector('input[name=authenticity_token').value 
       let url = `http://localhost:3000/exercise_sets/${exerciseSetId}.json`
-      
+     
       fetch(`${url}`, {
+
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json', 
@@ -119,8 +120,9 @@ function showExerciseSetIndex(workoutLift) {
       .then(resp=> resp.json())
       .then(delete_resp => {
         console.log(delete_resp)
-        let listItem = document.getElementById(delete_resp.id) 
+        let listItem = document.getElementById(`set-${delete_resp.id}`) 
         listItem.parentElement.removeChild(listItem)
+       
       })
       .catch(e => {
         console.log(e);

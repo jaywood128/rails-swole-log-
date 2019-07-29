@@ -45,7 +45,7 @@
     
      document.getElementById("new_exercise_set").addEventListener('submit', e => {
       e.preventDefault()
-    debugger 
+    
       var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
       var token = e.target.querySelector('input[name=authenticity_token').value 
       var data = {exercise_set: {}}; 

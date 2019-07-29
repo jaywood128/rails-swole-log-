@@ -9,7 +9,8 @@
         <h1> End Time : <%= workout.end_time.strftime("%d %b %Y %l:%M %p")  %> </h1> 
    <% end %> 
     <%#= link_to "View Details", workout_path(workout), :id => "workout_show", class: "button is-success", data-tooltip: "This is working!"  %> 
-    <%= link_to "View Details", workout_path(workout), :id => "workout_show", class: "button is-success",  title: "Show workoutlifts", 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
+    <div class="col-md-4 center-block"> <%= link_to "View Details", workout_path(workout), :id => "workout_show", class: 'btn btn-primary center-block' %> </div> 
+     
     
     <%end%> 
     
