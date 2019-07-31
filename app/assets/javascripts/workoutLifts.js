@@ -6,7 +6,7 @@ console.log("Loading??")
     
     var form = document.getElementById('new_exercise_set');
 
-    if(form){
+    // if(form){
       form.addEventListener('submit', e => {
         form.preventDefault()
     
@@ -37,7 +37,7 @@ console.log("Loading??")
         });
 
       })
-    }
+    // }
 
   const workoutShowLoaded = document.querySelector(".workouts.show")
     
