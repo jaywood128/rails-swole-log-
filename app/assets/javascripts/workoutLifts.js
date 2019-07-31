@@ -44,7 +44,8 @@ console.log("Loading??")
   if (workoutShowLoaded) { 
     
     getWorkout(e.data.url)
-  } 
+  }
+
 })
 
 function getWorkout(url) {
@@ -56,19 +57,13 @@ function getWorkout(url) {
 }
 
 const displayWorkout = (workoutData) => {
-    
+      console.log(workoutData)
   let html = workoutData.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render()).join('')
   let workout = new Workout(workoutData) 
   let workoutStart = document.getElementById("workoutStartEnd")
   
   workoutStart.innerHTML = workout.display_start_time
-  var today = new Date().toLocaleDateString('en-GB', {  
-    day : 'numeric',
-    month : 'short',
-    year : 'numeric'
-  })
-
-document.getElementById("workoutLiftName").innerHTML = html 
+  document.getElementById("workoutLiftName").innerHTML = html 
 
 
 }
@@ -132,49 +127,4 @@ function showExerciseSetIndex(workoutLift) {
     }
    
 
-  // const getSets = () => { 
-    
-    
-     
-  // }
-  
-  //  var showSetButtons = document.querySelectorAll("#exerciseSetsIndex")
-
-//    window.onload = addEventListenerSetList(showSetButtons, 'click', getSets)
-// })
-// function areYouWorking() {
-//   console.log("Loading")
-// }
-// window.onload = function addEventListenerSetList(sets, event, fn) {
-  
-//   for (var i = 0, len = sets.length; i < len; i ++) {
-   
-//     sets[i].addEventListener(event, fn);
-//   }
-// }
-
-// function showExerciseSets() {
-//   var showSetButtons = document.querySelectorAll("#exerciseSetIndex")
-//   const getSets = () => { 
-    
-     
-//   }
-//   addEventListenerSetList(showSetButtons, 'click', getSets)
-// }
-//   }) 
-  
-
-
-
-
-
-  
-
-
-
-
-  
-
-  
-  
   
