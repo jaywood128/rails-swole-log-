@@ -5,7 +5,6 @@ ruby '2.6.1'
 gem 'dotenv-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'thin', '~> 1.7'
-gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'rails', '~> 5.2.3'
 gem 'bcrypt'
@@ -37,6 +36,7 @@ gem 'groupdate'
 gem 'webpacker', '~> 4.x'
 gem 'active_model_serializers', '~> 0.10.2'
 gem 'rack-cors', '~> 0.4.0'
+gem "omniauth-rails_csrf_protection"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

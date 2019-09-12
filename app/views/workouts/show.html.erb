@@ -33,13 +33,13 @@
 <script type="text/javascript" charset="utf-8"> 
  
   function showEditForm(exerciseSetId, workout_lift_id) {
-   
-    // document.querySelector("form #exercise_set_workout_lift_id").value = id 
+
     document.querySelector("#myModal").style.display = "block"; 
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0]
     
     span.onclick = function() {
+      
       modal.style.display = "none"
     }
     
@@ -47,9 +47,9 @@
       e.preventDefault()
     
       var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
-      var token = e.target.querySelector('input[name=authenticity_token').value 
+      var token = e.target.querySelector('input[name=authenticity_token]').value 
       var data = {exercise_set: {}}; 
-      
+      debugger 
       data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
       data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
       
@@ -71,39 +71,28 @@
       .catch(e => {
         console.log(e);
         return e;
-      }); 
-
+      });
     })
-
-  }
+  } 
 
   function displayEditedExerciseSets(exercise_set_data) {
-       
-      let js_exercise_set = new ExerciseSet(exercise_set_data)
-      document.querySelector(`div #Workout_${js_exercise_set.workout_lift_id} ol`).innerHTML += js_exercise_set.set_weight_reps()
-      
-      document.getElementsByName("commit")[0].disabled = false 
-    }
+    
+    let js_exercise_set = new ExerciseSet(exercise_set_data)
+    document.querySelector(`div #Workout_${js_exercise_set.workout_lift_id} ol`).innerHTML += js_exercise_set.set_weight_reps()
+
+    document.getElementsByName("commit")[0].disabled = false 
+  }
+
   function addSet(id) {
+
     document.querySelector("form #exercise_set_workout_lift_id").value = id 
     document.querySelector("#myModal").style.display = "block"; 
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0]
-    span.onclick = function() {
-      modal.style.display = "none"
-    }
-  
 
-
+      span.onclick = function() {
+        debugger 
+       modal.style.display = "none"
+      }
   }
-
-// document.addEventListener('turbolinks:load', funtion () {
-//   var showSetButtons = document.querySelectorAll("#exerciseSetIndex")
-//   const getSets = () => { 
-    
-//     debugger 
-     
-//   }
-//   addEventListenerSetList(showSetButtons, 'click', getSets)
-// })
 </script>

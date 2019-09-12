@@ -13,7 +13,6 @@ class ExerciseSet {
       <div> Reps: ${this.reps} </div> <button onclick="showEditForm(${this.id}, ${this.workout_lift_id})" 
       data-workout_lift_id= "${this.workout_lift_id}"> Edit </button> <button class="p-3 mb-2 bg-danger text-white"onclick="deleteSet(${this.id})"> Delete </button>  </li><br><br>
    `
-      
   }
 }
 // class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
