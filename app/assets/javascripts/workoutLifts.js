@@ -9,11 +9,11 @@ document.addEventListener('turbolinks:load', (e) => {
       var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
       var token = e.target.querySelector('input[name=authenticity_token]').value 
       var data = {exercise_set: {}}; 
-
+      debugger
       data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
       data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
       var exercise_set_url = `http://localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets`
-
+       
       fetch(`${exercise_set_url}`, {
         method: 'POST',
         headers: {
@@ -25,6 +25,7 @@ document.addEventListener('turbolinks:load', (e) => {
       })
       .then(resp=> resp.json())
       .then(exercise_set => {
+        document.getElementById("myModal").style.display = "none"
         displayCreatedExerciseSets(exercise_set)
       })
       .catch(e => {

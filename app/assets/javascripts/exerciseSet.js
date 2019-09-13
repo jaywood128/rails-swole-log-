@@ -1,3 +1,4 @@
+
 class ExerciseSet {
   constructor(attributes) {
     this.id = attributes.id 

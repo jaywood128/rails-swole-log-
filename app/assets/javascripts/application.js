@@ -15,4 +15,4 @@
 //= require turbolinks
 //= require Chart.bundle
 //= require_tree .
-console.log("Manifest")
+

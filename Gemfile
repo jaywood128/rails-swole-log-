@@ -6,6 +6,7 @@ gem 'dotenv-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'thin', '~> 1.7'
 gem 'omniauth-facebook'
+gem 'omniauth'
 gem 'rails', '~> 5.2.3'
 gem 'bcrypt'
 # Use sqlite3 as the database for Active Record
