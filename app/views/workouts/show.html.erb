@@ -25,7 +25,7 @@
       </p> 
       <%= f.submit "Add Set"  %> 
 
-      <span class="close">&times;</span>
+      <span onclick="byeModal()" class="close">&times;</span>
     <%end%> 
   </div>
 </div>
@@ -81,18 +81,17 @@
     document.querySelector(`div #Workout_${js_exercise_set.workout_lift_id} ol`).innerHTML += js_exercise_set.set_weight_reps()
 
     document.getElementsByName("commit")[0].disabled = false 
+    byeModal()
+  }
+  function byeModal(){
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none"
   }
 
   function addSet(id) {
-
+  
     document.querySelector("form #exercise_set_workout_lift_id").value = id 
     document.querySelector("#myModal").style.display = "block"; 
-    var modal = document.getElementById("myModal");
-    var span = document.getElementsByClassName("close")[0]
-
-      span.onclick = function() {
-        debugger 
-       modal.style.display = "none"
-      }
+    
   }
 </script>
