@@ -12,7 +12,7 @@ class ExerciseSet {
    return `
       <li id="set-${this.id}"> <div> Weight: ${this.weight} </div> 
       <div> Reps: ${this.reps} </div> <button onclick="showEditForm(${this.id}, ${this.workout_lift_id})" 
-      data-workout_lift_id= "${this.workout_lift_id}"> Edit </button> <button class="p-3 mb-2 bg-danger text-white"onclick="deleteSet(${this.id})"> Delete </button>  </li><br><br>
+      data-workout_lift_id= "${this.workout_lift_id}"> Edit </button> <button class="p-3 mb-2 bg-danger text-white"onclick="deleteSet(${this.id})"> Delete </button>  </li><br>
    `
   }
 }

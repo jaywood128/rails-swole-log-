@@ -41,6 +41,7 @@ class WorkoutLiftsController < ApplicationController
   end 
 
   def index 
+    
     @workout_lift = WorkoutLift.new
     @workout_lift.exercise_sets.build
     @workout_lift.exercise_sets.build

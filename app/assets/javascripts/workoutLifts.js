@@ -9,7 +9,6 @@ document.addEventListener('turbolinks:load', (e) => {
       var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
       var token = e.target.querySelector('input[name=authenticity_token]').value 
       var data = {exercise_set: {}}; 
-      debugger
       data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
       data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
       var exercise_set_url = `http://localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets`
@@ -99,7 +98,7 @@ function deleteSet(exerciseSetId) {
       
   var token = document.querySelector('input[name=authenticity_token').value 
   let url = `http://localhost:3000/exercise_sets/${exerciseSetId}.json`
-
+  
   fetch(`${url}`, {
 
   method: 'DELETE',
@@ -113,6 +112,7 @@ function deleteSet(exerciseSetId) {
   .then(resp=> resp.json())
   .then(delete_resp => {
   console.log(delete_resp)
+
   let listItem = document.getElementById(`set-${delete_resp.id}`) 
   listItem.parentElement.removeChild(listItem)
 
