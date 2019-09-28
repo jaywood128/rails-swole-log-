@@ -5,6 +5,7 @@ class Workout {
     this.end_time = attributes.end_time 
     this.user_id = attributes.user_id 
   }
+  
 
    
 }

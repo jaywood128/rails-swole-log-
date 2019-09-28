@@ -1,5 +1,8 @@
 
 document.addEventListener('turbolinks:load', (e) => {
+debugger
+  document.getElementById('workoutLiftName').innerHTML += `<button onclick="addWorkoutLift()"> Add WorkoutLift </button>`
+ 
       
   var form = document.getElementById('new_exercise_set');
 

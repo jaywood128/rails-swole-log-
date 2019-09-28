@@ -13,7 +13,7 @@
   
    <%#end %>  
  <%# end %> 
- <div id="myModal" class="modal"> 
+ <div id="exerciseSetModal" class="modal"> 
   <div class="modal-content">
     <%= form_for( ExerciseSet.new) do |f| %> 
       <%= f.hidden_field :workout_lift_id, value: ""  %> 
@@ -30,12 +30,39 @@
   </div>
 </div>
 <div> 
+<div id="workoutLiftModal" class="modal"> 
+  <div class="modal-content">
+    <%= form_for( WorkoutLift.new ) do |f| %> 
+      <%= f.hidden_field :workout_lift_id, value: ""  %> 
+      <p> 
+      <%= f.label :name %>
+       <%= f.collection_select :lift_id, Lift.all.reject{|l| @workout.lifts.include?(l)}, :id, :name %> 
+      <%= f.hidden_field :workout_id, value: @workout.id %> 
+      <%= f.label :name %> 
+      </p> 
+      <%= f.submit "Add Set"  %> 
+
+      <span onclick="byeModal()" class="close">&times;</span>
+    <%end%> 
+  </div>
+</div>
+<div> 
+
 <script type="text/javascript" charset="utf-8"> 
+
+  function showWorkoutLiftButton() {
+    workout_lift_container = document.getElementById('workoutLiftName')
+    workout_lift_container.innerHTML = <button> Add Lift </button>
+  }
+
+  function addWorkoutLift() {
+
+  }
  
   function showEditForm(exerciseSetId, workout_lift_id) {
 
-    document.querySelector("#myModal").style.display = "block"; 
-    var modal = document.getElementById("myModal");
+    document.querySelector("#exerciseSetModal").style.display = "block"; 
+    var modal = document.getElementById("exerciseSetModal");
     var span = document.getElementsByClassName("close")[0]
     
     span.onclick = function() {
@@ -84,14 +111,14 @@
     byeModal()
   }
   function byeModal(){
-    var modal = document.getElementById("myModal");
+    var modal = document.getElementById("exerciseSetModal");
     modal.style.display = "none"
   }
 
   function addSet(id) {
   
     document.querySelector("form #exercise_set_workout_lift_id").value = id 
-    document.querySelector("#myModal").style.display = "block"; 
+    document.querySelector("#exerciseSetModal").style.display = "block"; 
     
   }
 </script>

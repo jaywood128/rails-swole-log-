@@ -7,7 +7,7 @@ class WorkoutsController < ApplicationController
     workout = current_user.workouts.build(start_time: DateTime.now, user_id: current_user.id)
     workout.save
    
-    redirect_to workout_workout_lifts_path(workout)
+    redirect_to workout_path(workout)
   end 
 
   def show 
