@@ -3,11 +3,11 @@
 <% if !current_user.workouts.empty? && logged_in? %> 
 <% current_user.workouts.each do |workout| %> 
     
-   <h1> Started: <%= workout.start_time.strftime("%d %b %Y %l:%M %p")  %> </h1> 
+   <%# <h1> Started: <%= workout.start_time.strftime("%d %b %Y %l:%M %p")  %> </h1>  %>
 
    <% if workout.end_time %> 
   
-        <h1> End Time : <%= workout.end_time.strftime("%d %b %Y %l:%M %p")  %> </h1> 
+        <%# <h1> End Time : <%= workout.end_time.strftime("%d %b %Y %l:%M %p")  %> </h1>  %>
    <% end %> 
     <%#= link_to "View Details", workout_path(workout), :id => "workout_show", class: "button is-success", data-tooltip: "This is working!"  %> 
     <%= link_to "View Details", workout_path(workout), :id => "workout_show", class: 'btn btn-primary center-block' %> <br><br>
@@ -25,16 +25,31 @@
 <%end %> 
 <div> 
 <script> 
-document.addEventListener('DOMContentLoaded',function(){
-  var trigger = document.getElementsByClassName("is-success")[0];
-  var instance = new Tooltip(trigger,{
-    title: trigger.getAttribute('data-tooltip'),
-    trigger: "hover",
-  });
-});
-// $(document).ready(function(){
-//   $('[data-toggle="tooltip"]').tooltip(); 
-// });
+
+document.getElementById('new_workout').addEventListener('submit', e => {
+  debugger
+  var token = e.target.querySelector('input[name=authenticity_token]').value 
+  var workout_url = `http://localhost:3000/workout`
+       
+      fetch(`${workout_url}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', 
+          'Accept' : 'application/json',
+          'X-CSRF-token': token
+        }, 
+        body: JSON.stringify(data)
+      })
+      .then(resp=> resp.json())
+      .then(workout => {
+        displayWorkout(workout)
+      })
+      .catch(e => {
+        console.log(e);
+        return e;
+      });
+})
+
 </script> 
     
     

@@ -1,13 +1,12 @@
 
 document.addEventListener('turbolinks:load', (e) => {
-debugger
-  document.getElementById('workoutLiftName').innerHTML += `<button onclick="addWorkoutLift()"> Add WorkoutLift </button>`
- 
-      
-  var form = document.getElementById('new_exercise_set');
 
-  if(form){
-    form.addEventListener('submit', e => {
+  var exerciseSetForm = document.getElementById('new_exercise_set');
+
+  var workoutLiftForm = document.getElementById('new_workout_lift')
+  
+  if(exerciseSetForm){
+    exerciseSetForm.addEventListener('submit', e => {
       e.preventDefault()
       var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
       var token = e.target.querySelector('input[name=authenticity_token]').value 
@@ -36,7 +35,18 @@ debugger
       });
 
       })
-    }
+  }
+
+  if (workoutLiftForm){
+    workoutLiftForm.addEventListener( 'submit', e => {
+      debugger 
+      var workout_lift_token = e.target.querySelector('input[name=authenticity_token]').value 
+
+
+    })
+
+
+  }
 
   const workoutShowLoaded = document.querySelector(".workouts.show")
     
@@ -50,15 +60,17 @@ function getWorkout(url) {
       
   let prom = fetch(`${url}.json`)
   prom.then(resp => resp.json()).then(workoutData => displayWorkout(workoutData))
-  // .catch(err => displayResults("Workouts not found."))
+  .catch(err => displayResults("Workouts not found."))
 
 }
 
 const displayWorkout = (workoutData) => {
-
+ 
       console.log(workoutData)
   let html = workoutData.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render()).join('')
   let workout = new Workout(workoutData) 
+  debugger 
+  document.getElementById('addWorkoutLiftButton').innerHTML += workout.render() 
   let workoutStart = document.getElementById("workoutStartEnd")
   
   workoutStart.innerHTML = workout.display_start_time
