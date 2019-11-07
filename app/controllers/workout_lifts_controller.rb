@@ -5,12 +5,12 @@ class WorkoutLiftsController < ApplicationController
   end 
 
   def create
-  
-    @workout = Workout.find_or_create_by(params[:workout_id]) 
+   
+    @workout = Workout.find(params[:workout_lift][:workout_id]) 
         
     if @workout.valid? 
       @workout_lift = current_user.workout_lifts.create(params_workout_lifts)
-        
+      
       redirect_to workout_path(@workout)
     else 
       render :edit

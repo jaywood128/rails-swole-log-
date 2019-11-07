@@ -29,6 +29,7 @@
     <%end%> 
   </div>
 </div>
+
 <div> 
 <div id="workoutLiftModal" class="modal"> 
   <div class="modal-content">
@@ -47,14 +48,9 @@
   </div>
 </div>
 <div> 
+<%= link_to "All workouts", workouts_path(@workout)%>
 
 <script type="text/javascript" charset="utf-8"> 
-
-window.onload = function() {
-  debugger
-  // document.getElementById('addWorkoutLiftButton').innerHTML += '<button onclick="addWorkoutLift()"> Add WorkoutLift </button>'
-
-}
 
   function addWorkoutLift(id) {
     debugger
