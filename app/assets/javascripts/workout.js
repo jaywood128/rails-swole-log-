@@ -7,7 +7,6 @@ class Workout {
   }
   render() { 
     return `
-       <div id="Workout_${this.id}"> ${this.display_start_time}  </div>
        <button onclick="addWorkoutLift(${this.id})" id ="AddWorkoutLift-${this.id}" > Add WorkoutLift </button> 
 
        `

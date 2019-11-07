@@ -7,7 +7,6 @@
     <h2 id="workoutLiftName"> <%#= link_to workout_lift.name, lift_path(workout_lift.lift) %> <h2><br>
      <div id ="details"> <%#= link_to "Edit #{workout_lift.name}", edit_workout_workout_lift_path(@workout, workout_lift) %> </div><br> 
    <%# workout_lift.exercise_sets.each.with_index(1) do |exercise_set, i| %> 
-     <h3> Set <%#= i %> </h3> 
      <p id="weight">  </p>
      <p id="reps">  <%#= exercise_set.reps %></p><br> 
   
