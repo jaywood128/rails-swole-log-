@@ -61,9 +61,8 @@ h1 {
 }
 
 div {
-  display: block;
-  justify-content: center;
   text-align: center;
+  
 }
 li {
   list-style-type: none;
@@ -72,9 +71,18 @@ li {
   margin-right: -50%;
   font-size: 30px;
 }
-.navbar{
-  background-color: #E7E7E7;
-  border-color: #E7E7E7;
+// .navbar-expand-lg {
+//   background-color: #242582;
+//   border-color: #FBEEC1;
+//   text-align: center;
+//   top: 0%;
+//   left: 20%;
+// }
+.navbar .navbar-expand-lg .navbar-light {
+  .navbar-collapse {
+    background-color: #242582;
+
+  }
 }
 
 body {font-family: Arial, Helvetica, sans-serif;}
