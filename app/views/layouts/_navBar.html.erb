@@ -1,15 +1,26 @@
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-custom">
    <a class="navbar-brand" href="#"><i class="fas fa-dumbbell fa-lg"></i>
   </a>
-  <br> <br/> 
+  <% if logged_in? %>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <%# <a class="nav-item nav-link active" href="/workouts"> History </a> %>
-      <li><%= link_to "New Workout", new_workout_link_path %></li>
-      <a class="nav-item nav-link" href="#"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
+       <a class="nav-item nav-link active" href="/workouts"> History </a> 
+      <%# <a class="nav-item nav-link" href="#"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></a> %>
       <a class="nav-item nav-link" href="#">Pricing</a>
       <a class="nav-item nav-link disabled" href="#">Disabled</a>
     </div>
+  </div>
+  <div class="navbar-nav" >
+    <%= form_for(Workout.new) do |f| %> 
+       <%= button_tag(class: 'btn btn-primary navbar-btn') do %>
+          <i class="fa fa-plus fa-lg"></i>
+       <% end %>
+    <% end %>
+   <p class="nav-item"> Welcome <strong><%= current_user.name %></strong>! </p>
+    <%= link_to "Sign out", signout_path, id: "sign_out", :class => "nav-link" %>
+  <% else %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", :class => 'btn btn-success left-margin' %> <br><br/>
+    <%= link_to "Log in", login_path, :class => 'btn btn-success left-margin' %>
+  <% end %>
   </div>
 </nav>

@@ -18,17 +18,9 @@
   </head>
 
   <body class="<%=controller.controller_path%> <%= controller.action_name %>">
- <div id="user-widget">
-  <% if logged_in? %>
+ 
   <%= render 'layouts/navBar' %> 
-    Welcome <strong><%= current_user.name %></strong>!
-    <%= link_to "Sign out", signout_path, id: "sign_out" %>
-   <br> <br/>
-  <% else %>
-    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> <br>
-    <%= link_to "Log in", login_path %>
-  <% end %>
-</div>
+  
     <%= yield %>
   </body>
 </html>

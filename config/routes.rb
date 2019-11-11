@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'charts/downloads_by_day'
-  root 'application#index'
+  root 'users#new'
   resources :exercise_sets
   resources :workout_lifts do 
     resources :exercise_sets

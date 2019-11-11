@@ -54,7 +54,15 @@
   cursor: pointer;
 }
 
-body{background:#F8F8FF}
+body{
+  background:#F8F8FF;
+  color:#05386B
+}
+#new_user {
+  margin-left: 20px;
+  bottom: -50px;
+}
+.left-margin { margin-left: 2px }
 
 h1 {
   // text-indent: 500px;
@@ -67,9 +75,12 @@ div {
 li {
   list-style-type: none;
 }
-#user-widget{
-  margin-right: -50%;
-  font-size: 30px;
+// #user-widget{
+//   margin-right: -50%;
+//   font-size: 30px;
+// }
+.bg-custom{
+  background-color: #05386B !important; 
 }
 // .navbar-expand-lg {
 //   background-color: #242582;
