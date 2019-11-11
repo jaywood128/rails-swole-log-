@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :workouts do
     resources :workout_lifts, only:[:show, :index, :new, :update, :edit, :destroy]
   end
+  post '/workouts' => 'workouts#create', as: 'new_workout_link'
   resources :users
   resources :lifts 
 

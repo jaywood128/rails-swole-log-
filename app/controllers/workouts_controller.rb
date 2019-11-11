@@ -4,6 +4,7 @@ class WorkoutsController < ApplicationController
   end 
 
   def create 
+    binding.pry
     workout = current_user.workouts.build(start_time: DateTime.now, user_id: current_user.id)
     workout.save
    
