@@ -4,7 +4,22 @@
     <%#=f.text_field :email %> 
     <%#= f.password_field :password %>
     <%#=f.submit "Login" %> 
-
-    <p>New user? <%#= link_to "Sign up now!", signup_path %></p>
    <%#end%> 
+   <div class="login-form">
+      <%= form_for(:sessions, url: login_path) do |f| %>
+        <h2 class="text-center">Log in</h2>       
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <%= f.submit "Log in", type:"submit", class: "btn btn-primary btn-block" %> 
+        </div>   
+            <% end %>   
+       <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    
+    <p class="text-center"><a href="/signup">Create an Account</a></p>
+</div>
    
