@@ -18,7 +18,8 @@ class SessionsController < ApplicationController
     	session[:user_id] = @user.id
       redirect_to workouts_path
     else 
-			 @user = User.find_by(email:params[:sessions][:email])
+      
+			 @user = User.find_by(email: params[:sessions][:email])
            
     	if  @user && @user.authenticate(params[:sessions][:password])
       	session[:user_id] = @user.id
@@ -39,4 +40,9 @@ class SessionsController < ApplicationController
 	def auth
   	request.env["omniauth.auth"]
   end 
+
+  
+    def sessions_params
+        params.permit(:name, :username, :email, :password, :utf8, :authenticity_token, :commit)
+    end 
 end

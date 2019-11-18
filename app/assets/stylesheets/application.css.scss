@@ -64,9 +64,6 @@ body{
 }
 .left-margin { margin-left: 2px }
 
-h1 {
-  // text-indent: 500px;
-}
 
 div {
   text-align: center;
@@ -75,20 +72,11 @@ div {
 li {
   list-style-type: none;
 }
-// #user-widget{
-//   margin-right: -50%;
-//   font-size: 30px;
-// }
+
 .bg-custom{
   background-color: #05386B !important; 
 }
-// .navbar-expand-lg {
-//   background-color: #242582;
-//   border-color: #FBEEC1;
-//   text-align: center;
-//   top: 0%;
-//   left: 20%;
-// }
+
 .navbar .navbar-expand-lg .navbar-light {
   .navbar-collapse {
     background-color: #242582;
@@ -123,6 +111,14 @@ body {font-family: Arial, Helvetica, sans-serif;}
       background: #fff;
       box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
       padding: 30px;
+      right: 0;
+      max-width: 300px; 
+      margin-top: 10px;
+      position: relative;
+      right: -100px;
+  // margin: 20px;
+  // max-width: 300px;
+  // padding: 16px;
   }
 .signup-form h2 {
   color: #333;
@@ -173,6 +169,43 @@ body {font-family: Arial, Helvetica, sans-serif;}
   padding-bottom: 15px;
   text-align: center;
   }
+.login-form {
+  width: 50%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+  // margin: auto;
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  max-width: 300px;
+  padding: 16px;
+  background-color: white;
+
+}
+body, html {
+  height: 100%;
+  background-image: url("https://i.pinimg.com/originals/7f/02/f0/7f02f098ce7d483283c2b2b9486a4cef.jpg")
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img{
+  background-image: url("https://i.pinimg.com/originals/7f/02/f0/7f02f098ce7d483283c2b2b9486a4cef.jpg");
+  min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+
 
 
 

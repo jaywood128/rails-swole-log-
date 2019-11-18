@@ -1,18 +1,14 @@
 
-<%#= form_for(:sessions, url: login_path, html: {class: "col-lg-6 col-lg-offset-3"}) do |f| %> 
-    <%#=f.label :email%> 
-    <%#=f.text_field :email %> 
-    <%#= f.password_field :password %>
-    <%#=f.submit "Login" %> 
-   <%#end%> 
-   <div class="login-form">
+ <div class="login-form">
       <%= form_for(:sessions, url: login_path) do |f| %>
         <h2 class="text-center">Log in</h2>       
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" required="required">
+            <%= f.label :email, "Email" %><br /> 
+            <%= f.text_field :email, class: "form-control", placeholder: "email", required: "email" %>
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" required="required">
+             <%= f.label :password, "Password" %><br /> 
+             <%= f.text_field :password, class: "form-control", placeholder: "password", required: "password" %>
         </div>
         <div class="form-group">
             <%= f.submit "Log in", type:"submit", class: "btn btn-primary btn-block" %> 
