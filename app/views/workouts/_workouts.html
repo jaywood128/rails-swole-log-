@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+  <title>SwoleLog</title>
+
+  <meta name="csrf-param" content="authenticity_token" />
+  <meta name="csrf-token"
+    content="Rh2UduRI++045R3PCu5eaOAqivGWV04d+tgl9intiW+RuaB8a1bYnM/DW+A8kq7jiXEIMSmVKUUFPam7r9zX6Q==" />
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> ``
+  <script src="https://kit.fontawesome.com/b3eb9c79bf.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" media="all"
+    href="/assets/charts.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1"
+    data-turbolinks-track="reload" />
+  <link rel="stylesheet" media="all"
+    href="/assets/exercise_sets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1"
+    data-turbolinks-track="reload" />
+  <link rel="stylesheet" media="all"
+    href="/assets/lifts.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1"
+    data-turbolinks-track="reload" />
+  <link rel="stylesheet" media="all"
+    href="/assets/main.self-92316f4046d6a59daa0b9149560534ce4f2eadb10d561ffd2417af1ef4037b47.css?body=1"
+    data-turbolinks-track="reload" />
+  <link rel="stylesheet" media="all"
+    href="/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1"
+    data-turbolinks-track="reload" />
+  <link rel="stylesheet" media="all"
+    href="/assets/workout_lifts.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1"
+    data-turbolinks-track="reload" />
+  <link rel="stylesheet" media="all"
+    href="/assets/workouts.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1"
+    data-turbolinks-track="reload" />
+  <link rel="stylesheet" media="all"
+    href="/assets/application.self-42ffec44bede484bb20884fa73ac53e17d94fccc7b48bdacfdeb8f98721f0248.css?body=1"
+    data-turbolinks-track="reload" /> -->
+    <style>
+      header{
+        color: #fff;
+        background-color:#05386b; 
+      }
+      header a{
+        color: #fff;
+      }
+    </style>
+
+</head>
+
+<body class="workouts show">
+  <header> 
+      <i class="fas fa-dumbbell fa-lg"></i>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-custom">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/workouts"> History </a>
+          <a class="nav-item nav-link" href="#">Pricing</a>
+          <a class="nav-item nav-link disabled" href="#">Disabled</a>
+        </div>
+      </div>
+      <div class="navbar-nav">
+        <form class="new_workout" id="new_workout" action="/workouts" accept-charset="UTF-8" method="post"><input
+            name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token"
+            value="60QOEVKx+Xxd0rXot9rN33glcSEF3ESd9WeOj4EdCCcjgo9EYypMv1oCrNHC+liptvghJKrRoSZJNAe2ZZU/pQ==" />
+          <button name="button" type="submit" class="btn btn-primary navbar-btn">
+            <i class="fa fa-plus fa-lg">Add Workout</i>
+          </button>
+        </form>
+        <p class="nav-item">Welcome <b>Tijana Wood</b>!</p>
+        <a id="sign_out" class="nav-link" href="/signout">Sign out</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="workoutLifts">
+    <h1 id="workoutStartEnd">Tijana's workout: Tuesday, 19 Nov 2019 5:08 PM</h1>
+   <ul> 
+     
+      <!-- Exercise Item -->
+      <li> 
+        Bench Press
+        <button>Show Set</button>
+        <dl>
+          <dt>Set 1</dt>
+          <dd>Weight: <span>100</span></dd>
+          <dd>Reps: <span>10</span></dd>
+          <dt>Set 2</dt>
+          <dd>Weight: <span>200</span></dd>
+          <dd>Reps: <span>10</span></dd>
+        </dl>
+      </li>
+      <!-- Exercise Item -->
+     <li>
+       Deadlift
+       <button>Show Set</button>
+      </li>
+
+      <!-- Exercise Item -->
+     <li>
+       Barebell Squat
+       <button>Show Set</button>
+      </li>
+     <li>
+       Strict Press
+       <button>Show Set</button>
+      </li>
+     <li>
+       Barebell Row
+       <button>Show Set</button>
+      </li>
+   </ul>
+   <h2>All Workouts</h2>
+   <button>Add Workout</button>
+  </main> 
+
+</body>
+
+</html>

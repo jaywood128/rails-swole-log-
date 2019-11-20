@@ -170,7 +170,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   text-align: center;
   }
 .login-form {
-  width: 50%;
+  width: 300px;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -178,16 +178,24 @@ body {font-family: Arial, Helvetica, sans-serif;}
   resize: vertical;
   // margin: auto;
   position: absolute;
-  right: 0;
-  margin: 20px;
-  max-width: 300px;
+  margin: 0px;
   padding: 16px;
   background-color: white;
-
+  left: 50%; 
+  margin-left: -150px; 
+  // top: 50%;
+  // height: 45vh;
+  // margin-bottom: -50%
 }
-body, html {
-  height: 100%;
-  background-image: url("https://i.pinimg.com/originals/7f/02/f0/7f02f098ce7d483283c2b2b9486a4cef.jpg")
+
+.login-container {
+  height: 100vh;
+  background-image: url("https://www.attacktheback.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2018/03/barbellchalk-1160x700-990x597.jpg.webp");
+  background-repeat: no-repeat;
+  background-size: auto;
+  width: 100vw;
+  display: flex; 
+  align-items: center;  
 }
 
 * {

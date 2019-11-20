@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     	session[:user_id] = @user.id
       redirect_to workouts_path
     else 
-      
+     
 			 @user = User.find_by(email: params[:sessions][:email])
            
     	if  @user && @user.authenticate(params[:sessions][:password])
