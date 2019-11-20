@@ -7,10 +7,9 @@ class WorkoutLift {
 
  render() { 
    return `
-      <div class="${this.name}-container"> </div> 
-      <div id="Workout_${this.id}" class="${this.name}"> ${this.name} </div>
-      <button onclick="showExerciseSets(${this.id})" id ="ShowExerciseSets-${this.id}" data-workout_lift_id= "${this.id}"> Show sets </button> 
-      `
+   <div id="Workout_${this.id}" class="${this.name}"> ${this.name} </div>
+  <button onclick="showExerciseSets(${this.id})" id ="ShowExerciseSets-${this.id}" data-workout_lift_id= "${this.id}"> Down arrow <i class="fas fa-angle-down"></i> </button>
+  `
   }
    
 }

@@ -41,11 +41,7 @@ document.addEventListener('turbolinks:load', (e) => {
     workoutLiftForm.addEventListener( 'submit', e => {
       debugger 
       var workout_lift_token = e.target.querySelector('input[name=authenticity_token]').value 
-
-
     })
-
-
   }
 
   const workoutShowLoaded = document.querySelector(".workouts.show")
@@ -60,7 +56,7 @@ function getWorkout(url) {
       
   let prom = fetch(`${url}.json`)
   prom.then(resp => resp.json()).then(workoutData => displayWorkout(workoutData))
-  .catch(err => displayResults("Workouts not found."))
+  .catch(err => console.log(err))
 
 }
 
@@ -70,11 +66,11 @@ const displayWorkout = (workoutData) => {
   let html = workoutData.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render()).join('')
   let workout = new Workout(workoutData) 
   debugger 
-  document.getElementById('addWorkoutLiftButton').innerHTML += workout.render() 
-  let workoutStart = document.getElementById("workoutStartEnd")
+  document.getElementById('add-workoutlift-button').innerHTML += workout.render() 
+  let workoutStart = document.getElementById("workout-start-end-time")
   
   workoutStart.innerHTML = workout.display_start_time
-  document.getElementById("workoutLiftName").innerHTML = html 
+  document.getElementById("workoutlift-name").innerHTML = html 
 
 
 }
@@ -84,15 +80,19 @@ function showExerciseSets(id) {
   
   fetch(`http:localhost:3000/workout_lifts/${id}.json`)
    .then( resp=> resp.json())
-  .then( getExerciseSet => showExerciseSetIndex(getExerciseSet))
+  .then( getExerciseSet => showExerciseSetIndex(getExerciseSet, id))
   .catch( err => console.log(err))
 }
-function showExerciseSetIndex(workoutLift) {
-
+function showExerciseSetIndex(workoutLift, id) {
+  
   let listElement = document.createElement("ul")
   let r = workoutLift.exercise_sets.map(exerciseSet => new ExerciseSet(exerciseSet).set_weight_reps())
 
-  listElement.innerHTML = r.join('') + `<button onclick="addSet(${workoutLift.id})"> Add set(s) </button>`
+  if (!document.getElementById("add-set-${id}")) {
+    listElement.innerHTML = r.join('') + `<button onclick="addSet(${workoutLift.id})" id="add-set-${id}"> Add set(s) </button>`
+  }
+
+  
   
   
   let div = document.getElementById(`Workout_${workoutLift.id}`)

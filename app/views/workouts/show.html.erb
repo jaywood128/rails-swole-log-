@@ -1,17 +1,12 @@
 
-
 <div id="workoutLifts"> 
-<h1 id="workoutStartEnd"> <%= @workout.start_time.strftime("Start Date & Time: %A, %d %b %Y %l:%M %p") %> </h1> 
- <%# @workout.workout_lifts.each do |workout_lift| %> 
-    <div id="addWorkoutLiftButton">
-    <h2 id="workoutLiftName"> <%#= link_to workout_lift.name, lift_path(workout_lift.lift) %> <h2><br>
-     <div id ="details"> <%#= link_to "Edit #{workout_lift.name}", edit_workout_workout_lift_path(@workout, workout_lift) %> </div><br> 
-   <%# workout_lift.exercise_sets.each.with_index(1) do |exercise_set, i| %> 
-     <p id="weight">  </p>
-     <p id="reps">  <%#= exercise_set.reps %></p><br> 
-  
-   <%#end %>  
- <%# end %> 
+  <h2 class="welcome-user"> <%=current_user.name %>'s workout: </h2> <h1 id="workout-start-end-time"> <%= @workout.start_time.strftime("%A, %d %b %Y %l:%M %p") %> </h1>
+    <div id="add-workoutlift-button">
+      <h2 id="workoutlift-name"><h2>
+        <div id ="details"></div>
+          <p id="weight"></p>
+            <p id="reps"></p>
+
  <div id="exerciseSetModal" class="modal"> 
   <div class="modal-content">
     <%= form_for( ExerciseSet.new) do |f| %> 
