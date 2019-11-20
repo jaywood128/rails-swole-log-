@@ -7,7 +7,7 @@
           <p id="weight"></p>
             <p id="reps"></p>
 
- <div id="exerciseSetModal" class="modal"> 
+ <div id="exerciseset-modal" class="modal"> 
   <div class="modal-content">
     <%= form_for( ExerciseSet.new) do |f| %> 
       <%= f.hidden_field :workout_lift_id, value: ""  %> 
@@ -25,7 +25,7 @@
 </div>
 
 <div> 
-<div id="workoutLiftModal" class="modal"> 
+<div id="workoutlift-modal" class="modal"> 
   <div class="modal-content">
     <%= form_for( WorkoutLift.new ) do |f| %> 
       <%= f.hidden_field :workout_lift_id, value: ""  %> 
@@ -48,14 +48,14 @@
 
   function addWorkoutLift(id) {
     
-    document.querySelector("#workoutLiftModal").style.display = "block"; 
+    document.querySelector("#workoutlift-modal").style.display = "block"; 
 
   }
  
   function showEditForm(exerciseSetId, workout_lift_id) {
 
-    document.querySelector("#exerciseSetModal").style.display = "block"; 
-    var modal = document.getElementById("exerciseSetModal");
+    document.querySelector("#exerciseset-modal").style.display = "block"; 
+    var modal = document.getElementById("exerciseset-modal");
     var span = document.getElementsByClassName("close")[0]
     
     span.onclick = function() {
@@ -104,14 +104,14 @@
     byeModal()
   }
   function byeModal(){
-    var modal = document.getElementById("exerciseSetModal");
+    var modal = document.getElementById("exerciseset-modal");
     modal.style.display = "none"
   }
 
   function addSet(id) {
   
     document.querySelector("form #exercise_set_workout_lift_id").value = id 
-    document.querySelector("#exerciseSetModal").style.display = "block"; 
+    document.querySelector("#exerciseset-modal").style.display = "block"; 
     
   }
 </script>

@@ -84,7 +84,7 @@ function showExerciseSets(id) {
   .catch( err => console.log(err))
 }
 function showExerciseSetIndex(workoutLift, id) {
-  
+        debugger 
   let listElement = document.createElement("ul")
   let r = workoutLift.exercise_sets.map(exerciseSet => new ExerciseSet(exerciseSet).set_weight_reps())
 
