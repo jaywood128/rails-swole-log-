@@ -1,6 +1,7 @@
 
 <div id="workoutLifts"> 
   <h2 class="welcome-user"> <%=current_user.name %>'s workout: </h2> <h1 id="workout-start-end-time"> <%= @workout.start_time.strftime("%A, %d %b %Y %l:%M %p") %> </h1>
+   <ul>
     <div id="add-workoutlift-button">
       <h2 id="workoutlift-name"><h2>
         <div id ="details"></div>
@@ -13,9 +14,9 @@
       <%= f.hidden_field :workout_lift_id, value: ""  %> 
       <p> 
       <%= f.label :weight %> 
-      <%= f.number_field :weight %> 
+      <%= f.number_field :weight, :required => true %> 
       <%= f.label :reps %> 
-      <%= f.number_field :reps %> 
+      <%= f.number_field :reps, :required => true %> 
       </p> 
       <%= f.submit "Add Set"  %> 
 
@@ -41,7 +42,8 @@
     <%end%> 
   </div>
 </div>
-<div> 
+<div>
+  </ul> 
 <%= link_to "All workouts", workouts_path(@workout)%>
 
 <script type="text/javascript" charset="utf-8"> 
@@ -109,9 +111,9 @@
   }
 
   function addSet(id) {
-  
-    document.querySelector("form #exercise_set_workout_lift_id").value = id 
-    document.querySelector("#exerciseset-modal").style.display = "block"; 
+  debugger
+    // document.querySelector("form #exercise_set_workout_lift_id").value = id 
+    // document.querySelector("#exerciseset-modal").style.display = "block"; 
     
   }
 </script>

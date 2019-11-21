@@ -10,6 +10,7 @@ class ExerciseSet {
 
  set_weight_reps() {
    return `
+      <!-- Sets and Reps Item -->
       <dt> Set ${this.id} </dt>
       <dd id="set-${this.id}">Weight: <span>100</span></dd> 
       <dd> Reps: ${this.reps} </dd> 
