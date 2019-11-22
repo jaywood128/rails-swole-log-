@@ -1,4 +1,8 @@
 /*
+ * Project Name: SwoleLog - an application that logs your workout progress for weightlifting. 
+ * Author: Johnathon Wood
+ * email: jaywood128@gmail.com
+ *  
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -13,6 +17,46 @@
  *= require_tree .
  *= require_self
  */
+
+ /* TOC 
+  * =01 Reset/global defaults 
+  * =02 Typography 
+  * =03 Navbar 
+  * =04 Layout 
+ */ 
+
+/***** =01 Reset *****/ 
+
+* { box-sizing: border-box; }
+
+/***** =02 Typography *****/ 
+// general ---> specific 
+div { text-align: center; }
+dd { 
+  color: #222;
+  font-size: .75rem;
+  font-style: italic; 
+ }
+
+dd span {
+  font-style: normal;
+ }
+
+.show h1 { 
+  font-size: 1.5rem;
+  margin-bottom: 2.0rem;
+ }
+
+
+
+
+/***** =03 Navbar *****/
+.navbar {
+  margin-bottom: 2rem;
+} 
+
+/***** =04 Layout *****/ 
+
 
  
  .modal {
@@ -64,11 +108,6 @@ body{
 }
 .left-margin { margin-left: 2px }
 
-
-div {
-  text-align: center;
-  
-}
 li {
   list-style-type: none;
 }
