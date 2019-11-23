@@ -1,6 +1,9 @@
 
 <div id="workoutLifts"> 
-  <h2 class="welcome-user"> <%=current_user.name %>'s workout: </h2> <h1 id="workout-start-end-time"> <%= @workout.start_time.strftime("%A, %d %b %Y %l:%M %p") %> </h1>
+  <h2 class="welcome-user"> <%=current_user.name %>'s workout: </h2> <h1 id="workout-start-time">Start: <%= @workout.start_time.strftime("%A, %d %b %Y %l:%M %p") %> </h1>
+  <% if @workout.end_time %>
+    <h1 id="workout-end-time"> <%= @workout.end_time.strftime("%A, %d %b %Y %l:%M %p") %> </h1>
+  <% end %>
    <ul>
     <div id="add-workoutlift-button">
       <h2 id="workoutlift-name"><h2>
@@ -114,6 +117,7 @@
     byeModal()
   }
   function byeModal(){
+    debugger
     var modal = document.getElementById("exerciseset-modal");
     modal.style.display = "none"
   }

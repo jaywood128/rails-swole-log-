@@ -8,7 +8,7 @@ document.addEventListener('turbolinks:load', (e) => {
   if(exerciseSetForm){
     exerciseSetForm.addEventListener('submit', e => {
       e.preventDefault()
-     debugger
+    
       var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
       var token = e.target.querySelector('input[name=authenticity_token]').value 
       var data = {exercise_set: {}}; 
@@ -26,9 +26,10 @@ document.addEventListener('turbolinks:load', (e) => {
         body: JSON.stringify(data)
       })
       .then(resp=> resp.json())
-      .then(exercise_set => {
-        document.getElementById("myModal").style.display = "none"
-        displayCreatedExerciseSets(exercise_set)
+      .then(workout_lift_data => {
+        document.getElementById("exerciseset-modal").style.display = "none"
+        // passing workout_lift_data so I can print the index of each exercise_set
+        displayCreatedExerciseSets(workout_lift_data)
       })
       .catch(e => {
         console.log(e);
@@ -68,20 +69,22 @@ const displayWorkout = (workoutData) => {
   let workout = new Workout(workoutData) 
   
   document.getElementById('add-workoutlift-button').innerHTML += workout.render() 
-  let workoutStart = document.getElementById("workout-start-end-time")
+  let workoutStart = document.getElementById("workout-start-time")
   
   workoutStart.innerHTML = workout.display_start_time
+
   document.querySelector("ul").innerHTML = html 
 
 
 }
-const displayCreatedExerciseSets = (exercise_set_data) => {
-     debugger
-  let js_exercise_set = new ExerciseSet(exercise_set_data)
- 
-  document.querySelector(`div #Workout_${js_exercise_set.workout_lift_id} dl`).innerHTML += js_exercise_set.set_weight_reps()
-          
+const displayCreatedExerciseSets = (workout_lift_data) => {
+  
+  for (let i = 0; i < workout_lift_data.exercise_sets.length ; i++ ) {
+   let js_exercise_set = new ExerciseSet(workout_lift_data.exercise_sets[i], i)
+    document.getElementById(`Workout_${workout_lift_data.id}`).innerHTML += js_exercise_set.set_weight_reps()
+  }
   document.getElementsByName("commit")[0].disabled = false 
+  // document.querySelector(`div #Workout_${js_exercise_set.workout_lift_id} dl`).innerHTML += js_exercise_set.set_weight_reps()
 }
 
 function showExerciseSets(id) {
@@ -95,13 +98,23 @@ function showExerciseSets(id) {
 function showExerciseSetIndex(workoutLift, id) {
   let dtdd = document.getElementById(`dl-${workoutLift.id}`)
         //adding sets  and reps inside the workoutlift's <dl> element 
-  if ( workoutLift.exercise_sets.length === 0) {
+  if (workoutLift.exercise_sets.length === 0) {
+    // if Add Set button with id of "add-set-${id}" is not loaded, add to dtdd element
     if (!document.getElementById(`add-set-${id}`)) {
       dtdd.innerHTML = `<button onclick="addSet(${workoutLift.id})" id="add-set-${id}"> Add set(s) </button>`
     }
   } else {
-    let js_exercise_sets = workoutLift.exercise_sets.map(exerciseSet => new ExerciseSet(exerciseSet).set_weight_reps())
-    dtdd.innerHTML = js_exercise_sets.join('')
+
+    let exercise_sets = workoutLift.exercise_sets 
+    
+    for (let i = 0; i < exercise_sets.length ; i++ ) {
+
+      let js_exercise_sets = exercise_sets.map((exercise_set, i) =>  new ExerciseSet(exercise_set, i).set_weight_reps())
+      dtdd.innerHTML = js_exercise_sets.join("")
+      
+    }
+    
+    
   }
   
   

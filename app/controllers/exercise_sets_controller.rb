@@ -10,7 +10,7 @@ class ExerciseSetsController < ApplicationController
         if @workout_lift.save 
             respond_to do |f| 
                 f.html { redirect_to workout_path(@workout_lift.workout) }
-                f.json { render json: @exercise_set}
+                f.json { render json: @workout_lift}
              end
         end
         # redirect_to workout_workout_lifts_path(@exercise_set.workout)

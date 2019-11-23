@@ -36,7 +36,7 @@ class WorkoutsController < ApplicationController
   end 
 
   def update 
-    binding.pry
+   
     @workout = Workout.find(params[:id])
     @workout.update(end_time: DateTime.now)
     redirect_to workout_path(@workout)
