@@ -7,8 +7,9 @@
         <div id ="details"></div>
           <p id="weight"></p>
             <p id="reps"></p>
+    </ul>
 
- <div id="exerciseset-modal" class="modal"> 
+<div id="exerciseset-modal" class="modal">  
   <div class="modal-content">
     <%= form_for( ExerciseSet.new) do |f| %> 
       <%= f.hidden_field :workout_lift_id, value: ""  %> 
@@ -18,16 +19,15 @@
       <%= f.label :reps %> 
       <%= f.number_field :reps, :required => true %> 
       </p> 
-      <%= f.submit "Add Set"  %> 
+      <%= f.submit "Add Set", data: {disable_with: false} %> 
 
       <span onclick="byeModal()" class="close">&times;</span>
     <%end%> 
-  </div>
-</div>
+   </div>
+  </div> 
 
-<div> 
-<div id="workoutlift-modal" class="modal"> 
-  <div class="modal-content">
+  <div id="workoutlift-modal" class="modal">  
+     <div class="modal-content"> 
     <%= form_for( WorkoutLift.new ) do |f| %> 
       <%= f.hidden_field :workout_lift_id, value: ""  %> 
       <p> 
@@ -40,11 +40,19 @@
 
       <span onclick="byeModal()" class="close">&times;</span>
     <%end%> 
-  </div>
-</div>
-<div>
-  </ul> 
+     </div> 
+    </div> 
+
 <%= link_to "All workouts", workouts_path(@workout)%>
+
+  <%= form_for :workout, url: { controller: "workouts", action: "update", id: "#{@workout.id}" }, method: :put  do |f| %>
+    <%= button_tag type: 'submit', class: "button finish-workout", id: "finish-button" do %>
+          <i class="fas fa-check-square"></i>
+        <% end %> 
+      
+  <% end %><br>
+
+</div>
 
 <script type="text/javascript" charset="utf-8"> 
 
@@ -71,7 +79,7 @@
       var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
       var token = e.target.querySelector('input[name=authenticity_token]').value 
       var data = {exercise_set: {}}; 
-      debugger 
+    
       data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
       data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
       
@@ -111,9 +119,9 @@
   }
 
   function addSet(id) {
-  debugger
-    // document.querySelector("form #exercise_set_workout_lift_id").value = id 
-    // document.querySelector("#exerciseset-modal").style.display = "block"; 
+    
+    document.querySelector("form #exercise_set_workout_lift_id").value = id 
+    document.querySelector("#exerciseset-modal").style.display = "block"; 
     
   }
 </script>
