@@ -11,7 +11,7 @@ class WorkoutLift {
 
    <li id="Workout_${this.id}" class="${this.name}"> 
     ${this.name} 
-      <button onclick="showExerciseSets(${this.id})" id ="ShowExerciseSets-${this.id}" data-workout_lift_id= "${this.id}"> Down arrow <i class="fas fa-angle-down"></i> </button>
+      <button onclick="showExerciseSets(${this.id})" id ="ShowExerciseSets-${this.id}" data-workout_lift_id= "${this.id}"> <i class="fas fa-angle-down"></i> </button>
       <dl id="dl-${this.id}"> 
       </dl> 
    </li> 

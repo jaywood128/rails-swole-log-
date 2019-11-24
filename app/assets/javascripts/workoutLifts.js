@@ -110,17 +110,21 @@ function showExerciseSetIndex(workoutLift, id) {
     for (let i = 0; i < exercise_sets.length ; i++ ) {
 
       let js_exercise_sets = exercise_sets.map((exercise_set, i) =>  new ExerciseSet(exercise_set, i).set_weight_reps())
-      dtdd.innerHTML = js_exercise_sets.join("")
+      dtdd.innerHTML = js_exercise_sets.join("") + `<button onclick="addSet(${workoutLift.id})" id="add-set-${id}"> Add set(s) </button>` + `<button onclick="hideExerciseSets(${workoutLift.id})" id="hide-set-${id}"><i class="fas fa-angle-up"></i> </button>`
       
     }
-    
-    
+ 
   }
-  
-  
-  // let div = document.getElementById(`Workout_${workoutLift.id}`)
-  // div.appendChild(listElement)
+  document.getElementById(`ShowExerciseSets-${id}`).remove() 
 
+
+}
+
+function hideExerciseSets(id) {
+ 
+  let workout_li = document.getElementById(`dl-${id}`)
+  workout_li.remove()
+  document.getElementById(`Workout_${id}`).innerHTML = `<button onclick="showExerciseSets(${this.id})" id ="ShowExerciseSets-${this.id}" data-workout_lift_id= "${this.id}"> <i class="fas fa-angle-down"></i> </button>`
 }
 
 function deleteSet(exerciseSetId) { 

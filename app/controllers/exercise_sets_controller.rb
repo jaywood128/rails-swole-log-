@@ -23,7 +23,7 @@ class ExerciseSetsController < ApplicationController
         end
     end 
     def index 
-       binding.pry
+      
         @workout_lift = WorkoutLift.find(params[:workout_lift_id])
         @workout_lift.exercise_sets 
         respond_to do |f| 
@@ -34,7 +34,7 @@ class ExerciseSetsController < ApplicationController
     end 
 
     def destroy 
-
+        binding.pry
         @exercise_set = ExerciseSet.find(params[:id])
 
         if @exercise_set.user_id == current_user.id 

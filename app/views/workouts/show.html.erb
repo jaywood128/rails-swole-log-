@@ -14,20 +14,17 @@
 
 <div id="exerciseset-modal" class="modal">  
   <div class="modal-content">
+    <span onclick="byeModal()" class="close">&times;</span>
     <%= form_for( ExerciseSet.new) do |f| %> 
       <%= f.hidden_field :workout_lift_id, value: ""  %> 
-      <p> 
       <%= f.label :weight %> 
       <%= f.number_field :weight, :required => true %> 
       <%= f.label :reps %> 
       <%= f.number_field :reps, :required => true %> 
-      </p> 
-      <%= f.submit "Add Set", data: {disable_with: false} %> 
-
-      <span onclick="byeModal()" class="close">&times;</span>
+      <%= f.submit "Add Set", data: {disable_with: false}, class: "btn btn-success btn-sm" %> 
     <%end%> 
-   </div>
-  </div> 
+  </div>
+</div> 
 
   <div id="workoutlift-modal" class="modal">  
      <div class="modal-content"> 
@@ -117,7 +114,7 @@
     byeModal()
   }
   function byeModal(){
-    debugger
+   
     var modal = document.getElementById("exerciseset-modal");
     modal.style.display = "none"
   }

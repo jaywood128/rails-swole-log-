@@ -25,13 +25,60 @@
   * =04 Layout 
  */ 
 
-/***** =01 Reset *****/ 
+/***** =01 Reset & Global Declarations *****/ 
 
 * { box-sizing: border-box; }
 
+li { list-style-type: none; }
+
+.left-margin { margin-left: 2px }
+
+/* The Close Button */
+.close {
+  width: 44px;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  width: 100vw; /* Full width */
+  height: 100vh; /* Full height */
+  background-color: rgb(128,128,128); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  z-index: 1; /* Sit on top */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  justify-content: flex-end;
+  background-color: #fefefe;
+  margin: 35% auto 0; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
 /***** =02 Typography *****/ 
 // general ---> specific 
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color:#05386B;
+}
+
+
 div { text-align: center; }
+
 dd { 
   color: #222;
   font-size: .75rem;
@@ -47,69 +94,44 @@ dd span {
   margin-bottom: 2.0rem;
  }
 
-
-
-
-/***** =03 Navbar *****/
-.navbar {
-  margin-bottom: 2rem;
-} 
-
-/***** =04 Layout *****/ 
-
-
- 
- .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 150px;
-  top: 10px;
-  right: 0px;
-  bottom: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+ .signup-form form{
+  color: #999;
 }
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
+ .signup-form .btn{        
+  font-size: 16px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.signup-form h2 {
+  color: #333;
+  font-weight: bold;
 }
 
-body{
-  background:#F8F8FF;
-  color:#05386B
+.signup-form a{
+  color: #fff;
+  text-decoration: underline;
 }
+
+.signup-form a:hover{ text-decoration: none; }
+
+.signup-form form a{
+  color: #3598dc;
+  text-decoration: none;
+}	
+
+.signup-form form a:hover{ text-decoration: underline; }
+
+/***** =03 Navbar *****/
+.navbar { margin-bottom: 2rem; } 
+
+/***** =04 Layout *****/ 
+
+body{ background:#F8F8FF; }
+
 #new_user {
   margin-left: 20px;
   bottom: -50px;
-}
-.left-margin { margin-left: 2px }
-
-li {
-  list-style-type: none;
 }
 
 .bg-custom{
@@ -122,9 +144,10 @@ li {
 
   }
 }
-
-
-body {font-family: Arial, Helvetica, sans-serif;}
+.new_exercise_set{ 
+  display: flex;
+  flex-direction: column;
+ }
 
 //login and sign-in form CSS and styling
 
@@ -144,27 +167,21 @@ body {font-family: Arial, Helvetica, sans-serif;}
   width: 390px;
   margin: 30px auto;
 }
+
 .signup-form form{
-  color: #999;
+  position: relative;
+  right: -100px;
+  max-width: 300px; 
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding: 30px;
   border-radius: 3px;
-    margin-bottom: 15px;
-      background: #fff;
-      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-      padding: 30px;
-      right: 0;
-      max-width: 300px; 
-      margin-top: 10px;
-      position: relative;
-      right: -100px;
-  // margin: 20px;
-  // max-width: 300px;
-  // padding: 16px;
-  }
-.signup-form h2 {
-  color: #333;
-  font-weight: bold;
-      margin-top: 0;
-  }
+  background: #fff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.signup-form h2 { margin-top: 0; }
+
   .signup-form hr {
       margin: 0 -30px 20px;
   }    
@@ -180,31 +197,18 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .signup-form .row div:last-child{
   padding-left: 10px;
 }
-  .signup-form .btn{        
-      font-size: 16px;
-      font-weight: bold;
+
+.signup-form .btn{        
   background: #3598dc;
   border: none;
   min-width: 140px;
-  }
+}
+
 .signup-form .btn:hover, .signup-form .btn:focus{
   background: #2389cd !important;
       outline: none;
 }
-  .signup-form a{
-  color: #fff;
-  text-decoration: underline;
-}
-.signup-form a:hover{
-  text-decoration: none;
-}
-.signup-form form a{
-  color: #3598dc;
-  text-decoration: none;
-}	
-.signup-form form a:hover{
-  text-decoration: underline;
-}
+ 
   .signup-form .hint-text {
   padding-bottom: 15px;
   text-align: center;
@@ -232,17 +236,15 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 .login-container {
-  height: 100vh;
-  background-image: url("https://www.attacktheback.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2018/03/barbellchalk-1160x700-990x597.jpg.webp");
-  background-repeat: no-repeat;
-  background-size: auto;
   width: 100vw;
+  height: 100vh;
   display: flex; 
-  align-items: center;  
-}
-
-* {
-  box-sizing: border-box;
+  align-items: center; 
+  margin-top: -2em;
+  background-image: url("https://www.attacktheback.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2018/03/barbellchalk-1160x700-990x597.jpg.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
 }
 
 .bg-img{
