@@ -29,7 +29,12 @@
 
 * { box-sizing: border-box; }
 
-li { list-style-type: none; }
+li { 
+  list-style-type: none; 
+  font-size: 1.5rem;
+}
+
+ul { top: 10%}
 
 .left-margin { margin-left: 2px }
 
@@ -60,12 +65,17 @@ li { list-style-type: none; }
 
 /* Modal Content/Box */
 .modal-content {
-  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // justify-content: flex-end;
   background-color: #fefefe;
   margin: 35% auto 0; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+
 }
 
 /***** =02 Typography *****/ 
@@ -125,6 +135,13 @@ dd span {
 /***** =03 Navbar *****/
 .navbar { margin-bottom: 2rem; } 
 
+.navbar .navbar-expand-lg .navbar-light {
+  .navbar-collapse {
+    background-color: #242582;
+
+  }
+}
+
 /***** =04 Layout *****/ 
 
 body{ background:#F8F8FF; }
@@ -138,12 +155,6 @@ body{ background:#F8F8FF; }
   background-color: #05386B !important; 
 }
 
-.navbar .navbar-expand-lg .navbar-light {
-  .navbar-collapse {
-    background-color: #242582;
-
-  }
-}
 .new_exercise_set{ 
   display: flex;
   flex-direction: column;

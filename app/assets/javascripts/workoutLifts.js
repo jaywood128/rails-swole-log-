@@ -96,35 +96,42 @@ function showExerciseSets(id) {
   .catch( err => console.log(err))
 }
 function showExerciseSetIndex(workoutLift, id) {
-  let dtdd = document.getElementById(`dl-${workoutLift.id}`)
+
+  let add_set_button = `<button onclick="addSet(${workoutLift.id})" id="add-set-${workoutLift.id}"> Add set(s) </button>`
+  let hide_set_button = `<button onclick="showExerciseSets(${workoutLift.id})" id ="ShowExerciseSets-${workoutLift.id}" data-workout_lift_id= "${workoutLift.id}"> <i class="fas fa-angle-down"></i> </button>`
+  let new_dl = `<dl id="dl-${workoutLift.id}"> </dl>`
+  let li = document.getElementById(`Workout_${workoutLift.id}`)
+  li.innerHTML += new_dl
+  let exercise_sets = createExerciseSets(workoutLift)
+  // debugger
         //adding sets  and reps inside the workoutlift's <dl> element 
-  if (workoutLift.exercise_sets.length === 0) {
-    // if Add Set button with id of "add-set-${id}" is not loaded, add to dtdd element
-    if (!document.getElementById(`add-set-${id}`)) {
-      dtdd.innerHTML = `<button onclick="addSet(${workoutLift.id})" id="add-set-${id}"> Add set(s) </button>`
-    }
+  if (workoutLift.exercise_set === 0 && !document.getElementById(`add-set-${id}`)) {
+    li.innerHTML += add_set_button
+  } else if(workoutLift.exercise_set !== 0 && document.getElementById(`add-set-${id}`)) {
+    exercise_sets
   } else {
-
-    let exercise_sets = workoutLift.exercise_sets 
-    
-    for (let i = 0; i < exercise_sets.length ; i++ ) {
-
-      let js_exercise_sets = exercise_sets.map((exercise_set, i) =>  new ExerciseSet(exercise_set, i).set_weight_reps())
-      dtdd.innerHTML = js_exercise_sets.join("") + `<button onclick="addSet(${workoutLift.id})" id="add-set-${id}"> Add set(s) </button>` + `<button onclick="hideExerciseSets(${workoutLift.id})" id="hide-set-${id}"><i class="fas fa-angle-up"></i> </button>`
-      
-    }
- 
+    exercise_sets + add_set_button
+    debugger
   }
+
   document.getElementById(`ShowExerciseSets-${id}`).remove() 
 
 
 }
 
 function hideExerciseSets(id) {
- 
-  let workout_li = document.getElementById(`dl-${id}`)
-  workout_li.remove()
-  document.getElementById(`Workout_${id}`).innerHTML = `<button onclick="showExerciseSets(${this.id})" id ="ShowExerciseSets-${this.id}" data-workout_lift_id= "${this.id}"> <i class="fas fa-angle-down"></i> </button>`
+  let workout_dl = document.getElementById(`dl-${id}`)
+  workout_dl.remove()
+  document.getElementById(`Workout_${id}`).innerHTML += `<button onclick="showExerciseSets(${id})" id ="ShowExerciseSets-${id}" data-workout_lift_id= "${id}"> <i class="fas fa-angle-down"></i> </button>`
+}
+
+function createExerciseSets(workoutLift) {
+  
+  let exercise_sets = workoutLift.exercise_sets 
+  let dl = document.getElementById(`dl-${workoutLift.id}`)
+  let js_exercise_sets = exercise_sets.map((exercise_set, i) =>  new ExerciseSet(exercise_set, i).set_weight_reps())
+  dl.innerHTML += js_exercise_sets.join("")
+  return dl 
 }
 
 function deleteSet(exerciseSetId) { 

@@ -13,7 +13,7 @@ class ExerciseSet {
    return `
       <!-- Sets and Reps Item -->
       <dt>Set ${this.i + 1} </dt>
-      <dd id="set-${this.id}">Weight: <span>${this.weight}</span> &bull; Reps: <span>${this.reps}</span></dd> 
+      <dd id="set-${this.i + 1}">Weight: <span>${this.weight}</span> &bull; Reps: <span>${this.reps}</span></dd> 
       <a href="#">Edit </a> 
    `
   }
