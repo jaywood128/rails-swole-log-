@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_211648) do
+ActiveRecord::Schema.define(version: 2019_11_25_212153) do
 
   create_table "exercise_sets", force: :cascade do |t|
     t.integer "weight"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_211648) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "presence"
     t.index ["lift_id"], name: "index_workout_lifts_on_lift_id"
     t.index ["user_id"], name: "index_workout_lifts_on_user_id"
     t.index ["workout_id"], name: "index_workout_lifts_on_workout_id"

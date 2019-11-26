@@ -98,12 +98,11 @@ function showExerciseSets(id) {
 function showExerciseSetIndex(workoutLift, id) {
 
   let add_set_button = `<button onclick="addSet(${workoutLift.id})" id="add-set-${workoutLift.id}"> Add set(s) </button>`
-  let hide_set_button = `<button onclick="showExerciseSets(${workoutLift.id})" id ="ShowExerciseSets-${workoutLift.id}" data-workout_lift_id= "${workoutLift.id}"> <i class="fas fa-angle-down"></i> </button>`
   let new_dl = `<dl id="dl-${workoutLift.id}"> </dl>`
   let li = document.getElementById(`Workout_${workoutLift.id}`)
   li.innerHTML += new_dl
   let exercise_sets = createExerciseSets(workoutLift)
-  // debugger
+  debugger
         //adding sets  and reps inside the workoutlift's <dl> element 
   if (workoutLift.exercise_set === 0 && !document.getElementById(`add-set-${id}`)) {
     li.innerHTML += add_set_button
