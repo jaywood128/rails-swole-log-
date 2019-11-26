@@ -54,6 +54,7 @@ class WorkoutLiftsController < ApplicationController
       @workout_lifts = @workout.workout_lifts.joins(:lift).where(lifts: { name: params["search"].titleize })
 
     else 
+    
       @workout_lifts = @workout.workout_lifts
 
       respond_to do |f| 

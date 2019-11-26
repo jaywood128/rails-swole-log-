@@ -23,7 +23,7 @@ class ExerciseSetsController < ApplicationController
         end
     end 
     def index 
-      
+        binding.pry
         @workout_lift = WorkoutLift.find(params[:workout_lift_id])
         @workout_lift.exercise_sets 
         respond_to do |f| 
