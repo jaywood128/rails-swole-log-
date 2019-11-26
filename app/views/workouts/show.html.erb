@@ -5,12 +5,27 @@
     <h1 id="workout-end-time"> <%= @workout.end_time.strftime("%A, %d %b %Y %l:%M %p") %> </h1>
   <% end %>
    <ul>
+  </ul>
     <div id="add-workoutlift-button">
-      <h2 id="workoutlift-name"><h2>
-        <div id ="details"></div>
-          <p id="weight"></p>
-            <p id="reps"></p>
-    </ul>
+      <div id="workoutlift-modal" class="modal">  
+       <div class="modal-content"> 
+        <%= form_for( WorkoutLift.new ) do |f| %> 
+        <%= f.hidden_field :workout_lift_id, value: ""  %> 
+        <%= f.label :name %>
+        <%= f.collection_select :lift_id, Lift.all.reject{|l| @workout.lifts.include?(l)}, :id, :name %> 
+        <%= f.hidden_field :workout_id, value: @workout.id %> 
+        <%= f.label :name %>  
+        <%= f.submit "Add Lift"  %> 
+
+        <span onclick="byeModal()" class="close">&times;</span> 
+    <%end%> 
+     <!-- <h2 id="workoutlift-name"><h2> --> 
+       <!-- <div id ="details"></div> --> 
+         <!-- <p id="weight"></p> -->
+          <!-- <p id="reps"></p> --> 
+    </div> 
+      </div> 
+        </div> 
 <div id="exerciseset-modal" class="modal">  
   <div class="modal-content">
     <span onclick="byeModal()" class="close">&times;</span>
@@ -23,25 +38,7 @@
       <%= f.submit "Add Set", data: {disable_with: false}, class: "btn btn-success btn-sm" %> 
     <%end%> 
   </div>
-</div> 
-
-  <div id="workoutlift-modal" class="modal">  
-     <div class="modal-content"> 
-    <%= form_for( WorkoutLift.new ) do |f| %> 
-      <%= f.hidden_field :workout_lift_id, value: ""  %> 
-      <p> 
-      <%= f.label :name %>
-       <%= f.collection_select :lift_id, Lift.all.reject{|l| @workout.lifts.include?(l)}, :id, :name %> 
-      <%= f.hidden_field :workout_id, value: @workout.id %> 
-      <%= f.label :name %> 
-      </p> 
-      <%= f.submit "Add Lift"  %> 
-
-      <span onclick="byeModal()" class="close">&times;</span>
-    <%end%> 
-     </div> 
-    </div> 
-
+     
 <%= link_to "All workouts", workouts_path(@workout)%>
 
   <%= form_for :workout, url: { controller: "workouts", action: "update", id: "#{@workout.id}" }, method: :put  do |f| %>
@@ -56,7 +53,7 @@
 <script type="text/javascript" charset="utf-8"> 
 
   function addWorkoutLift(id) {
-    
+   
     document.querySelector("#workoutlift-modal").style.display = "block"; 
 
   }

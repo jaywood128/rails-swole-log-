@@ -63,25 +63,28 @@ function getWorkout(url) {
 }
 
 const displayWorkout = (workoutData) => {
- 
-      console.log(workoutData)
-  let html = workoutData.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render()).join('')
-  let workout = new Workout(workoutData) 
-  
-  document.getElementById('add-workoutlift-button').innerHTML += workout.render() 
+  // set up the elements 
   let workoutStart = document.getElementById("workout-start-time")
-  
+  let workout = new Workout(workoutData)
   workoutStart.innerHTML = workout.display_start_time
+  let add_workout_lifts_button = document.getElementById('add-workoutlift-button')
+  let show_exercise_sets_button = `<button onclick="showExerciseSets(${workoutData.id})" id ="ShowExerciseSets-${workoutData.id}" data-workout_lift_id= "${workoutData.id}"> <i class="fas fa-angle-down"></i> </button>`
+  let ul = document.querySelector("ul")
+  // if workoutData.workout_lifts then display 
+  debugger
+  if (workoutData.workout_lifts.length > 0) {
+    let html = workoutData.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render()).join('')
+    ul.innerHTML += html 
+  } 
+  add_workout_lifts_button.innerHTML += `<button onclick="addWorkoutLift(${workoutData.id})" id ="AddWorkoutLift-${workoutData.id}" > Choose an exercise </button>`
 
-  document.querySelector("ul").innerHTML = html 
-
-
+//   add_workout_lifts_button.innerHTML += workout.render()  
 }
 const displayCreatedExerciseSets = (workout_lift_data) => {
   
   for (let i = 0; i < workout_lift_data.exercise_sets.length ; i++ ) {
    let js_exercise_set = new ExerciseSet(workout_lift_data.exercise_sets[i], i)
-    document.getElementById(`Workout_${workout_lift_data.id}`).innerHTML += js_exercise_set.set_weight_reps()
+    document.getElementById(`WorkoutLift_${workout_lift_data.id}`).innerHTML += js_exercise_set.set_weight_reps()
   }
   document.getElementsByName("commit")[0].disabled = false 
   // document.querySelector(`div #Workout_${js_exercise_set.workout_lift_id} dl`).innerHTML += js_exercise_set.set_weight_reps()
@@ -99,18 +102,19 @@ function showExerciseSetIndex(workoutLift, id) {
 
   let add_set_button = `<button onclick="addSet(${workoutLift.id})" id="add-set-${workoutLift.id}"> Add set(s) </button>`
   let new_dl = `<dl id="dl-${workoutLift.id}"> </dl>`
-  let li = document.getElementById(`Workout_${workoutLift.id}`)
+  let li = document.getElementById(`WorkoutLift_${workoutLift.id}`)
   li.innerHTML += new_dl
   let exercise_sets = createExerciseSets(workoutLift)
   debugger
         //adding sets  and reps inside the workoutlift's <dl> element 
-  if (workoutLift.exercise_set === 0 && !document.getElementById(`add-set-${id}`)) {
+        debugger
+  if (workoutLift.exercise_set === 0) {
+    debugger
     li.innerHTML += add_set_button
   } else if(workoutLift.exercise_set !== 0 && document.getElementById(`add-set-${id}`)) {
     exercise_sets
   } else {
     exercise_sets + add_set_button
-    debugger
   }
 
   document.getElementById(`ShowExerciseSets-${id}`).remove() 
@@ -125,7 +129,7 @@ function hideExerciseSets(id) {
 }
 
 function createExerciseSets(workoutLift) {
-  
+  debugger 
   let exercise_sets = workoutLift.exercise_sets 
   let dl = document.getElementById(`dl-${workoutLift.id}`)
   let js_exercise_sets = exercise_sets.map((exercise_set, i) =>  new ExerciseSet(exercise_set, i).set_weight_reps())
