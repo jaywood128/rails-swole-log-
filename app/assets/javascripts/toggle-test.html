@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <style>
+      .hide-me{ display: none}
+      .reveal:after {content: "+";}
+      .collapse:after {content: "-"}
+    </style>
+  </head>
+  <body>
+  <ul> 
+    <li id="set-1">
+      Bench Pres <a class="reveal" onclick="toggleMe();"> </a>
+      <dl class="hide-me"> 
+        <dt>Set 1</dt>
+        <dd>Weight </dd>
+        <dd>Reps </dd>
+      </dl>
+    </li>
+  </ul>
+
+  <script>
+  
+  function toggleMe() {
+    document.getElementById("set-1").querySelector("dl").classList.toggle("hide-me")
+    document.getElementById("set-1").querySelector("a").classList.toggle("reveal")
+    document.getElementById("set-1").querySelector("a").classList.toggle("collapse")
+  
+  }
+
+  </script>
+
+  </body>
+</html>

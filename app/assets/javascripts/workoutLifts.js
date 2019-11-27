@@ -99,43 +99,47 @@ function showExerciseSets(id) {
   .catch( err => console.log(err))
 }
 function showExerciseSetIndex(workoutLift, id) {
+  // if there workout has no exercise sets, then don't show down arrow and add the addSet button. 
 
   let add_set_button = `<button onclick="addSet(${workoutLift.id})" id="add-set-${workoutLift.id}"> Add set(s) </button>`
-  let new_dl = `<dl id="dl-${workoutLift.id}"> </dl>`
+  // let new_dl = `<dl id="dl-${workoutLift.id}" class="hide-me"> </dl>`
   let li = document.getElementById(`WorkoutLift_${workoutLift.id}`)
-  li.innerHTML += new_dl
   let exercise_sets = createExerciseSets(workoutLift)
   let hide_exercise_sets_button = `<button onclick="hideExerciseSets(${workoutLift.id})"><i class="fas fa-angle-up"></i> </button>`
   debugger
         //adding sets  and reps inside the workoutlift's <dl> element 
         
-  if (workoutLift.exercise_sets === 0) {
-    li.innerHTML += add_set_button
-  } else if(workoutLift.exercise_sets !== 0 && document.getElementById(`add-set-${id}`)) {
-  //  li.innerHTML += exercise_sets += hide_exercise_sets_button;
-  } else {
-    exercise_sets += add_set_button += hide_exercise_sets_button;
+  if (workoutLift.exercise_sets.length > 0) {
+    debugger
+    // li.innerHTML += exercise_sets.toString()
+    toggleExerciseSetsDisplay("1")
   }
+  // document.getElementById(`ShowExerciseSets-${id}`).remove() 
 
-  document.getElementById(`ShowExerciseSets-${id}`).remove() 
 
-
-}
-
-function hideExerciseSets(id) {
-  debugger
-  let workout_dl = document.getElementById(`dl-${id}`)
-  workout_dl.remove()
-  document.getElementById(`WorkoutLift_${id}`).innerHTML += `<button onclick="showExerciseSets(${id})" id ="ShowExerciseSets-${id}" data-workout_lift_id= "${id}"> <i class="fas fa-angle-down"></i> </button>`
 }
 
 function createExerciseSets(workoutLift) {
   
   let exercise_sets = workoutLift.exercise_sets 
-  let dl = document.getElementById(`dl-${workoutLift.id}`)
-  let js_exercise_sets = exercise_sets.map((exercise_set, i) =>  new ExerciseSet(exercise_set, i).set_weight_reps())
+  // let dl = document.getElementById(`dl-${workoutLift.id}`)
+  let li = document.getElementById(`WorkoutLift_${workoutLift.id}`)
+  let dl = document.createElement("dl")
+  dl.setAttribute("id", `dl-${workoutLift.id}`)
+  li.appendChild(dl)
+  let js_exercise_sets = exercise_sets.map((exercise_set, i) =>  new ExerciseSet(exercise_set, i).set_weight_reps()) 
+   
+  debugger
   dl.innerHTML += js_exercise_sets.join("")
-  return dl 
+  return dl.innerHTML.toString() 
+}
+
+function toggleExerciseSetsDisplay(set_id){
+  debugger
+  // hide or reveal exercise set data 
+  document.getElementById("dl-" + set_id ).classList.toggle("hide-me")
+  document.getElementById("ShowExerciseSets_" + set_id).querySelector("fas").toggle("fa-angle-down")
+  document.getElementById("ShowExerciseSets_" + set_id).querySelector("fas").toggle("fa-angle-up")
 }
 
 function deleteSet(exerciseSetId) { 

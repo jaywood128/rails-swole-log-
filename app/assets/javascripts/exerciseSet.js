@@ -18,7 +18,3 @@ class ExerciseSet {
    `
   }
 }
-// class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-
-{/* <button onclick="showEditForm(${this.id}, ${this.workout_lift_id})" 
-data-workout_lift_id= "${this.workout_lift_id}">Edit</button>  */}

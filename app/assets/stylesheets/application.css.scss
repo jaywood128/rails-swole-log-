@@ -27,6 +27,7 @@
 
 /***** =01 Reset & Global Declarations *****/ 
 
+
 * { box-sizing: border-box; }
 
 li { 
@@ -37,6 +38,8 @@ li {
 ul { top: 10%}
 
 .left-margin { margin-left: 2px }
+
+.hide-me { display: none; }
 
 /* The Close Button */
 .close {
