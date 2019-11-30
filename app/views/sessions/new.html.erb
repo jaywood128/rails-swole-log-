@@ -1,4 +1,9 @@
 
+<% if @user.errors.any? %>
+    <%= binding.pry %>
+  
+    <%# end%>
+<% end%>
 <div class="login-container" >
  <div class="login-form">
       <%= form_for(:sessions, url: login_path) do |f| %>

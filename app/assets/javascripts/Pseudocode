@@ -1,0 +1,36 @@
+Defintions: 
+
+Workout - A Workout has many lifts on a specific date and start time for a specific user.  
+
+Lift - a weightlifting activty eg, Barebell Squat, Barebell Strict Press, Barebell Row, Bench Press 
+
+WorkoutLift - Stores workout_id, lift_id, and user_id. Also can get it's associated lift name. 
+A workoutlift associates a specific lift name with a specific workout.
+
+ExerciseSet is a specific lift that has associated weight and reps info for a specific user. 
+
+User launches application.
+Two possibilities
+  1) New User 
+    After signing up, should automatically log you in. (See NASA application)
+  2) Login 
+
+If they have no workouts entered, then see the "Start New Workout" button. After, then click the button. 
+They click the "Add WorkoutLift" --- change to "Choose an exercise" --- form and select the exercise from 
+the drop down. 
+Then they click the submit button and the WorkoutLift name is added to database. 
+Then the user will see that lift added, eg. "Bench Press" and a button bellow that to "Add workout info".
+The User will only see the show exercise sets button -- the one with the down arrow -- if they have 
+exercisesets.
+
+Use a control that togglees the set data to either reveal it or hide it. 
+The default state hides all the exercise set data is hidden -- id called #hide-me. 
+
+Problem: I don't want to show the down arrow icon for an exercise if it doesn't have any exercise sets. 
+Possible Solution: Add attribute to WorkoutLift on the backend called has_exercise_sets. When created, set it 
+to false. 
+
+When exercise_sets for a workout are submitted via HTTP request, set it to true inside the exercise_sets 
+controller's create action. 
+Then, inside displayWorkout function, if the WorkoutLift's has_exercise_sets attribute is false, 
+don't add the showExerciseSets button with down arrow.

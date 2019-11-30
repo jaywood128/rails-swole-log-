@@ -2,8 +2,8 @@
   <head>
     <style>
       .hide-me{ display: none}
-      .reveal:after {content: "+";}
-      .collapse:after {content: "-"}
+      .reveal::after {content: "+";}
+      .collapse::after {content: "-"}
     </style>
   </head>
   <body>
@@ -22,8 +22,12 @@
   
   function toggleMe() {
     document.getElementById("set-1").querySelector("dl").classList.toggle("hide-me")
+    // select the dl element inside the li #set-1 and turn the hide-me class off 
     document.getElementById("set-1").querySelector("a").classList.toggle("reveal")
+    // select the <dl> to again toggle the reveal class to add the '+' after the <a>. 
     document.getElementById("set-1").querySelector("a").classList.toggle("collapse")
+    //Select the same link to toggle the collapse class to collapse to display a '-' icon when the 
+    //sets have been revealed 
   
   }
 
