@@ -137,10 +137,17 @@ function createExerciseSets(workoutLift) {
 }
 
 function toggleExerciseSetsDisplay(set_id){
+  let icon = document.getElementById(`ShowExerciseSets-${set_id}`).querySelector(".fas"); 
   // hide or reveal exercise set data 
-  // debugger 
-  document.getElementById(`dl-${set_id}`).classList.toggle("hide-me")
-  document.getElementById(`ShowExerciseSets-${set_id}`).querySelector(".fas").classList.toggle("fa-angle-down")
+  if (icon.classList.contains('fa-angle-down')) {
+    icon.classList.remove('fa-angle-down')
+    icon.classList.add("fa-angle-up")
+  } else {
+    document.getElementById(`dl-${set_id}`).classList.toggle("hide-me")
+    icon.classList.remove('fa-angle-up')
+    icon.classList.add("fa-angle-down")
+  } 
+
   // document.getElementById(`ShowExerciseSets-${set_id}`).querySelector(".fas").classList.toggle(".fa-angle-up")
   
 }
