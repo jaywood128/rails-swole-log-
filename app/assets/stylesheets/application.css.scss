@@ -41,11 +41,19 @@ ul { top: 10%}
 
 .hide-me { display: none; }
 
+input.btn { 
+  display: block;
+  margin: 10px auto 0; 
+ } 
+
 /* The Close Button */
 .close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
   width: 44px;
   color: #aaa;
-  float: right;
+  // float: right;
   font-size: 28px;
   font-weight: bold;
 }
@@ -74,12 +82,23 @@ ul { top: 10%}
   transform: translate(-50%, -50%);
   // justify-content: flex-end;
   background-color: #fefefe;
-  margin: 35% auto 0; /* 15% from the top and centered */
-  padding: 20px;
+  margin: 20vh auto 0; /* 15% from the top and centered */
+  // padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-
+  width: 80%;
+  max-width: 350px;
+   /* Could be more or less, depending on screen size */
 }
+
+// this will apply to screens that are atleast 481 and greater 
+@media screen and ( min-width: 481px ) {
+  .modal-content {
+    margin-top: 35vh;
+  }
+} // end @media query 481
+
+.modal-content form { padding: 20px; }
+
 
 /***** =02 Typography *****/ 
 // general ---> specific 

@@ -1,34 +1,29 @@
 
 <div id="workoutLifts"> 
-  <h2 class="welcome-user"> <%=current_user.name %>'s workout: </h2> <h1 id="workout-start-time">Start: <%= @workout.start_time.strftime("%A, %d %b %Y %l:%M %p") %> </h1>
+  <h2 class="welcome-user"> <%=current_user.name %>'s workout: </h2> 
+  <h1 id="workout-start-time"><%= @workout.start_time.strftime("%A, %d %b %Y %l:%M %p") %> </h1>
   <% if @workout.end_time %>
     <h1 id="workout-end-time"> <%= @workout.end_time.strftime("%A, %d %b %Y %l:%M %p") %> </h1>
   <% end %>
    <ul>
   </ul>
-    <div id="add-workoutlift-button">
-      <div id="workoutlift-modal" class="modal">  
-       <div class="modal-content"> 
-        <%= form_for( WorkoutLift.new ) do |f| %> 
+  <div id="add-workoutlift-button">
+    <div id="workoutlift-modal" class="modal">  
+      <div class="modal-content"> 
+      <span onclick="byeModal()" class="close">&times;</span> 
+      <%= form_for( WorkoutLift.new ) do |f| %> 
         <%= f.hidden_field :workout_lift_id, value: ""  %> 
         <%= f.label :name %>
         <%= f.collection_select :lift_id, Lift.all.reject{|l| @workout.lifts.include?(l)}, :id, :name %> 
-        <%= f.hidden_field :workout_id, value: @workout.id %> 
-        <%= f.label :name %>  
-        <%= f.submit "Add Lift"  %> 
-
-        <span onclick="byeModal()" class="close">&times;</span> 
-    <%end%> 
-     <!-- <h2 id="workoutlift-name"><h2> --> 
-       <!-- <div id ="details"></div> --> 
-         <!-- <p id="weight"></p> -->
-          <!-- <p id="reps"></p> --> 
+        <%= f.hidden_field :workout_id, value: @workout.id %>
+        <%= f.submit "Add Lift", class: "btn btn-success btn-sm"  %> 
+      <%end%> 
     </div> 
-      </div> 
-        </div> 
+  </div> 
+</div> <!-- #workoutLifts -->
 <div id="exerciseset-modal" class="modal">  
   <div class="modal-content">
-    <span onclick="byeModal()" class="close">&times;</span>
+    <span onclick="byeModal('exerciseset-modal')" class="close">&times;</span>
     <%= form_for( ExerciseSet.new) do |f| %> 
       <%= f.hidden_field :workout_lift_id, value: ""  %> 
       <%= f.label :weight %> 
@@ -109,10 +104,15 @@
     document.getElementsByName("commit")[0].disabled = false 
     byeModal()
   }
-  function byeModal(){
+  function byeModal(thisModal){
    
-    var modal = document.getElementById("exerciseset-modal");
+    if (thisModal === 'exerciseset-modal') {
+      var modal = document.getElementById("exerciseset-modal");
+    } else {
+      var modal = document.getElementById("workoutlift-modal");
+    }
     modal.style.display = "none"
+    
   }
 
   function addSet(id) {

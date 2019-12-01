@@ -9,7 +9,7 @@ class Workout < ApplicationRecord
     end 
 
     def display_start_time
-        self.start_time.strftime("Start Date & Time: %A, %d %b %Y %l:%M %p")
+        self.start_time.strftime("%A, %d %b %Y %l:%M %p")
     end 
 end
 

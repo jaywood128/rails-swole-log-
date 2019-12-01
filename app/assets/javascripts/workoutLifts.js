@@ -66,6 +66,7 @@ const displayWorkout = (workoutData) => {
   // set up the elements 
   let workoutStart = document.getElementById("workout-start-time")
   let workout = new Workout(workoutData)
+  
   workoutStart.innerHTML = workout.display_start_time
   let add_workout_lifts_button = document.getElementById('add-workoutlift-button')
   let show_exercise_sets_button = `<button onclick="showExerciseSets(${workoutData.id})" id ="ShowExerciseSets-${workoutData.id}" data-workout_lift_id= "${workoutData.id}"> <i class="fas fa-angle-down"></i> </button>`
@@ -80,6 +81,7 @@ const displayWorkout = (workoutData) => {
 
 //   add_workout_lifts_button.innerHTML += workout.render()  
 }
+
 const displayCreatedExerciseSets = (workout_lift_data) => {
   
   for (let i = 0; i < workout_lift_data.exercise_sets.length ; i++ ) {
@@ -98,6 +100,7 @@ function showExerciseSets(id) {
   .then( getExerciseSet => showExerciseSetIndex(getExerciseSet, id))
   .catch( err => console.log(err))
 }
+
 function showExerciseSetIndex(workoutLift, id) {
   
   let add_set_button = `<button onclick="addSet(${workoutLift.id})" id="add-set-${workoutLift.id}"> Add set(s) </button>`
