@@ -1,7 +1,7 @@
 class ExerciseSetsController < ApplicationController
 
     def create 
-       
+      
         @workout_lift = WorkoutLift.find(params[:workout_lift_id])
                 
         @exercise_set = @workout_lift.exercise_sets.build(exercise_set_params)
@@ -23,7 +23,7 @@ class ExerciseSetsController < ApplicationController
         end
     end 
     def index 
-        binding.pry
+        
         @workout_lift = WorkoutLift.find(params[:workout_lift_id])
         @workout_lift.exercise_sets 
         respond_to do |f| 

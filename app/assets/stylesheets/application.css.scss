@@ -154,6 +154,11 @@ dd span {
 
 .signup-form form a:hover{ text-decoration: underline; }
 
+#bootstrap-overides { 
+  max-width: 100%; 
+  margin-right: 0;
+}
+
 /***** =03 Navbar *****/
 .navbar { margin-bottom: 2rem; } 
 
@@ -186,6 +191,7 @@ body{ background:#F8F8FF; }
 
 .form-control{
   height: 41px;
+  margin-right: 0 !important;
   background: #f2f2f2;
   box-shadow: none !important;
   border: none;
@@ -224,8 +230,12 @@ body{ background:#F8F8FF; }
 .signup-form input[type="checkbox"]{
   margin-top: 3px;
 }
+.signup-form input{
+  width: 100%;
+}
 .signup-form .row div:first-child{
-  padding-right: 10px;
+  padding-right: 0px;
+  margin-right: 0; 
 }
 .signup-form .row div:last-child{
   padding-left: 10px;

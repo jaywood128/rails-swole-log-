@@ -15,6 +15,9 @@ document.addEventListener('turbolinks:load', (e) => {
       data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
       data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
       var exercise_set_url = `http://localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets`
+      document.querySelector("#exercise_set_weight").value = ""
+      document.querySelector("#exercise_set_reps").value = ""
+
        
       fetch(`${exercise_set_url}`, {
         method: 'POST',
@@ -83,20 +86,25 @@ const displayWorkout = (workoutData) => {
 }
 
 const displayCreatedExerciseSets = (workout_lift_data) => {
-  
-  for (let i = 0; i < workout_lift_data.exercise_sets.length ; i++ ) {
-   let js_exercise_set = new ExerciseSet(workout_lift_data.exercise_sets[i], i)
-    document.getElementById(`WorkoutLift_${workout_lift_data.id}`).innerHTML += js_exercise_set.set_weight_reps()
-  }
+  debugger
+  var last = workout_lift_data.exercise_sets.length - 1
+  var js_exercise_set = new ExerciseSet(workout_lift_data[last], last) 
+  document.getElementById(`WorkoutLift_${workout_lift_data.id}`).innerHTML += js_exercise_set.set_weight_reps()
+  // for (let i = 0; i < workout_lift_data.exercise_sets.length ; i++ ) {
+  //  let js_exercise_set = new ExerciseSet(workout_lift_data.exercise_sets[i], i)
+  //   debugger 
+  //   document.getElementById(`WorkoutLift_${workout_lift_data.id}`).innerHTML += js_exercise_set.set_weight_reps()
+  // }
   document.getElementsByName("commit")[0].disabled = false 
+  toggleExerciseSetsDisplay(workout_lift_data.id)
+  
   // document.querySelector(`div #Workout_${js_exercise_set.workout_lift_id} dl`).innerHTML += js_exercise_set.set_weight_reps()
 }
 
 function showExerciseSets(id) {
-  console.log(id)
-
+  
   fetch(`http:localhost:3000/workout_lifts/${id}.json`)
-   .then( resp=> resp.json())
+  .then( resp=> resp.json())
   .then( getExerciseSet => showExerciseSetIndex(getExerciseSet, id))
   .catch( err => console.log(err))
 }
@@ -110,7 +118,6 @@ function showExerciseSetIndex(workoutLift, id) {
         //adding sets  and reps inside the workoutlift's <dl> element 
         
   if (workoutLift.exercise_sets.length > 0) {
-    debugger
     // li.innerHTML += exercise_sets.toString()
     toggleExerciseSetsDisplay(workoutLift.id)
   } else { 
@@ -122,7 +129,7 @@ function showExerciseSetIndex(workoutLift, id) {
 }
 
 function createExerciseSets(workoutLift) {
-    debugger 
+    
   if (!document.getElementById(`dl-${workoutLift.id}`)) {
   let exercise_sets = workoutLift.exercise_sets 
   // let dl = document.getElementById(`dl-${workoutLift.id}`)
@@ -134,6 +141,7 @@ function createExerciseSets(workoutLift) {
    
   // debugger
   dl.innerHTML += js_exercise_sets.join("")
+  debugger
   return dl.innerHTML.toString() 
   }
 
@@ -142,14 +150,16 @@ function createExerciseSets(workoutLift) {
 function toggleExerciseSetsDisplay(set_id){
   let icon = document.getElementById(`ShowExerciseSets-${set_id}`).querySelector(".fas"); 
   // hide or reveal exercise set data 
+ debugger 
   if (icon.classList.contains('fa-angle-down')) {
     icon.classList.remove('fa-angle-down')
     icon.classList.add("fa-angle-up")
   } else {
-    document.getElementById(`dl-${set_id}`).classList.toggle("hide-me")
     icon.classList.remove('fa-angle-up')
     icon.classList.add("fa-angle-down")
   } 
+
+  document.getElementById(`dl-${set_id}`).classList.toggle("hide-me")
 
   // document.getElementById(`ShowExerciseSets-${set_id}`).querySelector(".fas").classList.toggle(".fa-angle-up")
   
