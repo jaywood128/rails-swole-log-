@@ -1,7 +1,6 @@
 
 class ExerciseSet {
   constructor(attributes, i) {
-    debugger
     this.i = i 
     this.id = attributes.id 
     this.weight = attributes.weight

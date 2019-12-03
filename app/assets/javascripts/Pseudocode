@@ -34,3 +34,36 @@ When exercise_sets for a workout are submitted via HTTP request, set it to true 
 controller's create action. 
 Then, inside displayWorkout function, if the WorkoutLift's has_exercise_sets attribute is false, 
 don't add the showExerciseSets button with down arrow.
+
+On the third click of the down arrow (show exerciseSets button) the exercise set is not revealed. 
+Therefore the class is still 'hide-me'. 
+
+Dealing with toggling the arrows
+
+State 1: Exercise sets exist. Sets hidden. 
+  Click on down arrow. 
+  Display sets.
+  Remove down arrow. 
+  Add up arrow. 
+
+State 2: Exercise sets exists. Sets revealed.
+  Click on the up arrow. 
+  Hide the sets. 
+  Remove the up arrow. 
+  Add the down arrow. 
+
+State 3: Sets hidden.  New set created. New set revealed.
+  Arrow in down state. When the set is created, the arrow should become an up arrow. 
+  Click on up arrow. 
+  Hide the set. 
+  Remove the up arrow. 
+  Add the down arrow. 
+
+State 4: Set revealed. Add new. 
+  The arrow is up. 
+  When the new set is created, it should stay an up arrow.
+  Then, if you click on the up arrow
+  you should hide the set 
+  remove the arrow 
+  add the down arrow 
+
