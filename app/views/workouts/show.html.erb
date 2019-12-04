@@ -21,6 +21,16 @@
     </div> 
   </div> 
 </div> <!-- #workoutLifts -->
+
+<%= link_to "See all workouts", workouts_path(@workout)%>
+
+  <%= form_for :workout, url: { controller: "workouts", action: "update", id: "#{@workout.id}" }, method: :put  do |f| %>
+    <%= button_tag type: 'submit', class: "button finish-workout", id: "finish-button" do %>
+    End workout
+    <% end %>
+   
+  <% end %>
+
 <div id="exerciseset-modal" class="modal">  
   <div class="modal-content">
     <span onclick="byeModal('exerciseset-modal')" class="close">&times;</span>
@@ -33,16 +43,6 @@
       <%= f.submit "Add Set", data: {disable_with: false}, class: "btn btn-success btn-sm" %> 
     <%end%> 
   </div>
-     
-<%= link_to "All workouts", workouts_path(@workout)%>
-
-  <%= form_for :workout, url: { controller: "workouts", action: "update", id: "#{@workout.id}" }, method: :put  do |f| %>
-    <%= button_tag type: 'submit', class: "button finish-workout", id: "finish-button" do %>
-          <i class="fas fa-check-square"></i>
-        <% end %> 
-      
-  <% end %><br>
-
 </div>
 
 <script type="text/javascript" charset="utf-8"> 
@@ -116,7 +116,7 @@
   }
 
   function addSet(id) {
-    debugger 
+
     document.querySelector("form #exercise_set_workout_lift_id").value = id 
     document.querySelector("#exerciseset-modal").style.display = "block"; 
     

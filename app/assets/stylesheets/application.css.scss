@@ -173,11 +173,6 @@ dd span {
 
 body{ background:#F8F8FF; }
 
-#new_user {
-  margin-left: 20px;
-  bottom: -50px;
-}
-
 .bg-custom{
   background-color: #05386B !important; 
 }
@@ -202,17 +197,11 @@ body{ background:#F8F8FF; }
   .form-control, .btn{        
       border-radius: 3px;
   }
-.signup-form{
-  width: 390px;
-  margin: 30px auto;
-}
 
 .signup-form form{
   position: relative;
-  right: -100px;
+  width: 100%;
   max-width: 300px; 
-  margin-top: 10px;
-  margin-bottom: 15px;
   padding: 30px;
   border-radius: 3px;
   background: #fff;
@@ -277,11 +266,12 @@ body{ background:#F8F8FF; }
 .welcome-user{
   margin-top: 10px;
 }
-
+.signup-form,
 .login-container {
   width: 100vw;
   height: 100vh;
   display: flex; 
+  justify-content: center;
   align-items: center; 
   margin-top: -2em;
   background-image: url("https://www.attacktheback.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2018/03/barbellchalk-1160x700-990x597.jpg.webp");

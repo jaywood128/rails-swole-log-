@@ -11,7 +11,7 @@ class UsersController < ApplicationController
            
             @user.save 
            
-            redirect_to workouts_path
+            redirect_to workouts_path(@user)
         else 
             render action: :new
         end

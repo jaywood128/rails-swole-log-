@@ -53,7 +53,8 @@ State 2: Exercise sets exists. Sets revealed.
   Add the down arrow. 
 
 State 3: Sets hidden.  New set created. New set revealed.
-  Arrow in down state. When the set is created, the arrow should become an up arrow. 
+  Arrow in down state. When the set is created, 
+  the arrow should become an up arrow. 
   Click on up arrow. 
   Hide the set. 
   Remove the up arrow. 

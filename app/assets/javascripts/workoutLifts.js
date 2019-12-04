@@ -1,8 +1,7 @@
 
 document.addEventListener('turbolinks:load', (e) => {
 
-  var exerciseSetForm = document.getElementById('new_exercise_set');
-
+  var exerciseSetForm = document.getElementById('new_exercise_set')
   var workoutLiftForm = document.getElementById('new_workout_lift')
   
   if(exerciseSetForm){
@@ -18,7 +17,6 @@ document.addEventListener('turbolinks:load', (e) => {
       document.querySelector("#exercise_set_weight").value = ""
       document.querySelector("#exercise_set_reps").value = ""
 
-       
       fetch(`${exercise_set_url}`, {
         method: 'POST',
         headers: {
@@ -31,9 +29,14 @@ document.addEventListener('turbolinks:load', (e) => {
       .then(resp=> resp.json())
       .then(workout_lift_data => {
         document.getElementById("exerciseset-modal").style.display = "none"
-        // passing workout_lift_data so I can print the index of each exercise_set
+        let icon = document.getElementById(`ShowExerciseSets-${workout_lift_data.id}`).querySelector(".fas"); 
+
         displayCreatedExerciseSets(workout_lift_data)
-        toggleExerciseSetsDisplay(workout_lift_data.id)
+
+        if (icon.classList.contains('fa-angle-down')) {
+          toggleExerciseSetsDisplay(workout_lift_data.id)
+        }
+
       })
       .catch(e => {
         console.log(e);
@@ -87,16 +90,23 @@ const displayWorkout = (workoutData) => {
 }
 
 const displayCreatedExerciseSets = (workout_lift_data) => {
-  
+
   var last_exercise_index = workout_lift_data.exercise_sets.length - 1
   var obj_last_set = workout_lift_data.exercise_sets[last_exercise_index]
   var js_exercise_set = new ExerciseSet(obj_last_set, last_exercise_index) 
-  document.getElementById(`WorkoutLift_${workout_lift_data.id}`).innerHTML += js_exercise_set.set_weight_reps()
+  let myHTML = js_exercise_set.set_weight_reps() 
+  // Check if there is a dl in the li. If there isn't then this is the first set for this exercise and we need 
+  // to add the dl. 
+
+  if (!document.getElementById(`dl-${workout_lift_data.id}`)) { 
+    myHTML = `<dl id="dl-${workout_lift_data.id}">${myHTML}</dl>`
+    document.getElementById(`WorkoutLift_${workout_lift_data.id}`).innerHTML += myHTML
+  } else{
+    document.getElementById(`WorkoutLift_${workout_lift_data.id}`).querySelector("dl").innerHTML += myHTML
+  }
 
   document.getElementsByName("commit")[0].disabled = false 
-  toggleExerciseSetsDisplay(workout_lift_data.id)
-  
-  // document.querySelector(`div #Workout_${js_exercise_set.workout_lift_id} dl`).innerHTML += js_exercise_set.set_weight_reps()
+ 
 }
 
 function showExerciseSets(id) {
@@ -108,7 +118,7 @@ function showExerciseSets(id) {
 }
 
 function showExerciseSetIndex(workoutLift, id) {
-  debugger
+
   console.log("Top of showExerciseSetIndex")
   let add_set_button = `<button onclick="addSet(${workoutLift.id})" id="add-set-${workoutLift.id}"> Add set(s) </button>`
   let li = document.getElementById(`WorkoutLift_${workoutLift.id}`)
@@ -120,7 +130,7 @@ function showExerciseSetIndex(workoutLift, id) {
         //adding sets  and reps inside the workoutlift's <dl> element 
         
   if (workoutLift.exercise_sets.length > 0) {
-    console.log("Inside if")
+    console.log("Inside if, showExerciseSetIndex")
     // li.innerHTML += exercise_sets.toString()
     toggleExerciseSetsDisplay(workoutLift.id)
   } else { 
@@ -156,6 +166,7 @@ function toggleExerciseSetsDisplay(set_id){
   let icon = document.getElementById(`ShowExerciseSets-${set_id}`).querySelector(".fas"); 
   // hide or reveal exercise set data 
   console.log("Top of toggle")
+ 
   if (icon.classList.contains('fa-angle-down')) {
     console.log("Toggle If")
     icon.classList.remove('fa-angle-down')
