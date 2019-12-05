@@ -74,7 +74,7 @@ const displayWorkout = (workoutData) => {
   let workoutStart = document.getElementById("workout-start-time")
   let workout = new Workout(workoutData)
   
-  workoutStart.innerHTML = workout.display_start_time
+  workoutStart.innerHTML = "Start time: " + workout.display_start_time
   let add_workout_lifts_button = document.getElementById('add-workoutlift-button')
   let show_exercise_sets_button = `<button onclick="showExerciseSets(${workoutData.id})" id ="ShowExerciseSets-${workoutData.id}" data-workout_lift_id= "${workoutData.id}"> <i class="fas fa-angle-down"></i> </button>`
   let ul = document.querySelector("ul")

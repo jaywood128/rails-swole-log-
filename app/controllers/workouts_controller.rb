@@ -7,7 +7,7 @@ class WorkoutsController < ApplicationController
     
     workout = current_user.workouts.build(start_time: DateTime.now, user_id: current_user.id)
     workout.save
-   
+    
     redirect_to workout_path(workout)
   end 
 
@@ -36,9 +36,12 @@ class WorkoutsController < ApplicationController
   end 
 
   def update 
-   
     @workout = Workout.find(params[:id])
-    @workout.update(end_time: DateTime.now)
+    if @workout.end_time.nil? 
+      @workout.update(end_time: DateTime.now)
+    else 
+      puts "Workout already ended"
+    end 
     redirect_to workout_path(@workout)
   end 
 

@@ -10,8 +10,9 @@ class UsersController < ApplicationController
         if @user.valid?
            
             @user.save 
-           
-            redirect_to workouts_path(@user)
+            session[:user_id] = @user.id
+        
+            redirect_to workouts_path
         else 
             render action: :new
         end
