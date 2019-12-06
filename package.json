@@ -3,8 +3,6 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^4.0.4",
-    "chart.js": "^2.8.0",
-    "chartkick": "^3.1.0",
     "eslint-utils": "^1.4.2"
   },
   "devDependencies": {
