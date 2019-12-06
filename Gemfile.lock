@@ -70,6 +70,7 @@ GEM
       xpath (~> 3.2)
     case_transform (0.2)
       activesupport
+    chartkick (3.3.0)
     childprocess (3.0.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -252,6 +253,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   byebug
   capybara (>= 2.15)
+  chartkick
   coffee-rails (~> 4.2)
   dotenv-rails
   groupdate
