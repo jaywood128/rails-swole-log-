@@ -13,7 +13,7 @@ document.addEventListener('turbolinks:load', (e) => {
       var data = {exercise_set: {}}; 
       data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
       data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
-      var exercise_set_url = `http://localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets`
+      var exercise_set_url = `https://localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets`
       document.querySelector("#exercise_set_weight").value = ""
       document.querySelector("#exercise_set_reps").value = ""
 
@@ -55,9 +55,10 @@ document.addEventListener('turbolinks:load', (e) => {
 
   const workoutShowLoaded = document.querySelector(".workouts.show")
     
-  if (workoutShowLoaded) { 
-    
-    getWorkout(e.data.url)
+  if (workoutShowLoaded) {
+    var extract = e.data["url"].split("")
+    var extractedId = extract[`${extract.length - 1 }`]
+    getWorkout(`http://localhost:3000/workouts/${extractedId}`)
   }
 })
 
@@ -111,7 +112,7 @@ const displayCreatedExerciseSets = (workout_lift_data) => {
 
 function showExerciseSets(id) {
   
-  fetch(`http:localhost:3000/workout_lifts/${id}.json`)
+  fetch(`https:localhost:3000/workout_lifts/${id}.json`)
   .then( resp=> resp.json())
   .then( getExerciseSet => showExerciseSetIndex(getExerciseSet, id))
   .catch( err => console.log(err))
@@ -191,7 +192,7 @@ function toggleExerciseSetsDisplay(set_id){
 function deleteSet(exerciseSetId) { 
       
   var token = document.querySelector('input[name=authenticity_token').value 
-  let url = `http://localhost:3000/exercise_sets/${exerciseSetId}.json`
+  let url = `https://localhost:3000/exercise_sets/${exerciseSetId}.json`
   
   fetch(`${url}`, {
 
