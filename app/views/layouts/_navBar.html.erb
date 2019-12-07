@@ -17,6 +17,7 @@
     <%= link_to "Sign out", signout_path, id: "sign_out", :class => "nav-link" %>
   <% else %>
     <%= link_to "Log in", login_path, :class => 'btn btn-success left-margin' %>
+    <%#= link_to "Sign in with Facebook", "/auth/facebook" %>
   <% end %>
   </div>
 </nav>

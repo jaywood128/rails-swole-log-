@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :lifts 
 
   # get '/auth/facebook/callback' => 'sessions#create'
-  match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+ match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
   get 'charts/downloads_by_day'

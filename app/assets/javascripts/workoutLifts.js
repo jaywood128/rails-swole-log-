@@ -13,7 +13,7 @@ document.addEventListener('turbolinks:load', (e) => {
       var data = {exercise_set: {}}; 
       data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
       data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
-      var exercise_set_url = `https://localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets`
+      var exercise_set_url = `http://localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets`
       document.querySelector("#exercise_set_weight").value = ""
       document.querySelector("#exercise_set_reps").value = ""
 
@@ -56,9 +56,9 @@ document.addEventListener('turbolinks:load', (e) => {
   const workoutShowLoaded = document.querySelector(".workouts.show")
     
   if (workoutShowLoaded) {
-    var extract = e.data["url"].split("")
-    var extractedId = extract[`${extract.length - 1 }`]
-    getWorkout(`http://localhost:3000/workouts/${extractedId}`)
+    // var extract = e.data["url"].split("")
+    // var extractedId = extract[`${extract.length - 1 }`
+    getWorkout(e.data.url)
   }
 })
 
@@ -80,14 +80,13 @@ const displayWorkout = (workoutData) => {
   let show_exercise_sets_button = `<button onclick="showExerciseSets(${workoutData.id})" id ="ShowExerciseSets-${workoutData.id}" data-workout_lift_id= "${workoutData.id}"> <i class="fas fa-angle-down"></i> </button>`
   let ul = document.querySelector("ul")
   // if workoutData.workout_lifts then display 
-  
+
   if (workoutData.workout_lifts.length > 0) {
     let html = workoutData.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render()).join('')
     ul.innerHTML += html 
   } 
   add_workout_lifts_button.innerHTML += `<button onclick="addWorkoutLift(${workoutData.id})" id ="AddWorkoutLift-${workoutData.id}" > Choose an exercise </button>`
-
-//   add_workout_lifts_button.innerHTML += workout.render()  
+ 
 }
 
 const displayCreatedExerciseSets = (workout_lift_data) => {
@@ -112,7 +111,7 @@ const displayCreatedExerciseSets = (workout_lift_data) => {
 
 function showExerciseSets(id) {
   
-  fetch(`https:localhost:3000/workout_lifts/${id}.json`)
+  fetch(`http:localhost:3000/workout_lifts/${id}.json`)
   .then( resp=> resp.json())
   .then( getExerciseSet => showExerciseSetIndex(getExerciseSet, id))
   .catch( err => console.log(err))
@@ -146,8 +145,7 @@ function showExerciseSetIndex(workoutLift, id) {
 function createExerciseSets(workoutLift) {
   // This function recieves the fetched exercise sets data and creates the dl 
   // for each exercise and attaches them into the DOM.  
-    // debugger 
-  
+   
     let exercise_sets = workoutLift.exercise_sets 
     // let dl = document.getElementById(`dl-${workoutLift.id}`)
     let li = document.getElementById(`WorkoutLift_${workoutLift.id}`)
@@ -155,8 +153,6 @@ function createExerciseSets(workoutLift) {
     dl.setAttribute("id", `dl-${workoutLift.id}`)
     li.appendChild(dl)
     let js_exercise_sets = exercise_sets.map((exercise_set, i) =>  new ExerciseSet(exercise_set, i).set_weight_reps()) 
-    
-    // debugger
     dl.innerHTML += js_exercise_sets.join("")
  
     return dl.innerHTML.toString() 
@@ -166,23 +162,16 @@ function createExerciseSets(workoutLift) {
 function toggleExerciseSetsDisplay(set_id){
   let icon = document.getElementById(`ShowExerciseSets-${set_id}`).querySelector(".fas"); 
   // hide or reveal exercise set data 
-  console.log("Top of toggle")
- 
+  
   if (icon.classList.contains('fa-angle-down')) {
-    console.log("Toggle If")
     icon.classList.remove('fa-angle-down')
     icon.classList.add("fa-angle-up")
     document.getElementById(`dl-${set_id}`).classList.remove("hide-me")
   } else {
-    console.log("Toggle Else")
-    // debugger 
-    //contains fa-angle-up (up arrow)
     icon.classList.remove('fa-angle-up')
     icon.classList.add("fa-angle-down")
     document.getElementById(`dl-${set_id}`).classList.add("hide-me")
-  } 
-    console.log("Bottom of toggle")
-
+  }
   // document.getElementById(`dl-${set_id}`).classList.toggle("hide-me")
 
   // document.getElementById(`ShowExerciseSets-${set_id}`).querySelector(".fas").classList.toggle(".fa-angle-up")
