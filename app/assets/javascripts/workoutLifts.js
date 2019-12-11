@@ -111,7 +111,7 @@ const displayCreatedExerciseSets = (workout_lift_data) => {
 
 function showExerciseSets(id) {
   
-  fetch(`http:localhost:3000/workout_lifts/${id}.json`)
+  fetch(`/workout_lifts/${id}.json`)
   .then( resp=> resp.json())
   .then( getExerciseSet => showExerciseSetIndex(getExerciseSet, id))
   .catch( err => console.log(err))
@@ -181,7 +181,7 @@ function toggleExerciseSetsDisplay(set_id){
 function deleteSet(exerciseSetId) { 
       
   var token = document.querySelector('input[name=authenticity_token').value 
-  let url = `https://localhost:3000/exercise_sets/${exerciseSetId}.json`
+  let url = `/exercise_sets/${exerciseSetId}.json`
   
   fetch(`${url}`, {
 
