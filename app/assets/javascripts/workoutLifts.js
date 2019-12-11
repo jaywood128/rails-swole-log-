@@ -13,7 +13,7 @@ document.addEventListener('turbolinks:load', (e) => {
       var data = {exercise_set: {}}; 
       data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
       data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
-      var exercise_set_url = `http://localhost:3000/workout_lifts/${workout_lift_id}/exercise_sets`
+      var exercise_set_url = `/workout_lifts/${workout_lift_id}/exercise_sets`
       document.querySelector("#exercise_set_weight").value = ""
       document.querySelector("#exercise_set_reps").value = ""
 
@@ -56,14 +56,14 @@ document.addEventListener('turbolinks:load', (e) => {
   const workoutShowLoaded = document.querySelector(".workouts.show")
     
   if (workoutShowLoaded) {
-    // var extract = e.data["url"].split("")
-    // var extractedId = extract[`${extract.length - 1 }`
-    getWorkout(e.data.url)
+    var extract = e.data["url"].split("")
+    var extractedId = extract[`${extract.length - 1 }`]
+    getWorkout(`/workouts/${extractedId}`)
   }
 })
 
 function getWorkout(url) {
-      
+
   let prom = fetch(`${url}.json`)
   prom.then(resp => resp.json()).then(workoutData => displayWorkout(workoutData))
   .catch(err => console.log(err))
