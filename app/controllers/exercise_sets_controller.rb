@@ -34,9 +34,16 @@ class ExerciseSetsController < ApplicationController
     end
     
     def update
-        binding.pry
-        @workout = Workoutlift.find(params[:workout_lift_id])
-        @exercise_set = @workout.exercise_set.filter(set => set.id ==== params[:exercise_set_id])
+       
+         @workoutlift = WorkoutLift.find(params[:workout_lift_id])
+         @exercise_set = @workoutlift.exercise_sets.select{|x| x.id == params[:id].to_i}
+         @weight = params[:exercise_set][:weight].to_i
+         @reps = params[:exercise_set][:reps].to_i
+         @exercise_set[0].update(weight: @weight, reps: @reps) 
+            respond_to do |f| 
+                f.json { render json: @exercise_set}
+            end
+
     end 
 
     def edit
@@ -60,6 +67,6 @@ class ExerciseSetsController < ApplicationController
 
     private 
     def exercise_set_params
-        params.require(:exercise_set).permit(:reps, :weight, :workout_lift_id, :user_id)
+        params.require(:exercise_set).permit(:id, :reps, :weight, :workout_lift_id, :user_id)
     end 
 end
