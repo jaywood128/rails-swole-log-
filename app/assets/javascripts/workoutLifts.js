@@ -16,7 +16,7 @@ document.addEventListener('turbolinks:load', (e) => {
       var exercise_set_url = `/workout_lifts/${workout_lift_id}/exercise_sets`
       document.querySelector("#exercise_set_weight").value = ""
       document.querySelector("#exercise_set_reps").value = ""
-
+      debugger
       fetch(`${exercise_set_url}`, {
         method: 'POST',
         headers: {

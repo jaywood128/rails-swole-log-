@@ -31,7 +31,8 @@ class WorkoutLiftsController < ApplicationController
     @workout = Workout.find(params[:workout_id])
   end 
 
-  def update    
+  def update   
+    binding.pry 
     @workout = Workout.find(params[:workout_lift][:workout_id])
     @workout_lift = WorkoutLift.find(params[:id])
         

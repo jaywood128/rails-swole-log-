@@ -31,10 +31,10 @@
    
   <% end %>
 
-<div id="exerciseset-modal" class="modal">  
+<div id="edit-exerciseset-modal" class="modal">  
   <div class="modal-content">
-    <span onclick="byeModal('exerciseset-modal')" class="close">&times;</span>
-    <%= form_for( ExerciseSet.new) do |f| %> 
+    <span onclick="byeModal('edit-exercise-set')" class="close-edit">&times;</span>
+    <%= form_for(ExerciseSet.new, html: {:class => "edit-exercise-set-form", :id => "edit-exercise-set"}) do |f| %> 
       <%= f.hidden_field :workout_lift_id, value: ""  %> 
       <%= f.label :weight %> 
       <%= f.number_field :weight, :required => true %> 
@@ -55,18 +55,19 @@
  
   function showEditForm(exerciseSetId, workout_lift_id) {
 
-    document.querySelector("#exerciseset-modal").style.display = "block"; 
-    var modal = document.getElementById("exerciseset-modal");
-    var span = document.getElementsByClassName("close")[0]
-    
+    document.querySelector("form #exercise_set_workout_lift_id").value = workout_lift_id
+    document.querySelector("#edit-exerciseset-modal").style.display = "block";
+    var modal = document.getElementById("edit-exerciseset-modal");
+    var span = document.getElementsByClassName("close-edit")[0]
+     
     span.onclick = function() {
-      
+      debugger
       modal.style.display = "none"
     }
     
-     document.getElementById("new_exercise_set").addEventListener('submit', e => {
+     document.getElementById("edit-exercise-set").addEventListener('submit', e => {
       e.preventDefault()
-    
+      debugger 
       var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
       var token = e.target.querySelector('input[name=authenticity_token]').value 
       var data = {exercise_set: {}}; 
@@ -105,9 +106,12 @@
     byeModal()
   }
   function byeModal(thisModal){
-   
+       
     if (thisModal === 'exerciseset-modal') {
       var modal = document.getElementById("exerciseset-modal");
+    } else if( thisModal === 'edit-exerciseset') {
+      debugger
+      var modal = document.getElementById("edit-exercise-set");
     } else {
       var modal = document.getElementById("workoutlift-modal");
     }

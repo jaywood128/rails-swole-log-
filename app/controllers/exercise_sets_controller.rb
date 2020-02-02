@@ -1,7 +1,7 @@
 class ExerciseSetsController < ApplicationController
 
     def create 
-      
+       
         @workout_lift = WorkoutLift.find(params[:workout_lift_id])
                 
         @exercise_set = @workout_lift.exercise_sets.build(exercise_set_params)
@@ -31,10 +31,19 @@ class ExerciseSetsController < ApplicationController
             f.json { render json: @workout_lift}
         end
         
+    end
+    
+    def update
+        binding.pry
+        @workout = Workoutlift.find(params[:workout_lift_id])
+        @exercise_set = @workout.exercise_set.filter(set => set.id ==== params[:exercise_set_id])
+    end 
+
+    def edit
     end 
 
     def destroy 
-        binding.pry
+    
         @exercise_set = ExerciseSet.find(params[:id])
 
         if @exercise_set.user_id == current_user.id 
