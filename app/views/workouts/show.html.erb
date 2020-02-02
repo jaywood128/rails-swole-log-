@@ -53,7 +53,7 @@
 
   }
  
-  function showEditForm(exerciseSetId, workout_lift_id) {
+  function showEditForm(exerciseSetId, workout_lift_id, set_number) {
 
     document.querySelector("form #exercise_set_workout_lift_id").value = workout_lift_id
     document.querySelector("#edit-exerciseset-modal").style.display = "block";
@@ -85,8 +85,8 @@
         body: JSON.stringify(data)
       })
       .then(resp=> resp.json())
-      .then(exercise_set => {
-        displayEditedExerciseSets(exercise_set)
+      .then(workout_lift => {
+        displayEditedExerciseSets(workout_lift, exerciseSetId, set_number)
       })
       .catch(e => {
         console.log(e);
@@ -95,10 +95,16 @@
     })
   } 
 
-  function displayEditedExerciseSets(exercise_set_data) {
+  function displayEditedExerciseSets(workoutlift, exerciseSetId, set_number) {
     
+    var workoutlift_exercise_sets = workoutlift.exercise_sets.map(exercise_set => new ExerciseSet(exericse_set, set_number))
+    // var edited_exercise_set = workout_lift_exercise_sets
+    // filter(exercise_set => exercise_set.i + 1 === set_numer)
+    edited_exercise_set  
+  debugger 
     var js_exercise_set = new ExerciseSet(exercise_set_data[0])
-    document.getElementById("dl-#{exercise_set_data.workout_lift_id}").querySelector("#set-#{js_exercise_set.id}").innerHTML += js_exercise_set.set_weight_reps()
+   
+    document.getElementById("dl-" + exercise_set_data[0].workout_lift_id).querySelector("#set-" + js_exercise_set.i).innerHTML += js_exercise_set.set_weight_reps()
     // document.getElementById("workoutLifts").querySelector("ul #WorkoutLift_8").innerHTML += js_exercise_set.set_weight_reps()
 
     document.getElementsByName("commit")[0].disabled = false 

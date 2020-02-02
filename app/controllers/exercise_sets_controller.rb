@@ -41,7 +41,7 @@ class ExerciseSetsController < ApplicationController
          @reps = params[:exercise_set][:reps].to_i
          @exercise_set[0].update(weight: @weight, reps: @reps) 
             respond_to do |f| 
-                f.json { render json: @exercise_set}
+                f.json { render json: @workoutlift}
             end
 
     end 
