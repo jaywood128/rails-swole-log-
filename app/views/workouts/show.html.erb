@@ -31,6 +31,20 @@
    
   <% end %>
 
+<div id="new-exerciseset-modal" class="modal">  
+  <div class="modal-content">
+    <span onclick="byeModal('new-exerciseset-modal')" class="close">&times;</span>
+    <%= form_for(ExerciseSet.new, html: {:class => "new-exerciseset-form", :id => "new-exercise-set"}) do |f| %> 
+      <%= f.hidden_field :workout_lift_id, value: ""  %> 
+      <%= f.label :weight %> 
+      <%= f.number_field :weight, :required => true %> 
+      <%= f.label :reps %> 
+      <%= f.number_field :reps, :required => true %> 
+      <%= f.submit "Add Set", data: {disable_with: false}, class: "btn btn-success btn-sm" %> 
+    <%end%> 
+  </div>
+</div>
+
 <div id="edit-exerciseset-modal" class="modal">  
   <div class="modal-content">
     <span onclick="byeModal('edit-exercise-set')" class="close-edit">&times;</span>
@@ -127,7 +141,8 @@
   function addSet(id) {
 
     document.querySelector("form #exercise_set_workout_lift_id").value = id 
-    document.querySelector("#exerciseset-modal").style.display = "block"; 
+    document.querySelector("#new-exerciseset-modal").style.display = "block"; 
+    debugger
     
   }
 </script>

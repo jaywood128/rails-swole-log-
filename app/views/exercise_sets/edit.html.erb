@@ -1,0 +1,13 @@
+<div id="edit-exerciseset-modal" class="modal">  
+  <div class="modal-content">
+    <span onclick="byeModal('exerciseset-modal')" class="close">&times;</span>
+    <%= form_for(ExerciseSet.new, html: {:class => "edit-exercise-set-form", :id => "edit-exercise-set"}) do |f| %> 
+      <%= f.hidden_field :workout_lift_id, value: ""  %> 
+      <%= f.label :weight %> 
+      <%= f.number_field :weight, :required => true %> 
+      <%= f.label :reps %> 
+      <%= f.number_field :reps, :required => true %> 
+      <%= f.submit "Add Set", data: {disable_with: false}, class: "btn btn-success btn-sm" %> 
+    <%end%> 
+  </div>
+</div>
