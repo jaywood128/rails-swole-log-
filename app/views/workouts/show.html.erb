@@ -10,7 +10,7 @@
   <div id="add-workoutlift-button">
     <div id="workoutlift-modal" class="modal">  
       <div class="modal-content"> 
-      <span onclick="byeModal()" class="close">&times;</span> 
+      <span onclick="byeModal('workoutlift-modal')" class="close">&times;</span> 
       <%= form_for( WorkoutLift.new ) do |f| %> 
         <%= f.hidden_field :workout_lift_id, value: ""  %> 
         <%= f.label :name %>
@@ -125,14 +125,16 @@
     byeModal()
   }
   function byeModal(thisModal){
+    
        
     if (thisModal === 'exerciseset-modal') {
       var modal = document.getElementById("exerciseset-modal");
     } else if( thisModal === 'edit-exerciseset') {
-      debugger
       var modal = document.getElementById("edit-exercise-set");
-    } else {
+    } else if ( thisModal === 'workoutlift-modal' ) {
       var modal = document.getElementById("workoutlift-modal");
+    } else {
+      var modal = document.getElementById("new-exerciseset-modal")
     }
     modal.style.display = "none"
     
@@ -142,7 +144,7 @@
 
     document.querySelector("form #exercise_set_workout_lift_id").value = id 
     document.querySelector("#new-exerciseset-modal").style.display = "block"; 
-    debugger
+
     
   }
 </script>
