@@ -32,7 +32,7 @@ class WorkoutLiftsController < ApplicationController
   end 
 
   def update   
-    binding.pry 
+    binding.pry
     @workout = Workout.find(params[:workout_lift][:workout_id])
     @workout_lift = WorkoutLift.find(params[:id])
         
@@ -41,21 +41,15 @@ class WorkoutLiftsController < ApplicationController
     redirect_to workout_workout_lifts_path(@workout)   
   end 
 
-  def index 
-    
+  def index   
     @workout_lift = WorkoutLift.new
     @workout_lift.exercise_sets.build
     @workout_lift.exercise_sets.build
     @workout = Workout.find(params[:workout_id])
 
-
     if params["search"]
-      # @lift = Lift.find_by(name: params["search"])
-      # @workout_lifts = @workout.workout_lifts.where(lift_id: @lift.id) 
       @workout_lifts = @workout.workout_lifts.joins(:lift).where(lifts: { name: params["search"].titleize })
-
     else 
-    
       @workout_lifts = @workout.workout_lifts
 
       respond_to do |f| 

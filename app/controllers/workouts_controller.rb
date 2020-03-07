@@ -1,11 +1,13 @@
+require 'time'
 class WorkoutsController < ApplicationController
   def new 
     @workout = Workout.new 
   end 
 
   def create 
-    
-    workout = current_user.workouts.build(start_time: DateTime.now, user_id: current_user.id)
+    Time.zone = 'Eastern Time (US & Canada)' 
+    dt = DateTime.now
+    workout = current_user.workouts.build(start_time: dt, user_id: current_user.id)
     workout.save
     
     redirect_to workout_path(workout)
@@ -36,9 +38,12 @@ class WorkoutsController < ApplicationController
   end 
 
   def update 
+    
     @workout = Workout.find(params[:id])
     if @workout.end_time.nil? 
-      @workout.update(end_time: DateTime.now)
+      Time.zone = 'Eastern Time (US & Canada)' 
+      dt = DateTime.now
+      @workout.update(end_time: dt)
     else 
       puts "Workout already ended"
     end 

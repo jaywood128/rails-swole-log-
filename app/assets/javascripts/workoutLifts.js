@@ -56,7 +56,7 @@ document.addEventListener('turbolinks:load', (e) => {
   const workoutShowLoaded = document.querySelector(".workouts.show")
     
   if (workoutShowLoaded) {
-  
+
     var extractedId = e.data["url"].split(/\//)[4]
     getWorkout(`/workouts/${extractedId}`)
 
@@ -72,6 +72,7 @@ function getWorkout(url) {
 }
 
 const displayWorkout = (workoutData) => {
+
   // set up the elements 
   let workoutStart = document.getElementById("workout-start-time")
   let workout = new Workout(workoutData)
@@ -86,7 +87,7 @@ const displayWorkout = (workoutData) => {
     let html = workoutData.workout_lifts.map(workoutliftData => new WorkoutLift(workoutliftData).render()).join('')
     ul.innerHTML += html 
   } 
-  debugger
+
   add_workout_lifts_button.innerHTML += `<button onclick="addWorkoutLift(${workoutData.id})" id ="AddWorkoutLift-${workoutData.id}" > Choose an exercise </button>`
  
 }

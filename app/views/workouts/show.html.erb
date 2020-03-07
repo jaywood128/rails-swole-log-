@@ -83,11 +83,10 @@
       var workout_lift_id = document.querySelector("form #exercise_set_workout_lift_id").value 
       var token = e.target.querySelector('input[name=authenticity_token]').value 
       var data = {exercise_set: {}}; 
-    
+      var exercise_set_url = `/workout_lifts/${workout_lift_id}/exercise_sets/${exerciseSetId}`
+      
       data["exercise_set"]["weight"] = e.target.querySelector("#exercise_set_weight").value 
       data["exercise_set"]["reps"] = e.target.querySelector("#exercise_set_reps").value 
-      
-      var exercise_set_url = `/workout_lifts/${workout_lift_id}/exercise_sets/${exerciseSetId}`
       
       fetch(`${exercise_set_url}`, {
         method: 'PUT',
@@ -111,18 +110,17 @@
 
   function displayEditedExerciseSets(workoutlift, exerciseSetId, set_number) {
     
-    var workoutlift_exercise_sets = workoutlift.exercise_sets.map(exercise_set => new ExerciseSet(exericse_set, set_number))
-    // var edited_exercise_set = workout_lift_exercise_sets
-    // filter(exercise_set => exercise_set.i + 1 === set_numer)
-    edited_exercise_set  
- 
-    var js_exercise_set = new ExerciseSet(exercise_set_data[0])
-   
-    document.getElementById("dl-" + exercise_set_data[0].workout_lift_id).querySelector("#set-" + js_exercise_set.i).innerHTML += js_exercise_set.set_weight_reps()
-    // document.getElementById("workoutLifts").querySelector("ul #WorkoutLift_8").innerHTML += js_exercise_set.set_weight_reps()
+    if (workoutlift.exercise_sets[0]){
 
-    document.getElementsByName("commit")[0].disabled = false 
-    byeModal()
+      var js_exercise_sets = workoutlift.exercise_sets.map(exercise_set => new ExerciseSet(exercise_set, set_number))
+      var last_exercise_set = js_exercise_sets[js_exercise_sets.length - 1]
+
+      document.getElementById("dl-" + last_exercise_set.workout_lift_id).querySelector("#set-" + last_exercise_set.i).innerHTML += last_exercise_set.set_weight_reps()
+      document.getElementsByName("commit")[0].disabled = false 
+      byeModal()
+
+    }
+  
   }
   function byeModal(thisModal){
     
