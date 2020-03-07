@@ -12,9 +12,11 @@ class ExerciseSet {
  set_weight_reps() {
    return `
       <!-- Sets and Reps Item -->
-      <dt>Set ${this.i + 1} </dt>
-      <dd id="set-${this.i + 1}">Weight: <span>${this.weight}</span> &bull; Reps: <span>${this.reps}</span></dd> 
+    <div id="exercise-set-container-${this.i + 1}"> 
+      <dt id="dd-${this.i + 1}">Set ${this.i + 1} </dt>
+      <dd id="dd-${this.i + 1}">Weight: <span>${this.weight}</span> &bull; Reps: <span>${this.reps}</span></dd> 
       <button onclick="showEditForm(${this.id}, ${this.workout_lift_id}, ${this.i + 1})"> <i class="fa fa-pencil fa-3" aria-hidden="true"></i></button> 
+    </div>
    `
   }
 }

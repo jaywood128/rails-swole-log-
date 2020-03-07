@@ -1,9 +1,7 @@
 class ExerciseSetsController < ApplicationController
 
     def create 
-      
-        @workout_lift = WorkoutLift.find(params[:exercise_set][:workout_lift_id])
-                
+        @workout_lift = WorkoutLift.find(params[:exercise_set][:workout_lift_id])        
         @exercise_set = @workout_lift.exercise_sets.build(exercise_set_params)
         @exercise_set.user_id = current_user.id 
             
@@ -13,7 +11,6 @@ class ExerciseSetsController < ApplicationController
                 f.json { render json: @workout_lift}
              end
         end
-        # redirect_to workout_workout_lifts_path(@exercise_set.workout)
     end 
     def show 
         @exercise_set = ExerciseSet.find(params[:id])
@@ -22,28 +19,25 @@ class ExerciseSetsController < ApplicationController
             f.json { render json: @exercise_set}
         end
     end 
-    def index 
-        
+    def index    
         @workout_lift = WorkoutLift.find(params[:workout_lift_id])
         @workout_lift.exercise_sets 
         respond_to do |f| 
             f.html { redirect_to workout_path(@exercise_set.workout_lift.workout)}
             f.json { render json: @workout_lift}
-        end
-        
+        end 
     end
     
     def update
-       
          @workoutlift = WorkoutLift.find(params[:workout_lift_id])
          @exercise_set = @workoutlift.exercise_sets.select{|x| x.id == params[:id].to_i}
          @weight = params[:exercise_set][:weight].to_i
          @reps = params[:exercise_set][:reps].to_i
+         binding.pry
          @exercise_set[0].update(weight: @weight, reps: @reps) 
             respond_to do |f| 
                 f.json { render json: @workoutlift}
             end
-
     end 
 
     def edit

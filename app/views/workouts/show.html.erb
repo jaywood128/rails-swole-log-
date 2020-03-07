@@ -47,7 +47,7 @@
 
 <div id="edit-exerciseset-modal" class="modal">  
   <div class="modal-content">
-    <span onclick="byeModal('edit-exercise-set')" class="close-edit">&times;</span>
+    <span onclick="byeModal('edit-exerciseset-modal')" class="close-edit">&times;</span>
     <%= form_for(ExerciseSet.new, html: {:class => "edit-exercise-set-form", :id => "edit-exercise-set"}) do |f| %> 
       <%= f.hidden_field :workout_lift_id, value: ""  %> 
       <%= f.label :weight %> 
@@ -109,32 +109,34 @@
   } 
 
   function displayEditedExerciseSets(workoutlift, exerciseSetId, set_number) {
+    var last_set = workoutlift.exercise_sets.length - 1
     
-    if (workoutlift.exercise_sets[0]){
-
+    if (last_set >= 1){
+      
       var js_exercise_sets = workoutlift.exercise_sets.map(exercise_set => new ExerciseSet(exercise_set, set_number))
-      var last_exercise_set = js_exercise_sets[js_exercise_sets.length - 1]
+      var last_exercise_set = js_exercise_sets[last_set]
 
-      document.getElementById("dl-" + last_exercise_set.workout_lift_id).querySelector("#set-" + last_exercise_set.i).innerHTML += last_exercise_set.set_weight_reps()
+      document.getElementById(`exercise-set-container-${set_number}`).innerHTML = ""
+      document.getElementById(`exercise-set-container-${set_number}`).innerHTML += last_exercise_set.set_weight_reps()
       document.getElementsByName("commit")[0].disabled = false 
-      byeModal()
+      byeModal('edit-exerciseset-modal')
 
     }
   
   }
   function byeModal(thisModal){
-    
-       
+   
     if (thisModal === 'exerciseset-modal') {
       var modal = document.getElementById("exerciseset-modal");
-    } else if( thisModal === 'edit-exerciseset') {
-      var modal = document.getElementById("edit-exercise-set");
+    } else if( thisModal === 'edit-exerciseset-modal') {
+      var modal = document.getElementById("edit-exerciseset-modal");
     } else if ( thisModal === 'workoutlift-modal' ) {
       var modal = document.getElementById("workoutlift-modal");
     } else {
       var modal = document.getElementById("new-exerciseset-modal")
     }
     modal.style.display = "none"
+    document.getElementsByName("commit")[0].disabled = true
     
   }
 
