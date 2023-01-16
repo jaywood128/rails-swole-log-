@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'groupdate'
 gem 'webpacker', '~> 4.x'
 gem 'active_model_serializers', '~> 0.10.2'
-gem 'rack-cors', '~> 0.4.0'
+gem 'rack-cors', '~> 1.0.5'
 gem "omniauth-rails_csrf_protection"
 
 # Use ActiveStorage variant
